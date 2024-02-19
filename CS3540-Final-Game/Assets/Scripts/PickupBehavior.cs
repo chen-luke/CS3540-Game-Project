@@ -26,7 +26,7 @@ public class PickupBehavior : MonoBehaviour
         if (LevelManager.isGameOver)
         {
             // If game over, reset all potions.
-            LevelManager.staminaPotionAmt = 0;
+            LevelManager.strPotionAmt = 0;
             LevelManager.hpPotionAmt = 0;
         }
 

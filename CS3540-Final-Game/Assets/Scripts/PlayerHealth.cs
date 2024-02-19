@@ -10,13 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     int currentHealth;
     int maxHealth = 100;
-
-    int maxStamina = 100;
-
     private string HP_POTION_AMT_ICON = "HpPotionIcon";
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,23 +34,9 @@ public class PlayerHealth : MonoBehaviour
             LevelManager.hpPotionAmt --;
             FindObjectOfType<LevelManager>().UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
         }
-        if (currentHealth <=0) {
-            PlayerDies();
-        }
+
     }
 
-        public void AddStamina(int staminaAmt) {
-
-        if (currentHealth < maxStamina && LevelManager.hpPotionAmt > 0) {
-            currentHealth += staminaAmt;
-            healthSlider.value = currentHealth;
-            LevelManager.hpPotionAmt --;
-            FindObjectOfType<LevelManager>().UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
-        }
-        if (currentHealth <=0) {
-            PlayerDies();
-        }
-    }
     public void TakeDamage(int damageAmount) {
         if (currentHealth > 0) {
             currentHealth -= damageAmount;

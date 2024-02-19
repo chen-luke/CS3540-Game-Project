@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public static bool isGameOver = false;
 
     public static int hpPotionAmt = 0;
-    public static int staminaPotionAmt = 0;
+    public static int strPotionAmt = 0;
     public string nextLevel;
 
     void Start()
@@ -53,49 +53,53 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void LevelLost()
-    {
-        isGameOver = true;
+    // The below code might not be implemented due to our current design, 
+    // but for now we are leaving it for protential future changes.
+    // 
 
-        gameText.text = "GAME OVER!";
+    // public void LevelLost()
+    // {
+    //     isGameOver = true;
 
-        gameText.gameObject.SetActive(true);
+    //     // gameText.text = "GAME OVER!";
 
-        // Camera.main.GetComponent<AudioSource>().pitch = 1;
+    //     // gameText.gameObject.SetActive(true);
 
-        // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+    //     // Camera.main.GetComponent<AudioSource>().pitch = 1;
 
-        Invoke("LoadCurrentLevel", 2);
+    //     // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
-    }
+    //     Invoke("LoadCurrentLevel", 2);
 
-    public void LevelBeat()
-    {
-        isGameOver = true;
+    // }
 
-        gameText.text = "YOU WIN!";
+    // public void LevelBeat()
+    // {
+    //     isGameOver = true;
 
-        gameText.gameObject.SetActive(true);
+    //     // gameText.text = "YOU WIN!";
 
-        // Camera.main.GetComponent<AudioSource>().pitch = 2;
+    //     // gameText.gameObject.SetActive(true);
 
-        // AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
+    //     // Camera.main.GetComponent<AudioSource>().pitch = 2;
 
-        if (!string.IsNullOrEmpty(nextLevel))
-        {
-            Invoke("LoadNextLevel", 2);
-        }
+    //     // AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
 
-    }
-    void LoadNextLevel()
-    {
-        SceneManager.LoadScene(nextLevel);
-    }
+    //     if (!string.IsNullOrEmpty(nextLevel))
+    //     {
+    //         Invoke("LoadNextLevel", 2);
+    //     }
 
-    void LoadCurrentLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    // }
+    // void LoadNextLevel()
+    // {
+    //     SceneManager.LoadScene(nextLevel);
+    // }
+
+    // void LoadCurrentLevel()
+    // {
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // }
 
 }
 

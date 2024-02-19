@@ -2,40 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerStamina : MonoBehaviour
+public class PlayerStr : MonoBehaviour
 {
-    public int startingStamina = 100;
+    public int startingStr = 100;
     public AudioClip deadSFX;
-    public Slider staminaSlider;
-    int currentStamina;
-    int maxStamina = 100;
+    public Slider strSlider;
+    int currentStr;
+    int maxStr = 100;
 
-    private const string STAMINA_POTION_AMT_ICON = "StamPotionIcon";
+    private const string STR_POTION_AMT_ICON = "StrPotionIcon";
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentStamina = startingStamina;
-        staminaSlider.value = currentStamina;
+        currentStr = startingStr;
+        strSlider.value = currentStr;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) {
-            AddStamina(StamPotionBehavior.healAmount);
+            Addstr(StrPotionBehavior.healAmount);
         }
     }
 
-    public void AddStamina(int staminaAmt) {
+    public void Addstr(int strAmt) {
 
-        if (currentStamina < maxStamina && LevelManager.staminaPotionAmt > 0) {
-            currentStamina += staminaAmt;
-            staminaSlider.value = currentStamina;
-            LevelManager.staminaPotionAmt --;
-            FindObjectOfType<LevelManager>().UpdatePotionCountUI(STAMINA_POTION_AMT_ICON, LevelManager.staminaPotionAmt);
+        if (currentStr < maxStr && LevelManager.strPotionAmt > 0) {
+            currentStr += strAmt;
+            strSlider.value = currentStr;
+            LevelManager.strPotionAmt --;
+            FindObjectOfType<LevelManager>().UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
         }
     }
 

@@ -10,7 +10,7 @@ public class PotionBehavior : MonoBehaviour
 
     private float startY; // The initial y-position of the object
     protected const string HP_POTION_AMT_ICON = "HpPotionIcon";
-    protected const string STAMINA_POTION_AMT_ICON = "StamPotionIcon";
+    protected const string STR_POTION_AMT_ICON = "StrPotionIcon";
     protected LevelManager lvlManager;
 
     protected virtual void Start()
