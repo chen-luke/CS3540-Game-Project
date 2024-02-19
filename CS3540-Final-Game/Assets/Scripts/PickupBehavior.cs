@@ -18,9 +18,7 @@ public class PickupBehavior : MonoBehaviour
     public AudioClip pickupSFX;
     void Start()
     {
-        // potion count default 1?
-        //pickupCount++;
-        // 
+
     }
 
     void Update()
@@ -33,26 +31,5 @@ public class PickupBehavior : MonoBehaviour
         }
 
     }
-
-    private void OnDestroy()
-    {
-        if (!LevelManager.isGameOver)
-        {
-            // Minus potion
-            // Gain Effect
-            // pickupCount--;
-
-            // if (pickupCount <= 0)
-            // {
-            //     FindObjectOfType<LevelManager>().LevelBeat();
-            // }
-        }
-    }
-
-    public void ChangePotionAmt(string method, string potionType)
-    {
-        
-    }
-
 
 }

@@ -10,8 +10,8 @@ public class LevelManager : MonoBehaviour
 {
     public Text gameText;
 
-    // public AudioClip gameOverSFX;
-    // public AudioClip gameWonSFX;
+    public AudioClip gameOverSFX;
+    public AudioClip gameWonSFX;
     public static bool isGameOver = false;
 
     public static int hpPotionAmt = 0;
