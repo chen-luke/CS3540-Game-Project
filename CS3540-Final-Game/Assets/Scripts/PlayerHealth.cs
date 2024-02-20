@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
 
-    public AudioClip deadSFX;
+    //public AudioClip deadSFX;
     public Slider healthSlider;
     int currentHealth;
     int maxHealth = 100;
+
+    public static bool isDead = false;
     private string HP_POTION_AMT_ICON = "HpPotionIcon";
     // Start is called before the first frame update
     void Start()
@@ -51,8 +52,9 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDies() {
         Debug.Log("Player is dead");
-        AudioSource.PlayClipAtPoint(deadSFX, transform.position);
+        //AudioSource.PlayClipAtPoint(deadSFX, transform.position);
         transform.Rotate(-90, 0, 0, Space.Self);
+        isDead = true;
     }
 
 

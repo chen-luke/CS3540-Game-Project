@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class StrPotionBehavior : PotionBehavior
@@ -20,10 +19,13 @@ public class StrPotionBehavior : PotionBehavior
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Player")) {
         LevelManager.strPotionAmt ++;
         UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
         Debug.Log("Added " + healAmount + " str points to the player!");
 
         Destroy(gameObject);
+
+        }
     }
 }

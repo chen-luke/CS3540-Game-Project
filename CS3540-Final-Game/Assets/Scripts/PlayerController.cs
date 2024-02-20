@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+// Start is called before the first frame update
     public float walkSpeed = 5.0f;
     public float sprintSpeedScalar = 2.0f;
     public float jumpForceScalar = 2.0f;
@@ -14,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     Vector3 input, moveDirection;
 
+    private float minHeight = 26f;
+
     void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -22,9 +23,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-
+        if(!PlayerHealth.isDead) {
+            
+            MovePlayer();
+        }
+        if (transform.position.y < minHeight) {
+            PlayerHealth.isDead = true;
+            // Would restart level in the future
+            Destroy(gameObject);
+        }
     }
+
 
     void MovePlayer()
     {

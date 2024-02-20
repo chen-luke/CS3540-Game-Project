@@ -1,11 +1,11 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class PotionBehavior : MonoBehaviour
 {
     public int rotationAmount = 45;
 
-    public float bobbingHeight = 0.5f; // The maximum height the object will bob
+    public float bobbingHeight = 0.1f; // The maximum height the object will bob
     public float bobbingSpeed = 1.0f; // The speed of the bobbing movement
 
     private float startY; // The initial y-position of the object

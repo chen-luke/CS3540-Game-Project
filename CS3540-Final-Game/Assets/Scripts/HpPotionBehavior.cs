@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class HpPotionBehavior : PotionBehavior
 {
@@ -21,10 +19,13 @@ public class HpPotionBehavior : PotionBehavior
 
     void OnTriggerEnter(Collider other)
     {
-        LevelManager.hpPotionAmt++;
+        if (other.CompareTag("Player")) {
+                    LevelManager.hpPotionAmt++;
         UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
         Destroy(gameObject);
         Debug.Log("Added " + healAmount + " HP points to the player!");
+        }
+
     }
 
 }
