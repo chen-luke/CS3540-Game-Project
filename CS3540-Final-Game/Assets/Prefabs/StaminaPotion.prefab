@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 460806}
   - component: {fileID: 3332634}
   - component: {fileID: 2377276}
-  - component: {fileID: -2802717191040764155}
   - component: {fileID: -306136199568955023}
   - component: {fileID: 329700777444512100}
+  - component: {fileID: 6558954338240412208}
   m_Layer: 0
   m_Name: StaminaPotion
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.17364825, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,21 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2802717191040764155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abc238defac7864c9be54c4fd075dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationAmount: 45
-  bobbingHeight: 0.5
-  bobbingSpeed: 1
 --- !u!54 &-306136199568955023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,3 +134,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.143526, y: 0.22209385, z: 0.14352569}
   m_Center: {x: 0, y: 0.111046925, z: 0.0000001527369}
+--- !u!114 &6558954338240412208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1b6e7cb6a8999439ddbf83d41b9723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAmount: 45
+  bobbingHeight: 0.1
+  bobbingSpeed: 1

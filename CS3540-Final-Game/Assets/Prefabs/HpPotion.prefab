@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAmount: 45
-  bobbingHeight: 0.2
+  bobbingHeight: 0.1
   bobbingSpeed: 1

@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.UI;
+
 public class PlayerStr : MonoBehaviour
 {
     public int startingStr = 100;

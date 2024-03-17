@@ -1,3 +1,11 @@
-*
-!Assets/*
+/*
+!/Assets/
 !.gitignore
+/Assets/PolygonAdventure
+/Assets/PolygonKnights
+/Assets/PolygonSamurai
+/Assets/Synty Studios/Synty Studios
+/Assets/ErbGameArt/Demo scene
+/Assets/PolygonPirates
+/Assets/PolygonSciFiCity
+/Assets/Ultimate SFX Bundle

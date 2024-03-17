@@ -3,56 +3,20 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    public Transform player;
-    // Can add roaming behavior in the future
-    public float chaseSpeed = 5f;
-    public int damage = 25;
-    public float damageDistance = 2f;
-    // Area of Engament distance
-    public float aoeDistance = 15f;
-    private bool canAttack = true;
-    public float attackCooldown = 1f;
-
-
-    // Start is called before the first frame update
+    public EnemySpawner spawner;
     void Start()
     {
-        canAttack = true;
-        if (player == null)
+        if (spawner)
         {
-            try { player = GameObject.FindGameObjectWithTag("Player").transform; }
-            catch { throw new Exception("There is no assigned player object with the designated 'Player' tag."); }
+            spawner.activeEnemies++;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    private void OnDestroy()
     {
-        if (!PlayerHealth.isDead)
+        if (spawner)
         {
-            float distance = Vector3.Distance(transform.position, player.position);
-            if (distance <= aoeDistance && distance > damageDistance)
-            {
-                transform.LookAt(player);
-                transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
-            }
-            else if (distance <= damageDistance && canAttack)
-            {
-                AttackPlayer();
-            }
+            spawner.activeEnemies--;
         }
-    }
-
-    void AttackPlayer()
-    {
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        playerHealth.TakeDamage(damage);
-        canAttack = false;
-        Invoke("EnableAttack", attackCooldown);
-    }
-
-    private void EnableAttack()
-    {
-        canAttack = true;
     }
 }
