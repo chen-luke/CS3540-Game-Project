@@ -4,36 +4,34 @@ public class BreakableObject : MonoBehaviour
 {
     public float explosionForce = 100;
     public float explosionRadius = 10;
-    public float damangeRequired = 10;
 
+    // minimum amount of damage required in one hit to destroy object
+    public float damageRequired = 10;
     public GameObject objectPieces;
 
-    void Start()
-    {
-        
-
-    }
-
-
-    public void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Weapon"))
         {
-            Transform currentObj = gameObject.transform;
-            GameObject pieces = Instantiate(objectPieces, currentObj.position, currentObj.rotation);
-            pieces.transform.localScale = Vector3.one;
-
-            Rigidbody[] rbPieces = pieces.GetComponentsInChildren<Rigidbody>();
-
-
-            foreach (Rigidbody rb in rbPieces)
+            if (0 >= damageRequired)
             {
-                rb.AddExplosionForce(explosionForce, currentObj.position, explosionRadius);
+                // will eventually check to see if enough damage was done
+                Transform currentObj = gameObject.transform;
 
+                // create pieces and send them exploding
+                GameObject pieces = Instantiate(objectPieces, currentObj.position, currentObj.rotation);
+                Rigidbody[] rbPieces = pieces.GetComponentsInChildren<Rigidbody>();
+
+                foreach (Rigidbody rb in rbPieces)
+                {
+                    rb.AddExplosionForce(explosionForce, currentObj.position, explosionRadius);
+                }
+
+                // get rid of original object and then pieces after a delay
+                Destroy(gameObject);
+                Destroy(pieces, 2f);
             }
-            Destroy(gameObject);
 
-            Destroy(pieces, 2f);
         }
 
     }

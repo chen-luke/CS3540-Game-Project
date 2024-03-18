@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Odachi_01
       objectReference: {fileID: 0}
+    - target: {fileID: 184202, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.09507108
@@ -397,6 +401,7 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeedScalar: 2
   jumpForceScalar: 2
+  superJumpForceScalar: 3
   gravity: 9.81
   airControl: 0.75
 --- !u!114 &5222941678055797330
