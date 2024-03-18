@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 
 {
+    public static GameObject player;
     public Text gameText;
 
     public AudioClip gameOverSFX;
@@ -16,23 +17,28 @@ public class LevelManager : MonoBehaviour
 
     public static bool glovePickedUp = false;
 
+    public static bool bootsPickedUp = false;
+
     public static int hpPotionAmt = 0;
     public static int strPotionAmt = 0;
     public string nextLevel;
     public static Transform savePoint;
     private bool gloveUIChanged = false;
-    public static GameObject player;
+    
+    private bool bootUIChanged = false;
     private void Awake()
+    
     {
         GameObject[] islands = GameObject.FindGameObjectsWithTag("Island");
         foreach (var isl in islands)
         {
             DontDestroyOnLoad(isl);
         }
-        DontDestroyOnLoad(this);
     }
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         isGameOver = false;
         if (savePoint == null)
         {
@@ -57,6 +63,12 @@ public class LevelManager : MonoBehaviour
             {
                 UpdateGlovePickUpUI();
             }
+
+            if (bootsPickedUp == true && !bootUIChanged)
+            {
+                UpdateBootPickUpUI();
+            }
+
         }
 
     }
@@ -94,6 +106,13 @@ public class LevelManager : MonoBehaviour
         savePoint = newRespawnPoint;
     }
 
+    public void UpdateBootPickUpUI()
+    {
+        GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
+        bootIconUI.GetComponent<Image>().color = Color.green;
+        bootUIChanged = true;
+    }
+
     // The below code might not be implemented due to our current design, 
     // but for now we are leaving it for protential future changes.
     // 
@@ -110,8 +129,8 @@ public class LevelManager : MonoBehaviour
 
         // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
-        Invoke("LoadCurrentLevel", 2);
 
+        Invoke("LoadCurrentLevel", 2);
     }
 
     // public void LevelBeat()
@@ -141,7 +160,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
     public static void InitializePlayer(GameObject newPlayer)
     {
         Debug.Log("Initializing player at " + savePoint.position);
@@ -149,6 +167,7 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<PlayerController>().SetPosition(savePoint);
         Debug.Log("Player's position after setting it: " + player.transform.position);
     }
+
 
 }
 

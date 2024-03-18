@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void AttackAnimation()
     {
+        Debug.Log("Attacking");
         m_Animator.SetInteger("animState", 3);
     }
 

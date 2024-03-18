@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5.0f;
     public float sprintSpeedScalar = 2.0f;
     public float jumpForceScalar = 2.0f;
+
+    public float superJumpForceScalar = 3f;
     public float gravity = 9.81f;
     public float airControl = 0.75f;
     CharacterController cc;
@@ -28,10 +30,12 @@ public class PlayerController : MonoBehaviour
         {
             SetPosition(LevelManager.savePoint);
         }
+        PlayerHealth.isDead = false;
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!PlayerHealth.isDead)
         {
@@ -46,7 +50,11 @@ public class PlayerController : MonoBehaviour
                 // Destroy(gameObject);
             }
         }
-
+        if (transform.position.y < minHeight && !PlayerHealth.isDead)
+        {
+            PlayerHealth.isDead = true;
+            FindObjectOfType<LevelManager>().LevelLost();
+        }
     }
 
 
@@ -54,8 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
         moveSpeed = Input.GetKey(KeyCode.LeftShift) && cc.isGrounded ? walkSpeed * sprintSpeedScalar : walkSpeed;
 
+        float jumpAmount = Input.GetKey(KeyCode.LeftShift) && cc.isGrounded && LevelManager.bootsPickedUp ? superJumpForceScalar : jumpForceScalar;
+
+        
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
         input *= moveSpeed;
 
@@ -83,7 +95,7 @@ public class PlayerController : MonoBehaviour
                     RunAnimation();
                 }
             }
-            else
+            else if(m_Animator.GetInteger("animState") != 3)
             {
                 IdleAnimation();
             }
@@ -91,7 +103,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
 
-                moveDirection.y = Mathf.Sqrt(2 * jumpForceScalar * gravity);
+                moveDirection.y = Mathf.Sqrt(2 * jumpAmount * gravity);
                 JumpAnimation();
             }
             else
