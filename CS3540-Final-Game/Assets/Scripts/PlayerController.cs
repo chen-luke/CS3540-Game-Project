@@ -1,9 +1,11 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-// Start is called before the first frame update
+    // Start is called before the first frame update
     public float walkSpeed = 5.0f;
     public float sprintSpeedScalar = 2.0f;
     public float jumpForceScalar = 2.0f;
@@ -13,21 +15,27 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     Vector3 input, moveDirection;
 
+    Animator m_Animator;
+
     private float minHeight = 26f;
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        m_Animator = gameObject.GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!PlayerHealth.isDead) {
-            
+        if (!PlayerHealth.isDead)
+        {
+
             MovePlayer();
         }
-        if (transform.position.y < minHeight) {
+        if (transform.position.y < minHeight)
+        {
             PlayerHealth.isDead = true;
             // Would restart level in the future
             Destroy(gameObject);
@@ -47,7 +55,41 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded)
         {
             moveDirection = input;
-            moveDirection.y = Input.GetButton("Jump") ? Mathf.Sqrt(2 * jumpForceScalar * gravity) : 0;
+
+
+            if (input.x > 0 || input.x < 0 || input.z > 0 || input.z < 0)
+            {
+                if (Input.GetKey("a"))
+                {
+                    StrafeLeftAnimation();
+                }
+                else if (Input.GetKey("d")) {
+                    StrafeRightAnimation();
+                }
+                else if (Input.GetKey(KeyCode.LeftShift)) {
+                    SprintAnimation();
+                }
+                else
+                {
+                    RunAnimation();
+                }
+            }
+            else
+            {
+                IdleAnimation();
+            }
+
+            if (Input.GetButton("Jump"))
+            {
+
+                moveDirection.y = Mathf.Sqrt(2 * jumpForceScalar * gravity);
+                JumpAnimation();
+            }
+            else
+            {
+                moveDirection.y = 0.0f;
+
+            }
         }
         else
         {
@@ -58,4 +100,40 @@ public class PlayerController : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
         cc.Move(moveDirection * Time.deltaTime);
     }
+
+    private void IdleAnimation()
+    {
+        m_Animator.SetInteger("animState", 0);
+    }
+
+    private void RunAnimation()
+    {
+        m_Animator.SetInteger("animState", 2);
+    }
+
+    private void JumpAnimation()
+    {
+        m_Animator.SetInteger("animState", 4);
+    }
+
+    private void StrafeLeftAnimation()
+    {
+        m_Animator.SetInteger("animState", 1);
+    }
+    private void StrafeRightAnimation()
+    {
+        m_Animator.SetInteger("animState", 5);
+    }
+
+    private void SprintAnimation()
+    {
+        m_Animator.SetInteger("animState", 6);
+    }
+
+    private void DeathAnimation()
+    {
+        m_Animator.SetInteger("animState", 7);
+    }
 }
+
+

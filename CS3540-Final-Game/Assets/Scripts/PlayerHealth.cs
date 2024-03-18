@@ -6,9 +6,11 @@ public class PlayerHealth : MonoBehaviour
     public int startingHealth = 100;
 
     //public AudioClip deadSFX;
-    public Slider healthSlider;
+    public AudioClip drinkPotionSFX;
+    public Slider healthBar;
     int currentHealth;
     int maxHealth = 100;
+
 
     public static bool isDead = false;
     private string HP_POTION_AMT_ICON = "HpPotionIcon";
@@ -16,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = startingHealth;
-        healthSlider.value = currentHealth;
+        healthBar.value = currentHealth;
     }
 
     // Update is called once per frame
@@ -31,8 +33,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth < maxHealth && LevelManager.hpPotionAmt > 0) {
             currentHealth += healthAmt;
-            healthSlider.value = currentHealth;
+            healthBar.value = currentHealth;
             LevelManager.hpPotionAmt --;
+
+            AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
+
             FindObjectOfType<LevelManager>().UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
         }
 
@@ -41,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damageAmount) {
         if (currentHealth > 0) {
             currentHealth -= damageAmount;
-            healthSlider.value = currentHealth;
+            healthBar.value = currentHealth;
         }
         if (currentHealth <=0) {
             PlayerDies();

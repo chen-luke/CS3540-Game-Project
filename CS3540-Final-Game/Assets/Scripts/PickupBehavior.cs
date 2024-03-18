@@ -4,10 +4,6 @@ public class PickupBehavior : MonoBehaviour
 {
     private Material m;
 
-    [SerializeField]
-    private float rotationSpeed;
-
-
     public AudioClip pickupSFX;
     void Start()
     {
@@ -23,6 +19,7 @@ public class PickupBehavior : MonoBehaviour
             LevelManager.hpPotionAmt = 0;
         }
 
+        
     }
 
 }
