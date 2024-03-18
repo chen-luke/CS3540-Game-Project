@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 
 {
+    public static GameObject player;
     public Text gameText;
 
     public AudioClip gameOverSFX;
@@ -16,14 +17,23 @@ public class LevelManager : MonoBehaviour
 
     public static bool glovePickedUp =  false;
 
+    public static bool bootsPickedUp =  false;
+
     public static int hpPotionAmt = 0;
     public static int strPotionAmt = 0;
     public string nextLevel;
 
     private bool gloveUIChanged = false;
+
+    private bool bootUIChanged = false;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         isGameOver = false;
+        glovePickedUp = false;
+        bootsPickedUp = false;
+        gloveUIChanged = false;
+        bootUIChanged = false;
 
     }
 
@@ -34,7 +44,12 @@ public class LevelManager : MonoBehaviour
             if (glovePickedUp == true && !gloveUIChanged) {
                 UpdateGlovePickUpUI();
             }
-        }
+
+            if (bootsPickedUp == true && !bootUIChanged) {
+                UpdateBootPickUpUI();
+            }
+
+        } 
 
     }
 
@@ -64,25 +79,31 @@ public class LevelManager : MonoBehaviour
             gloveUIChanged = true;
     }
 
+    public void UpdateBootPickUpUI() {
+            GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
+            bootIconUI.GetComponent<Image>().color = Color.green;
+            bootUIChanged = true;
+    }
+
     // The below code might not be implemented due to our current design, 
     // but for now we are leaving it for protential future changes.
     // 
 
-    // public void LevelLost()
-    // {
-    //     isGameOver = true;
+    public void LevelLost()
+    {
+        //isGameOver = true;
 
-    //     // gameText.text = "GAME OVER!";
+        // gameText.text = "GAME OVER!";
 
-    //     // gameText.gameObject.SetActive(true);
+        // gameText.gameObject.SetActive(true);
 
-    //     // Camera.main.GetComponent<AudioSource>().pitch = 1;
+        // Camera.main.GetComponent<AudioSource>().pitch = 1;
 
-    //     // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+        // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
-    //     Invoke("LoadCurrentLevel", 2);
+        Invoke("LoadCurrentLevel", 1);
 
-    // }
+    }
 
     // public void LevelBeat()
     // {
@@ -107,10 +128,10 @@ public class LevelManager : MonoBehaviour
     //     SceneManager.LoadScene(nextLevel);
     // }
 
-    // void LoadCurrentLevel()
-    // {
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    // }
+    void LoadCurrentLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 }
 
