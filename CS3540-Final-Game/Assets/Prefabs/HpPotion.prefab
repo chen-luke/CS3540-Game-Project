@@ -149,3 +149,4 @@ MonoBehaviour:
   rotationAmount: 45
   bobbingHeight: 0.2
   bobbingSpeed: 1
+  potionPickupSFX: {fileID: 8300000, guid: 07b74f1c23f65ca4c80080eca5c9f30d, type: 3}
