@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         currentHealth = startingHealth;
         healthBar.value = currentHealth;
     }
@@ -24,17 +25,20 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             AddHealth(HpPotionBehavior.healAmount);
         }
     }
 
-    public void AddHealth(int healthAmt) {
+    public void AddHealth(int healthAmt)
+    {
 
-        if (currentHealth < maxHealth && LevelManager.hpPotionAmt > 0) {
+        if (currentHealth < maxHealth && LevelManager.hpPotionAmt > 0)
+        {
             currentHealth += healthAmt;
             healthBar.value = currentHealth;
-            LevelManager.hpPotionAmt --;
+            LevelManager.hpPotionAmt--;
 
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
 
@@ -43,23 +47,31 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damageAmount) {
-        if (currentHealth > 0) {
+    public void TakeDamage(int damageAmount)
+    {
+        if (currentHealth > 0)
+        {
             currentHealth -= damageAmount;
             healthBar.value = currentHealth;
         }
-        if (currentHealth <=0) {
+        if (currentHealth <= 0)
+        {
             PlayerDies();
         }
 
         Debug.Log("Current health: " + currentHealth);
     }
 
-    void PlayerDies() {
+    public void PlayerDies()
+    {
         Debug.Log("Player is dead");
         //AudioSource.PlayClipAtPoint(deadSFX, transform.position);
-        transform.Rotate(-90, 0, 0, Space.Self);
-        isDead = true;
+        if (!isDead)
+        {
+            transform.Rotate(-90, 0, 0, Space.Self);
+            isDead = true;
+            FindObjectOfType<LevelManager>().LevelLost();
+        }
     }
 
 

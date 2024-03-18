@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         m_Animator = gameObject.GetComponent<Animator>();
+        Debug.Log("Start of New Player");
+        if (LevelManager.savePoint)
+        {
+            SetPosition(LevelManager.savePoint);
+        }
         PlayerHealth.isDead = false;
 
     }
@@ -36,12 +41,19 @@ public class PlayerController : MonoBehaviour
         {
 
             MovePlayer();
+            if (transform.position.y < minHeight)
+            {
+                gameObject.GetComponent<PlayerHealth>().PlayerDies();
+                m_Animator.enabled = false;
+                // PlayerHealth.isDead = true;
+                // Would restart level in the future
+                // Destroy(gameObject);
+            }
         }
-        if (transform.position.y < minHeight)
+        if (transform.position.y < minHeight && !PlayerHealth.isDead)
         {
             PlayerHealth.isDead = true;
             FindObjectOfType<LevelManager>().LevelLost();
-            Destroy(gameObject, 2f);
         }
     }
 
@@ -70,10 +82,12 @@ public class PlayerController : MonoBehaviour
                 {
                     StrafeLeftAnimation();
                 }
-                else if (Input.GetKey("d")) {
+                else if (Input.GetKey("d"))
+                {
                     StrafeRightAnimation();
                 }
-                else if (Input.GetKey(KeyCode.LeftShift)) {
+                else if (Input.GetKey(KeyCode.LeftShift))
+                {
                     SprintAnimation();
                 }
                 else
@@ -81,7 +95,7 @@ public class PlayerController : MonoBehaviour
                     RunAnimation();
                 }
             }
-            else
+            else if(m_Animator.GetInteger("animState") != 3)
             {
                 IdleAnimation();
             }
@@ -140,6 +154,13 @@ public class PlayerController : MonoBehaviour
     private void DeathAnimation()
     {
         m_Animator.SetInteger("animState", 7);
+    }
+
+    public void SetPosition(Transform newTransform)
+    {
+        transform.position = newTransform.position;
+        transform.rotation = newTransform.rotation;
+        Physics.SyncTransforms();
     }
 }
 
