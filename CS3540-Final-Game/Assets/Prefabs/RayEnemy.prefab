@@ -618,7 +618,7 @@ MonoBehaviour:
   potionDropChance: 10
   potionDrops:
   - {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
-  - {fileID: 123910, guid: aaf66617a9239884aa44a5f00e14bfc5, type: 3}
+  - {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
   destroyTime: 2.75
   projectiles:
   - {fileID: 1049895169098164, guid: 16ba6eccbd669b34c8c00b35fa36c10f, type: 3}
