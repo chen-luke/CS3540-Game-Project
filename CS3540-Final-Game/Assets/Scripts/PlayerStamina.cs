@@ -5,7 +5,9 @@ public class PlayerStr : MonoBehaviour
 {
     public int startingStr = 100;
     public AudioClip deadSFX;
-    public Slider strSlider;
+
+    public AudioClip drinkPotionSFX;
+    public Slider strengthBar;
     int currentStr;
     int maxStr = 100;
 
@@ -17,7 +19,7 @@ public class PlayerStr : MonoBehaviour
     void Start()
     {
         currentStr = startingStr;
-        strSlider.value = currentStr;
+        strengthBar.value = currentStr;
     }
 
     // Update is called once per frame
@@ -32,8 +34,9 @@ public class PlayerStr : MonoBehaviour
 
         if (currentStr < maxStr && LevelManager.strPotionAmt > 0) {
             currentStr += strAmt;
-            strSlider.value = currentStr;
+            strengthBar.value = currentStr;
             LevelManager.strPotionAmt --;
+            AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
             FindObjectOfType<LevelManager>().UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
         }
     }

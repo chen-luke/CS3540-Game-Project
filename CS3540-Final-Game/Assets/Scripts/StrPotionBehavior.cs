@@ -5,6 +5,8 @@ public class StrPotionBehavior : PotionBehavior
 {
     // The Tag for Stamina potion amount UI
     public static int healAmount = 20;
+    public AudioClip potionPickupSFX;
+    private bool soundPlayed = false;
     protected override void Start()
     {
         base.Start();
@@ -22,7 +24,10 @@ public class StrPotionBehavior : PotionBehavior
         if(other.CompareTag("Player")) {
         LevelManager.strPotionAmt ++;
         UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
-        Debug.Log("Added " + healAmount + " str points to the player!");
+        if (!soundPlayed) {
+            AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
+            soundPlayed = true;
+        }
 
         Destroy(gameObject);
 

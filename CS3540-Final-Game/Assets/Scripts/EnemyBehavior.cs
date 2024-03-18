@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
@@ -43,6 +44,9 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other) {
+        print("Monster is getting hit by: " + other.gameObject.tag);
+    }
     void AttackPlayer()
     {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();

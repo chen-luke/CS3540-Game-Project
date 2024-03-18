@@ -14,10 +14,13 @@ public class LevelManager : MonoBehaviour
     public AudioClip gameWonSFX;
     public static bool isGameOver = false;
 
+    public static bool glovePickedUp =  false;
+
     public static int hpPotionAmt = 0;
     public static int strPotionAmt = 0;
     public string nextLevel;
 
+    private bool gloveUIChanged = false;
     void Start()
     {
         isGameOver = false;
@@ -28,7 +31,9 @@ public class LevelManager : MonoBehaviour
     {
         if (!isGameOver)
         {
-
+            if (glovePickedUp == true && !gloveUIChanged) {
+                UpdateGlovePickUpUI();
+            }
         }
 
     }
@@ -51,6 +56,12 @@ public class LevelManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void UpdateGlovePickUpUI() {
+            GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
+            gloveIconUI.GetComponent<Image>().color = Color.green;
+            gloveUIChanged = true;
     }
 
     // The below code might not be implemented due to our current design, 
