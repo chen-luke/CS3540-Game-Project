@@ -301,8 +301,11 @@ public class BugEnemyAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(deadVFX, deadTransform.position, Quaternion.Euler(-90, 0, 0));
-        DropPotion();
+        if(deadTransform)
+        {
+            Instantiate(deadVFX, deadTransform.position, Quaternion.Euler(-90, 0, 0));
+            DropPotion();
+        }
     }
 
     void OnDrawGizmos()
