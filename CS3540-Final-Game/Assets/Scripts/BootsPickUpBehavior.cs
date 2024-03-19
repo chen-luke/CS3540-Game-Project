@@ -12,12 +12,11 @@ public class BootsPickUpBehavior : MonoBehaviour
     private float startY; // The initial y-position of the object
 
     private bool soundPlayed = false;
-    protected LevelManager lvlManager;
     // Start is called before the first frame update
     void Start()
     {   
         startY = transform.position.y; // Store the initial y-position of the object
-
+        gameObject.SetActive(!LevelManager.bootsPickedUp);
     }
 
     // Update is called once per frame
