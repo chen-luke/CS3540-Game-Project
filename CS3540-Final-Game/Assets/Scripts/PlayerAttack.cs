@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
+    
     public AudioClip swordSFX;
     Animator m_Animator;
 
@@ -33,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void AttackAnimation()
     {
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
         m_Animator.SetInteger("animState", 3);
     }
 

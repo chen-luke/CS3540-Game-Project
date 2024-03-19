@@ -42,17 +42,17 @@ public class LevelManager : MonoBehaviour
         isGameOver = false;
         if (savePoint == null)
         {
-            Debug.Log("SP IS NULL");
+            //Debug.Log("SP IS NULL");
             savePoint = GameObject.FindGameObjectWithTag("GameStartSpawnPoint").transform;
         }
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        Debug.Log("savePoint: " + savePoint.position);
+        //Debug.Log("savePoint: " + savePoint.position);
         // player.transform.position = savePoint.position;
         player.GetComponent<PlayerController>().SetPosition(savePoint);
-        Debug.Log("Player's position after setting it: " + player.transform.position);
+        //Debug.Log("Player's position after setting it: " + player.transform.position);
     }
 
     void Update()
@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour
 
     public static void SetRespawnPoint(Transform newRespawnPoint)
     {
-        Debug.Log("Setting new respawn point to " + newRespawnPoint.position);
+        //Debug.Log("Setting new respawn point to " + newRespawnPoint.position);
         savePoint = newRespawnPoint;
     }
 
