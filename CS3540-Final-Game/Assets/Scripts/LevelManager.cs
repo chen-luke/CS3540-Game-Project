@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     public AudioClip gameWonSFX;
     public static bool isGameOver = false;
 
+    public static bool isBossAwake = false;
+
     public static bool glovePickedUp = false;
 
     public static bool bootsPickedUp = false;

@@ -125,4 +125,4 @@ MonoBehaviour:
   firstSpawnTime: 2
   maxEnemies: 3
   activeEnemies: 0
-  spawnSFX: {fileID: 8300000, guid: 5277cbc429f9dc944be1c2863c555ee3, type: 3}
+  spawnSFX: {fileID: 8300000, guid: 05dea694f7d94b7408d288d63a9b99ce, type: 3}
