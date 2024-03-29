@@ -19,7 +19,8 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) {
+        if(!PauseMenuBehavior.isGamePaused) {
+            if (Input.GetButtonDown("Fire1")) {
             AttackAnimation();
             if (elapsedTime >= 1.2f) {
                 playSwordSwooshAudio();
@@ -30,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
             HeavyAttackAnimation();
         }
         elapsedTime += Time.deltaTime;
+        }
+        
     }
     private void AttackAnimation()
     {
