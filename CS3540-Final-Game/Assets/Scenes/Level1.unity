@@ -364,6 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayEnemySpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -86.61772
@@ -1556,6 +1560,10 @@ PrefabInstance:
     - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: m_Name
       value: BugEnemySpawner (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4940,6 +4948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BugEnemySpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5650,6 +5662,10 @@ PrefabInstance:
     - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_Name
       value: RayEnemySpawner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7834,6 +7850,10 @@ PrefabInstance:
     - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: m_Name
       value: BugEnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14257,6 +14277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayEnemySpawner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -107.206276
@@ -18995,6 +19019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayEnemySpawner (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.209043
@@ -19912,7 +19940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1288026944
 Transform:
   m_ObjectHideFlags: 0
@@ -21282,6 +21310,10 @@ PrefabInstance:
     - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: m_Name
       value: BugEnemySpawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26198,6 +26230,10 @@ PrefabInstance:
     - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: m_Name
       value: BugEnemySpawner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246637823286253318, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31896,7 +31932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.10208273
+      value: 0.904
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31904,11 +31940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.08
+      value: -61.645
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -31916,7 +31952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -31928,11 +31964,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 1112220017300247985, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669834438126385074, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025888584202538322, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: healthBar
@@ -33919,6 +33963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayEnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3940336419478718483, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -59.580395
@@ -35892,6 +35940,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1457128676}
     m_Modifications:
+    - target: {fileID: 1269508560488203986, guid: 2dc3e32a62260cd488740dcaa7f54588, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269508560488203986, guid: 2dc3e32a62260cd488740dcaa7f54588, type: 3}
+      propertyPath: m_Center.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269508560488203986, guid: 2dc3e32a62260cd488740dcaa7f54588, type: 3}
+      propertyPath: m_Center.z
+      value: -1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8955625348012364957, guid: 2dc3e32a62260cd488740dcaa7f54588, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.645
