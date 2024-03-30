@@ -1,5 +1,6 @@
 
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -25,10 +26,9 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         m_Animator = gameObject.GetComponent<Animator>();
-        Debug.Log("Start of New Player");
-        if (LevelManager.savePoint)
+        if (File.Exists(LevelManager.savePointJSONPath))
         {
-            SetPosition(LevelManager.savePoint);
+            SetPosition();
         }
         PlayerHealth.isDead = false;
 
@@ -45,9 +45,6 @@ public class PlayerController : MonoBehaviour
             {
                 gameObject.GetComponent<PlayerHealth>().PlayerDies();
                 m_Animator.enabled = false;
-                // PlayerHealth.isDead = true;
-                // Would restart level in the future
-                // Destroy(gameObject);
             }
         }
         if (transform.position.y < minHeight && !PlayerHealth.isDead)
@@ -156,10 +153,11 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetInteger("animState", 7);
     }
 
-    public void SetPosition(Transform newTransform)
+    public void SetPosition()
     {
-        transform.position = newTransform.position;
-        transform.rotation = newTransform.rotation;
+        string posStr = File.ReadAllText(LevelManager.savePointJSONPath);
+        Vector3 pos = JsonUtility.FromJson<Vector3>(posStr);
+        transform.position = pos;
         Physics.SyncTransforms();
     }
 }

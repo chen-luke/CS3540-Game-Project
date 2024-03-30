@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class LevelManager : MonoBehaviour
 
@@ -18,7 +19,7 @@ public class LevelManager : MonoBehaviour
     public static bool glovePickedUp = false;
 
     public static bool bootsPickedUp = false;
-
+    public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
     public static int hpPotionAmt = 0;
     public static int strPotionAmt = 0;
     public string nextLevel;
@@ -26,15 +27,6 @@ public class LevelManager : MonoBehaviour
     private bool gloveUIChanged = false;
     
     private bool bootUIChanged = false;
-    private void Awake()
-    
-    {
-        GameObject[] islands = GameObject.FindGameObjectsWithTag("Island");
-        foreach (var isl in islands)
-        {
-            DontDestroyOnLoad(isl);
-        }
-    }
 
     void Start()
     {
@@ -49,10 +41,6 @@ public class LevelManager : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
-        Debug.Log("savePoint: " + savePoint.position);
-        // player.transform.position = savePoint.position;
-        player.GetComponent<PlayerController>().SetPosition(savePoint);
-        Debug.Log("Player's position after setting it: " + player.transform.position);
     }
 
     void Update()
@@ -160,14 +148,10 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public static void InitializePlayer(GameObject newPlayer)
+
+    void OnApplicationQuit()
     {
-        Debug.Log("Initializing player at " + savePoint.position);
-        player = newPlayer;
-        player.GetComponent<PlayerController>().SetPosition(savePoint);
-        Debug.Log("Player's position after setting it: " + player.transform.position);
+        File.Delete(savePointJSONPath);
     }
-
-
 }
 
