@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 817607311598216102}
   - component: {fileID: 123137953603682577}
+  - component: {fileID: 7312154608527398348}
+  - component: {fileID: 6663483032927321902}
   m_Layer: 0
   m_Name: BossController
   m_TagString: Untagged
@@ -49,6 +51,7 @@ MonoBehaviour:
   currentState: 2
   isDead: 0
   exhaustPipe: {fileID: 2344737605699073341}
+  cc: {fileID: 7312154608527398348}
   wanderRadius: 15
   wanderCenter: {fileID: 0}
   patrolSpeed: 6
@@ -69,6 +72,55 @@ MonoBehaviour:
   spinAttackSFX: {fileID: 8300000, guid: cc2cd04707f31264b8c49312af65ee98, type: 3}
   slashAttackSFX: {fileID: 8300000, guid: 07b74f1c23f65ca4c80080eca5c9f30d, type: 3}
   fireAttackSFX: {fileID: 8300000, guid: 05dea694f7d94b7408d288d63a9b99ce, type: 3}
+--- !u!143 &7312154608527398348
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388499518880555055}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 1.73
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &6663483032927321902
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388499518880555055}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.39
+  m_Height: 5.86
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.52, z: 0}
 --- !u!1001 &5807859544421673853
 PrefabInstance:
   m_ObjectHideFlags: 0

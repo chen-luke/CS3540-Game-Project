@@ -23,6 +23,8 @@ public class TestBossBehavior : MonoBehaviour
 
     public Transform exhaustPipe;
 
+    public CharacterController cc;
+
     // Patrol Zone
     [Header("Patrol Zone Settings")]
     public float wanderRadius;
@@ -67,9 +69,9 @@ public class TestBossBehavior : MonoBehaviour
     bool canAttack = true;
     float attackDelay;
     bool isAttacking = false;
-
     BossFSMStates nextAttack;
     float attackRange;
+    Vector3 retreatStartPos;
 
     // Start is called before the first frame update
     void Start()
@@ -124,7 +126,8 @@ public class TestBossBehavior : MonoBehaviour
 
     void UpdateIdleState()
     {
-        if(LevelManager.isBossAwake) {
+        if (LevelManager.isBossAwake)
+        {
             anim.SetInteger("BossAnimState", 7);
             Invoke("BossWake", 1f);
         }
@@ -153,15 +156,16 @@ public class TestBossBehavior : MonoBehaviour
         }
         FindNextPoint();
         FaceTarget(nextDestination);
-        transform.position = Vector3.MoveTowards(transform.position, nextDestination, patrolSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, patrolSpeed * Time.deltaTime);
+        cc.Move(transform.forward * patrolSpeed * Time.deltaTime);
     }
 
     void UpdateChaseState()
     {
         // Debug.Log("Chase");
         anim.SetInteger("BossAnimState", 6);
-        nextDestination = new Vector3(player.transform.position.x, Mathf.Max(player.transform.position.x, minHeight), player.transform.position.z);
-        if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5)
+        nextDestination = new Vector3(player.transform.position.x, Mathf.Max(player.transform.position.y, minHeight), player.transform.position.z);
+        if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5 && CanAttack())
         {
             currentState = nextAttack;
         }
@@ -169,14 +173,19 @@ public class TestBossBehavior : MonoBehaviour
         {
             FindNextPoint();
             currentState = BossFSMStates.Patrol;
-        } else if(distToPlayer - attackRange < 0) {
+        }
+        else if (distToPlayer - attackRange < 0)
+        {
             FaceTarget(nextDestination);
-            transform.position = Vector3.Lerp(transform.position, transform.position - new Vector3(0, 0, 5), chaseSpeed * Time.deltaTime);
+            cc.Move(-transform.forward * chaseSpeed * Time.deltaTime);
+            //transform.position = Vector3.Lerp(transform.position, transform.position - new Vector3(0, 0, 5), chaseSpeed * Time.deltaTime);
         }
         else
         {
             FaceTarget(nextDestination);
-            transform.position = Vector3.MoveTowards(transform.position, nextDestination, chaseSpeed * Time.deltaTime);
+            //print(nextDestination);
+            //transform.position = Vector3.MoveTowards(transform.position, nextDestination, chaseSpeed * Time.deltaTime);
+            cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
         }
 
 
@@ -185,37 +194,42 @@ public class TestBossBehavior : MonoBehaviour
 
     void UpdateAttackState(int animState)
     {
-        
-        
-        if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5 && !isAttacking)
+        if (!isAttacking)
         {
-            nextDestination = player.transform.position;
-            FaceTarget(nextDestination);
-            anim.SetInteger("BossAnimState", animState);
-            Attack(animState);
-        }
-        else if (distToPlayer > attackRange && distToPlayer <= chaseRange && !isAttacking)
-        {
-            currentState = BossFSMStates.Chase;
-        }
-        else if (distToPlayer > chaseRange && !isAttacking)
-        {
-            currentState = BossFSMStates.Patrol;
-        }
+
+            if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5 && canAttack)
+            {
+                nextDestination = player.transform.position;
+                FaceTarget(nextDestination);
+                anim.SetInteger("BossAnimState", animState);
+                isAttacking = true;
+                Attack(animState);
+            }
+            else if (distToPlayer <= chaseRange)
+            {
+                print(isAttacking);
+                currentState = BossFSMStates.Chase;
+            }
+            else if (distToPlayer > chaseRange)
+            {
+                currentState = BossFSMStates.Patrol;
+            }
+        } 
     }
 
     void UpdateRetreatState()
     {
         //Debug.Log("Retreat");
         anim.SetInteger("BossAnimState", 6);
-        float retreatedDist = Vector3.Distance(transform.position, nextDestination);
-        if (retreatedDist < 0.5f && retreatedDist > -0.5f)
+        float retreatedDist = Vector3.Distance(transform.position, player.transform.position);
+        //print(retreatedDist);
+        if (retreatedDist >= retreatDistance)
         {
             if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5)
             {
                 currentState = nextAttack;
             }
-            else if (distToPlayer > attackRange && distToPlayer <= chaseRange)
+            else if (distToPlayer <= chaseRange)
             {
                 currentState = BossFSMStates.Chase;
             }
@@ -230,7 +244,8 @@ public class TestBossBehavior : MonoBehaviour
         {
             currentState = BossFSMStates.Retreat;
             FaceTarget(player.transform.position);
-            transform.position = Vector3.Lerp(transform.position, nextDestination, Time.deltaTime*2);
+            cc.Move(-transform.forward * patrolSpeed * Time.deltaTime);
+            //transform.position = Vector3.Lerp(transform.position, nextDestination, Time.deltaTime*2);
         }
     }
 
@@ -280,8 +295,12 @@ public class TestBossBehavior : MonoBehaviour
     void FaceTarget(Vector3 target)
     {
         Vector3 direction = (target - transform.position).normalized;
-        direction.y = 0;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        if (transform.position.y - minHeight < 2)
+        {
+            direction.y = 0;
+        }
+        //direction.y = 0;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookSlerpScalar);
     }
 
@@ -307,6 +326,7 @@ public class TestBossBehavior : MonoBehaviour
 
     void Attack(int animState)
     {
+        print("called attack");
         if (canAttack)
         {
             float animDuration = 0;
@@ -334,6 +354,9 @@ public class TestBossBehavior : MonoBehaviour
     }
     private void SpinAttack()
     {
+        isAttacking = false;
+        print("attacked!");
+
         if (!isDead)
         {
             AudioSource.PlayClipAtPoint(spinAttackSFX, transform.position);
@@ -343,6 +366,8 @@ public class TestBossBehavior : MonoBehaviour
 
     private void SlashAttack()
     {
+                print("attacked!");
+        isAttacking = false;
         if (!isDead)
         {
             AudioSource.PlayClipAtPoint(slashAttackSFX, transform.position);
@@ -352,6 +377,9 @@ public class TestBossBehavior : MonoBehaviour
 
     private void FireAttack()
     {
+        
+                print("attacked!");
+
         if (!isDead)
         {
 
@@ -359,6 +387,8 @@ public class TestBossBehavior : MonoBehaviour
             Instantiate(fireProjectile, exhaustPipe.transform.position, rotation);
             AudioSource.PlayClipAtPoint(fireAttackSFX, exhaustPipe.transform.position);
             Invoke("Retreat", anim.GetCurrentAnimatorStateInfo(0).length - 1.5f);
+        } else {
+            isAttacking = false;
         }
 
     }
@@ -368,7 +398,8 @@ public class TestBossBehavior : MonoBehaviour
         isAttacking = false;
         currentState = BossFSMStates.Retreat;
         SelectAttack();
-        nextDestination = new Vector3(transform.position.x, transform.position.y, transform.position.z - retreatDistance);
+        //nextDestination = new Vector3(transform.position.x, transform.position.y, transform.position.z - retreatDistance);
+        retreatStartPos = transform.position;
         Invoke("ResetAttack", attackCooldown);
     }
 
@@ -377,8 +408,54 @@ public class TestBossBehavior : MonoBehaviour
         canAttack = true;
     }
 
-    private void BossWake() {
+    private void BossWake()
+    {
         currentState = BossFSMStates.Patrol;
+    }
+
+    private bool CanAttack()
+    {
+        RaycastHit hit;
+        if (Physics.BoxCast(transform.position + 3 * transform.forward, transform.localScale * 0.5f, transform.forward, out hit, Quaternion.identity, attackRange - 3))
+        {
+            if (!hit.collider.CompareTag("Player"))
+            {
+                //print(hit.collider);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private bool IsPlayerInFOV()
+    {
+        RaycastHit hit;
+        Vector3 directionToPlayer = player.transform.position - transform.position;
+
+        if (Vector3.Angle(directionToPlayer, transform.forward) <= 45)
+        {
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, chaseRange))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    print("player in sight");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     void OnDrawGizmos()
@@ -391,17 +468,26 @@ public class TestBossBehavior : MonoBehaviour
         Gizmos.DrawWireSphere(wanderCenter.position, wanderRadius);
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, damageRange);
+        //Draw a Ray forward from GameObject toward the hit
+        Gizmos.DrawRay(transform.position + 3 * transform.forward, transform.forward * (attackRange - 3));
+        //Draw a cube that extends to where the hit exists
+        Gizmos.DrawWireCube(transform.position + 3 * transform.forward + transform.forward * (attackRange - 3), transform.localScale);
     }
-    void OnTriggerEnter(Collider other) {
-        print("collided");
-        if(other.gameObject.CompareTag("Player")) {
-            if(currentState == BossFSMStates.SlashAttack) {
+    void OnTriggerEnter(Collider other)
+    {
+        //print("collided");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (currentState == BossFSMStates.SlashAttack)
+            {
                 PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                print("ouch!");
+                //print("ouch!");
                 playerHealth.TakeDamage(slashDamageAmount);
-            } else if(currentState == BossFSMStates.SpinAttack) {
+            }
+            else if (currentState == BossFSMStates.SpinAttack)
+            {
                 PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                print("ouch!");
+                //print("ouch!");
                 playerHealth.TakeDamage(spinDamageAmount);
 
             }
