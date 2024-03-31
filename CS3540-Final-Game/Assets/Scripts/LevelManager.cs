@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
 {
     public static GameObject player;
     public Text gameText;
-
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
     public static bool isGameOver = false;
@@ -20,27 +19,21 @@ public class LevelManager : MonoBehaviour
 
     public static bool bootsPickedUp = false;
     public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
-    public static int hpPotionAmt = 0;
-    public static int strPotionAmt = 0;
+    public static int healthPotionAmt = 0;
+    public static int manaPotionAmt = 0;
     public string nextLevel;
     public static Transform savePoint;
     private bool gloveUIChanged = false;
-    
+
     private bool bootUIChanged = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         isGameOver = false;
-        if (savePoint == null)
-        {
-            Debug.Log("SP IS NULL");
-            savePoint = GameObject.FindGameObjectWithTag("GameStartSpawnPoint").transform;
-        }
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        // healthPotionAmt = 0;
+        // manaPotionAmt = 0;
+        UpdateHealthPotionCountUI(healthPotionAmt);
+        UpdateManaPotionCountUI(manaPotionAmt);
     }
 
     void Update()
@@ -56,12 +49,10 @@ public class LevelManager : MonoBehaviour
             {
                 UpdateBootPickUpUI();
             }
-
         }
-
     }
 
-    public void UpdatePotionCountUI(string type, int amt)
+    private void UpdatePotionCountUI(string type, int amt)
     {
         GameObject potionCountString = GameObject.FindGameObjectWithTag(type);
         if (potionCountString != null)
@@ -70,6 +61,7 @@ public class LevelManager : MonoBehaviour
             Text potionCount2ndChar = potionCountString.transform.GetChild(1).GetComponent<Text>();
 
             int potionCount = amt;
+            amt = Mathf.Clamp(amt, 0, 99);
             potionCount1stChar.text = potionCount.ToString("D2").Substring(0, 1);
             potionCount2ndChar.text = potionCount.ToString("D2").Substring(1, 1);
 
@@ -79,6 +71,16 @@ public class LevelManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void UpdateManaPotionCountUI(int amt)
+    {
+        UpdatePotionCountUI("ManaPotionIcon", amt);
+    }
+
+    public void UpdateHealthPotionCountUI(int amt)
+    {
+        UpdatePotionCountUI("HealthPotionIcon", amt);
     }
 
     public void UpdateGlovePickUpUI()

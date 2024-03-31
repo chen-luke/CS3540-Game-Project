@@ -16,14 +16,25 @@ public class PlayerController : MonoBehaviour
     public float airControl = 0.75f;
     CharacterController cc;
     private float moveSpeed;
+
+    private float jumpAmount;
     Vector3 input, moveDirection;
 
     Animator m_Animator;
 
     private float minHeight = 26f;
 
+    public enum FSMStates
+    {
+        Idle, RStrafe, LStrafe, Running, Attack, HeavyAttack, Jump, Sprint, Death
+    }
+
+    public FSMStates currentState;
+
+
     void Start()
     {
+        currentState = FSMStates.Idle;
         cc = GetComponent<CharacterController>();
         m_Animator = gameObject.GetComponent<Animator>();
         if (File.Exists(LevelManager.savePointJSONPath))
@@ -34,123 +45,214 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!PlayerHealth.isDead)
         {
-
+            HandleState();
             MovePlayer();
+
+            // Check if the player fell below minHeight
             if (transform.position.y < minHeight)
             {
-                gameObject.GetComponent<PlayerHealth>().PlayerDies();
-                m_Animator.enabled = false;
+                PlayerHealth.isDead = true;
+                FindObjectOfType<LevelManager>().LevelLost();
             }
-        }
-        if (transform.position.y < minHeight && !PlayerHealth.isDead)
-        {
-            PlayerHealth.isDead = true;
-            FindObjectOfType<LevelManager>().LevelLost();
         }
     }
 
+    void HandleState()
+    {
+        switch (currentState)
+        {
+            case FSMStates.Idle:
+                IdleState();
+                break;
+            case FSMStates.Running:
+                RunState();
+                break;
+            case FSMStates.Sprint:
+                SprintState();
+                break;
+            case FSMStates.Jump:
+                JumpState();
+                break;
+            case FSMStates.Attack:
+                AttackState();
+                break;
+            case FSMStates.HeavyAttack:
+                HeavyAttackState();
+                break;
+            case FSMStates.Death:
+                DeathState();
+                break;
+        }
+    }
 
     void MovePlayer()
     {
+        // Get movement input
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
-        moveSpeed = Input.GetKey(KeyCode.LeftShift) && cc.isGrounded ? walkSpeed * sprintSpeedScalar : walkSpeed;
-
-        float jumpAmount = Input.GetKey(KeyCode.LeftShift) && cc.isGrounded && LevelManager.bootsPickedUp ? superJumpForceScalar : jumpForceScalar;
-
-        
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
-        input *= moveSpeed;
+        print("The current state is: " + currentState);
+        jumpAmount = Input.GetKey(KeyCode.LeftShift) && LevelManager.bootsPickedUp ? superJumpForceScalar : jumpForceScalar;
 
-        if (cc.isGrounded)
+
+        // Update moveSpeed based on input
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveDirection = input;
-
-
-            if (input.x > 0 || input.x < 0 || input.z > 0 || input.z < 0)
-            {
-                if (Input.GetKey("a"))
-                {
-                    StrafeLeftAnimation();
-                }
-                else if (Input.GetKey("d"))
-                {
-                    StrafeRightAnimation();
-                }
-                else if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    SprintAnimation();
-                }
-                else
-                {
-                    RunAnimation();
-                }
-            }
-            else if(m_Animator.GetInteger("animState") != 3)
-            {
-                IdleAnimation();
-            }
-
-            if (Input.GetButton("Jump"))
-            {
-
-                moveDirection.y = Mathf.Sqrt(2 * jumpAmount * gravity);
-                JumpAnimation();
-            }
-            else
-            {
-                moveDirection.y = 0.0f;
-
-            }
+            moveSpeed = walkSpeed * sprintSpeedScalar;
+           // currentState = FSMStates.Sprint;
+            
         }
         else
         {
-            input.y = moveDirection.y;
-            moveDirection = Vector3.Lerp(moveDirection, input, airControl * Time.deltaTime);
+            moveSpeed = walkSpeed;
         }
 
-        moveDirection.y -= gravity * Time.deltaTime;
+
+    //    Handle jumping
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     print("Did this jump work?");
+        //     moveDirection.y = Mathf.Sqrt(2 * jumpAmount * gravity);
+        //     currentState = FSMStates.Jump;
+        // }
+        // else
+        // {
+        //     moveDirection.y -= gravity * Time.deltaTime;
+        // }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            currentState = FSMStates.Attack;
+        }
+        else if (Input.GetKey(KeyCode.F) && LevelManager.glovePickedUp)
+        {
+            currentState = FSMStates.HeavyAttack;
+        }
+
+        // Update moveDirection
+        moveDirection = input * moveSpeed;
         cc.Move(moveDirection * Time.deltaTime);
     }
 
-    private void IdleAnimation()
+    private void IdleState()
     {
         m_Animator.SetInteger("animState", 0);
+
+        // Check for transitions to other states
+        if (PlayerHealth.isDead)
+        {
+            currentState = FSMStates.Death;
+        }
+        else if (Input.GetButton("Jump"))
+        {
+            currentState = FSMStates.Jump;
+        }
+        else if (input.magnitude > 0)
+        {
+            currentState = FSMStates.Running;
+        }
     }
 
-    private void RunAnimation()
+    private void RunState()
     {
-        m_Animator.SetInteger("animState", 2);
+        m_Animator.SetInteger("animState", 3);
+
+        // Check for transitions to other states
+        if (PlayerHealth.isDead)
+        {
+            currentState = FSMStates.Death;
+        }
+        else if (Input.GetButton("Jump"))
+        {
+            currentState = FSMStates.Jump;
+            moveDirection.y = Mathf.Sqrt(2 * jumpAmount * gravity);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentState = FSMStates.Sprint;
+        }
+        else if (input.magnitude == 0)
+        {
+            currentState = FSMStates.Idle;
+        }
     }
 
-    private void JumpAnimation()
-    {
-        m_Animator.SetInteger("animState", 4);
-    }
-
-    private void StrafeLeftAnimation()
-    {
-        m_Animator.SetInteger("animState", 1);
-    }
-    private void StrafeRightAnimation()
+    private void SprintState()
     {
         m_Animator.SetInteger("animState", 5);
+
+        // Check for transitions to other states
+        if (PlayerHealth.isDead)
+        {
+            currentState = FSMStates.Death;
+        }
+        else if (Input.GetButton("Jump"))
+        {
+            currentState = FSMStates.Jump;
+            moveDirection.y = Mathf.Sqrt(2 * jumpAmount * gravity);
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            currentState = FSMStates.Running;
+        }
     }
 
-    private void SprintAnimation()
+    private void JumpState()
+    {
+        m_Animator.SetInteger("animState", 4);
+
+        // Check for transitions to other states
+        if (PlayerHealth.isDead)
+        {
+            currentState = FSMStates.Death;
+        }
+
+        // if current state is jump and animation finished playing 
+        if (currentState == FSMStates.Jump && m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !m_Animator.IsInTransition(0))
+        {
+
+            moveDirection.y -= gravity * Time.deltaTime;
+            
+            if (input.magnitude > 0)
+            {
+                currentState = FSMStates.Running;
+            }
+            else
+            {
+                currentState = FSMStates.Idle;
+                //print("idle transition from jump");
+            }
+        }
+
+    }
+
+    private void AttackState()
     {
         m_Animator.SetInteger("animState", 6);
+        if (currentState == FSMStates.Attack && m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !m_Animator.IsInTransition(0))
+        {
+            if (input.magnitude > 0)
+            {
+                currentState = FSMStates.Running;
+            }
+            else
+            {
+                currentState = FSMStates.Idle;
+            }
+        }
     }
 
-    private void DeathAnimation()
+    private void HeavyAttackState()
     {
         m_Animator.SetInteger("animState", 7);
+    }
+    private void DeathState()
+    {
+        m_Animator.SetInteger("animState", 8);
     }
 
     public void SetPosition()

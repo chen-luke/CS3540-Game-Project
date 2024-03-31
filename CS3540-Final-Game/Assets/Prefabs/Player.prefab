@@ -492,10 +492,10 @@ PrefabInstance:
       addedObject: {fileID: 5222941678055797330}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 005803037225e7d49bd1282d70f52fd4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6204123099574386329}
+      addedObject: {fileID: 4887014892751125045}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 005803037225e7d49bd1282d70f52fd4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4887014892751125045}
+      addedObject: {fileID: -115763938044586620}
   m_SourcePrefab: {fileID: 100100000, guid: 005803037225e7d49bd1282d70f52fd4, type: 3}
 --- !u!1 &298564248289857291 stripped
 GameObject:
@@ -582,22 +582,6 @@ MonoBehaviour:
   startingHealth: 100
   drinkPotionSFX: {fileID: 8300000, guid: a8f2e61ec9ecc164da21cd4c081fb132, type: 3}
   healthBar: {fileID: 0}
---- !u!114 &6204123099574386329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298564248289857291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d26d90947154414d8e80505598b0e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingStr: 50
-  deadSFX: {fileID: 0}
-  drinkPotionSFX: {fileID: 8300000, guid: 6f49cd6ab7ca64944a3afa809043898f, type: 3}
-  strengthBar: {fileID: 0}
 --- !u!114 &4887014892751125045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,6 +595,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordSFX: {fileID: 8300000, guid: ef94bdc3e7e8be940ac7ff057a36bcd8, type: 3}
+--- !u!114 &-115763938044586620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298564248289857291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3045cb40bff258b42bfdc5aec38b2f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMana: 100
+  maxMana: 100
+  manaBar: {fileID: 0}
+  drinkPotionSFX: {fileID: 0}
 --- !u!4 &1112220017300247985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 005803037225e7d49bd1282d70f52fd4, type: 3}

@@ -15199,8 +15199,8 @@ GameObject:
   - component: {fileID: 1012176306}
   - component: {fileID: 1012176305}
   m_Layer: 5
-  m_Name: StrPotionIcon
-  m_TagString: StrPotionIcon
+  m_Name: ManaPotionIcon
+  m_TagString: ManaPotionIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18712,7 +18712,7 @@ GameObject:
   - component: {fileID: 1196304238}
   - component: {fileID: 1196304239}
   m_Layer: 5
-  m_Name: StaminaBar
+  m_Name: ManaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24744,7 +24744,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_Name
-      value: StaminaPotion
+      value: ManaPotion
       objectReference: {fileID: 0}
     - target: {fileID: 5957370181417028416, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26823,7 +26823,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_Name
-      value: StaminaPotion (2)
+      value: ManaPotion (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5957370181417028416, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26864,6 +26864,10 @@ PrefabInstance:
     - target: {fileID: 5957370181417028416, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285120580783180207, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31926,6 +31930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -115763938044586620, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: manaBar
+      value: 
+      objectReference: {fileID: 1196304239}
     - target: {fileID: 298564248289857291, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -31982,10 +31990,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1889172955}
-    - target: {fileID: 6204123099574386329, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
-      propertyPath: strengthBar
-      value: 
-      objectReference: {fileID: 1196304239}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32251,8 +32255,8 @@ GameObject:
   - component: {fileID: 1949779862}
   - component: {fileID: 1949779861}
   m_Layer: 5
-  m_Name: HpPotionIcon
-  m_TagString: HpPotionIcon
+  m_Name: HealthPotionIcon
+  m_TagString: HealthPotionIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,16 +4,12 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
-
-    //public AudioClip deadSFX;
     public AudioClip drinkPotionSFX;
     public Slider healthBar;
     int currentHealth;
     int maxHealth = 100;
-
-
     public static bool isDead = false;
-    private string HP_POTION_AMT_ICON = "HpPotionIcon";
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,22 +23,22 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            AddHealth(HpPotionBehavior.healAmount);
+            AddHealth(HealthPotionBehavior.healthAmt);
         }
     }
 
     public void AddHealth(int healthAmt)
     {
 
-        if (currentHealth < maxHealth && LevelManager.hpPotionAmt > 0)
+        if (currentHealth < maxHealth && LevelManager.healthPotionAmt > 0)
         {
             currentHealth += healthAmt;
             healthBar.value = currentHealth;
-            LevelManager.hpPotionAmt--;
+            LevelManager.healthPotionAmt--;
 
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
 
-            FindObjectOfType<LevelManager>().UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
+            FindObjectOfType<LevelManager>().UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
         }
 
     }
