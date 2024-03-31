@@ -21,15 +21,18 @@ public class StrPotionBehavior : PotionBehavior
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player")) {
-        LevelManager.strPotionAmt ++;
-        UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
-        if (!soundPlayed) {
-            AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
-            soundPlayed = true;
-        }
+        if (other.CompareTag("Player"))
+        {
+            LevelManager.strPotionAmt++;
+            LevelManager.PotionPopup();
+            UpdatePotionCountUI(STR_POTION_AMT_ICON, LevelManager.strPotionAmt);
+            if (!soundPlayed)
+            {
+                AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
+                soundPlayed = true;
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
 
         }
     }

@@ -23,6 +23,7 @@ public class HpPotionBehavior : PotionBehavior
     {
         if (other.CompareTag("Player")) {
             LevelManager.hpPotionAmt++;
+            LevelManager.PotionPopup();
             UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
             if (!soundPlayed) {
                 AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);

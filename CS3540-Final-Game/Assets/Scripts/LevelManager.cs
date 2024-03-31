@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
 
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
+
+    public GameObject toolTip;
     public static bool isGameOver = false;
 
     public static bool isBossAwake = false;
@@ -26,10 +28,17 @@ public class LevelManager : MonoBehaviour
     public string nextLevel;
     public static Transform savePoint;
     private bool gloveUIChanged = false;
-    
+
     private bool bootUIChanged = false;
+
+    private static ToolTips toolTipPanel;
+    private static bool gavePotionTip = false;
+    private static bool gaveBootTip = false;
+    private static bool gaveGloveTip = false;
+    private static bool gaveMoveTip = false;
+    private static bool gaveInteractionTip = false;
     private void Awake()
-    
+
     {
         GameObject[] islands = GameObject.FindGameObjectsWithTag("Island");
         foreach (var isl in islands)
@@ -41,6 +50,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        toolTipPanel = toolTip.GetComponent<ToolTips>();
         isGameOver = false;
         if (savePoint == null)
         {
@@ -55,6 +65,15 @@ public class LevelManager : MonoBehaviour
         // player.transform.position = savePoint.position;
         player.GetComponent<PlayerController>().SetPosition(savePoint);
         Debug.Log("Player's position after setting it: " + player.transform.position);
+        if (!gaveMoveTip)
+        {
+            toolTipPanel.MovementTip();
+            gaveMoveTip = true;
+            toolTipPanel.Invoke("InteractionTip", 1f);
+            gaveInteractionTip = true;
+        }
+
+
     }
 
     void Update()
@@ -91,15 +110,30 @@ public class LevelManager : MonoBehaviour
             {
                 potionCount1stChar.text = "0";
             }
+        }
 
+    }
+
+    public static void PotionPopup()
+    {
+        if (!gavePotionTip)
+        {
+            toolTipPanel.PotionTip();
+            gavePotionTip = true;
         }
     }
+
 
     public void UpdateGlovePickUpUI()
     {
         GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
         gloveIconUI.GetComponent<Image>().color = Color.green;
         gloveUIChanged = true;
+        if (!gaveGloveTip)
+        {
+            toolTipPanel.SuperAttack();
+            gaveGloveTip = true;
+        }
     }
 
     public static void SetRespawnPoint(Transform newRespawnPoint)
@@ -113,6 +147,11 @@ public class LevelManager : MonoBehaviour
         GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
         bootIconUI.GetComponent<Image>().color = Color.green;
         bootUIChanged = true;
+        if (!gaveBootTip)
+        {
+            toolTipPanel.SuperJump();
+            gaveBootTip = true;
+        }
     }
 
     // The below code might not be implemented due to our current design, 

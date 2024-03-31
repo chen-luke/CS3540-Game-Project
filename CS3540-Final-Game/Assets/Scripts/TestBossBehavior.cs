@@ -13,7 +13,8 @@ public class TestBossBehavior : MonoBehaviour
         SlashAttack,
         SpinAttack,
         FireAttack,
-        Retreat
+        Retreat,
+        Defeated
     }
 
     public GameObject player;
@@ -24,6 +25,8 @@ public class TestBossBehavior : MonoBehaviour
     public Transform exhaustPipe;
 
     public CharacterController cc;
+    public int totalHealth = 100;
+    //public GameObject deadVFX;
 
     // Patrol Zone
     [Header("Patrol Zone Settings")]
@@ -72,6 +75,7 @@ public class TestBossBehavior : MonoBehaviour
     BossFSMStates nextAttack;
     float attackRange;
     Vector3 retreatStartPos;
+    float deathAnimationTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +88,10 @@ public class TestBossBehavior : MonoBehaviour
     void Update()
     {
         distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (totalHealth <= 0)
+        {
+            currentState = BossFSMStates.Defeated;
+        }
         switch (currentState)
         {
             case BossFSMStates.Asleep:
@@ -109,6 +117,9 @@ public class TestBossBehavior : MonoBehaviour
                 break;
             case BossFSMStates.Retreat:
                 UpdateRetreatState();
+                break;
+            case BossFSMStates.Defeated:
+                UpdateDefeatState();
                 break;
         }
     }
@@ -207,14 +218,14 @@ public class TestBossBehavior : MonoBehaviour
             }
             else if (distToPlayer <= chaseRange)
             {
-                print(isAttacking);
+                //print(isAttacking);
                 currentState = BossFSMStates.Chase;
             }
             else if (distToPlayer > chaseRange)
             {
                 currentState = BossFSMStates.Patrol;
             }
-        } 
+        }
     }
 
     void UpdateRetreatState()
@@ -247,6 +258,21 @@ public class TestBossBehavior : MonoBehaviour
             cc.Move(-transform.forward * patrolSpeed * Time.deltaTime);
             //transform.position = Vector3.Lerp(transform.position, nextDestination, Time.deltaTime*2);
         }
+    }
+
+    void UpdateDefeatState()
+    {
+        anim.SetInteger("BossAnimState", 7);
+        if (deathAnimationTimer >= 0f)
+        {
+            currentState = BossFSMStates.ActiveIdle;
+
+        }
+        else
+        {
+            deathAnimationTimer += Time.deltaTime;
+        }
+
     }
 
     void FindNextPoint()
@@ -366,7 +392,7 @@ public class TestBossBehavior : MonoBehaviour
 
     private void SlashAttack()
     {
-                print("attacked!");
+        print("attacked!");
         isAttacking = false;
         if (!isDead)
         {
@@ -377,8 +403,8 @@ public class TestBossBehavior : MonoBehaviour
 
     private void FireAttack()
     {
-        
-                print("attacked!");
+
+        print("attacked!");
 
         if (!isDead)
         {
@@ -387,7 +413,9 @@ public class TestBossBehavior : MonoBehaviour
             Instantiate(fireProjectile, exhaustPipe.transform.position, rotation);
             AudioSource.PlayClipAtPoint(fireAttackSFX, exhaustPipe.transform.position);
             Invoke("Retreat", anim.GetCurrentAnimatorStateInfo(0).length - 1.5f);
-        } else {
+        }
+        else
+        {
             isAttacking = false;
         }
 
@@ -456,6 +484,22 @@ public class TestBossBehavior : MonoBehaviour
             return false;
         }
 
+    }
+
+    public void TakeDamage(int amount)
+    {
+        totalHealth -= amount;
+        print(totalHealth);
+        if (totalHealth <= 0)
+        {
+            isDead = true;
+            //Invoke("DeathAnimation", 2f);
+        }
+    }
+
+    void DeathAnimation()
+    {
+        //Instantiate(deadVFX, transform.position, transform.rotation);
     }
 
     void OnDrawGizmos()

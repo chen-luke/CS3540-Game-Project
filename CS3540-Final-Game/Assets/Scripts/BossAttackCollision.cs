@@ -16,9 +16,9 @@ public class BossAttackCollision : MonoBehaviour
     }
     
     void OnTriggerEnter(Collider other) {
-        print("collided");
+        //print("collided");
         String state = GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        print(state);
+        //print(state);
         if(other.gameObject.CompareTag("Player") && canDamage) {
             PlayerHealth playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
             if(state == "BossSlashAttack") {
