@@ -20,6 +20,8 @@ public class PlayerFSMController : MonoBehaviour
     public float airControl = 1.25f;
     public float coyoteTime = 0.3f;
     public int heavyManaCost = 10;
+    public AudioClip lightAttackSFX;
+    public AudioClip heavyAttackSFX;
     CharacterController cc;
     float moveAngleFromRight;
     Vector3 input, moveDirection;
@@ -234,6 +236,7 @@ public class PlayerFSMController : MonoBehaviour
 
             anim.SetInteger("animState", 6);
             attackAnimLock = true;
+            AudioSource.PlayClipAtPoint(lightAttackSFX, Camera.main.transform.position, volume: 0.8f); // Need to delay for animation
             Invoke("UnlockAttackAnim", lightAttackDuration - attackAnimFreezeOffset);
         }
         else if (!isLightAttack && !attackAnimLock)
@@ -241,6 +244,8 @@ public class PlayerFSMController : MonoBehaviour
             // Heavy Attack
             anim.SetInteger("animState", 7);
             attackAnimLock = true;
+            // AudioSource.PlayClipAtPoint(heavyAttackSFX, Camera.main.transform.position); // Need to delay for animation
+            Invoke("PlayHeavySFX", heavyAttackDuration - attackAnimFreezeOffset - .6f);
             Invoke("UnlockAttackAnim", heavyAttackDuration - attackAnimFreezeOffset);
             playerMana.UseMana(heavyManaCost);
         }
@@ -304,5 +309,10 @@ public class PlayerFSMController : MonoBehaviour
         Vector3 pos = JsonUtility.FromJson<Vector3>(posStr);
         transform.position = pos;
         Physics.SyncTransforms();
+    }
+
+    private void PlayHeavySFX()
+    {
+        AudioSource.PlayClipAtPoint(heavyAttackSFX, Camera.main.transform.position, volume: 0.8f);
     }
 }

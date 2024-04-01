@@ -234,11 +234,14 @@ public class BugEnemyAI : MonoBehaviour
     void UpdateDeadState()
     {
         // Debug.Log("Dead");
-        anim.SetInteger("bugAnimState", 5);
-        isDead = true;
-        Destroy(gameObject, destroyTime);
-        deadTransform = transform;
-        AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        if (!isDead)
+        {
+            anim.SetInteger("bugAnimState", 5);
+            isDead = true;
+            Destroy(gameObject, destroyTime);
+            deadTransform = transform;
+            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        }
     }
 
     void FaceTarget(Vector3 target)
@@ -301,7 +304,7 @@ public class BugEnemyAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(deadTransform)
+        if (deadTransform)
         {
             Instantiate(deadVFX, deadTransform.position, Quaternion.Euler(-90, 0, 0));
             DropPotion();

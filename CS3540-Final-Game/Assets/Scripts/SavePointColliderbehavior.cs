@@ -14,7 +14,7 @@ public class SavePointColliderbehavior : MonoBehaviour
         if (other.CompareTag("Player") && !LevelManager.isGameOver && LevelManager.savePoint != respawnPoint)
         {
             Debug.Log("Setting respawn point");
-            AudioSource.PlayClipAtPoint(savePointSFX, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(savePointSFX, Camera.main.transform.position, volume: 0.9f);
             LevelManager.SetRespawnPoint(respawnPoint);
             SavePointJSON();
         }

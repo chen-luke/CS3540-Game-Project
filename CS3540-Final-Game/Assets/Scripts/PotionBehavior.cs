@@ -29,7 +29,7 @@ public class PotionBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player") && !PlayerHealth.isDead)
         {
-            AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position, volume: 0.8f);
             Destroy(gameObject, 0.1f);
         }
     }
