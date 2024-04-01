@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 
 {
     public static GameObject player;
+    public GameObject healthPotionPrefab;
+    public GameObject manaPotionPrefab;
     public Text gameText;
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
@@ -26,14 +29,15 @@ public class LevelManager : MonoBehaviour
     private bool gloveUIChanged = false;
 
     private bool bootUIChanged = false;
+    private static List<Vector3> healthPotionLocations = FirstHealthPotionLocations();
+    private static List<Vector3> manaPotionLocations = FirstManaPotionLocations();
 
     void Start()
     {
         isGameOver = false;
         // healthPotionAmt = 0;
         // manaPotionAmt = 0;
-        UpdateHealthPotionCountUI(healthPotionAmt);
-        UpdateManaPotionCountUI(manaPotionAmt);
+        Initialize();
     }
 
     void Update()
@@ -52,7 +56,38 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void UpdatePotionCountUI(string type, int amt)
+    void Initialize() {
+        foreach(Vector3 location in healthPotionLocations) {
+            Instantiate(healthPotionPrefab, location, Quaternion.identity);
+        }
+        foreach(Vector3 location in manaPotionLocations) {
+            Instantiate(manaPotionPrefab, location, Quaternion.identity);
+        }
+        UpdateHealthPotionCountUI(healthPotionAmt);
+        UpdateManaPotionCountUI(manaPotionAmt);
+    }
+
+    private static List<Vector3> FirstHealthPotionLocations() {
+        List<Vector3> healthPotionLocations = new List<Vector3>
+        {
+            new Vector3(-4.86f, 32.79f, -56.46f),
+            new Vector3(-4.86f, 32.79f, -60.02f),
+            new Vector3(-4.86f, 32.79f, -57.97f),
+            new Vector3(-3.79f, 32.79f, -56.46f)
+        };
+        return healthPotionLocations;
+    }
+
+    private static List<Vector3> FirstManaPotionLocations() {
+        List<Vector3> healthPotionLocations = new List<Vector3>
+        {
+            new Vector3(-10.88f, 32.52f, -55.55f),
+            new Vector3(-10.86f, 32.52f, -54.83f),
+        };
+        return healthPotionLocations;
+    }
+
+    private static void UpdatePotionCountUI(string type, int amt)
     {
         GameObject potionCountString = GameObject.FindGameObjectWithTag(type);
         if (potionCountString != null)
@@ -73,7 +108,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void UpdateManaPotionCountUI(int amt)
+    public static void UpdateManaPotionCountUI(int amt)
     {
         if (!isGameOver)
         {
@@ -81,7 +116,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void UpdateHealthPotionCountUI(int amt)
+    public static void UpdateHealthPotionCountUI(int amt)
     {
         if (!isGameOver)
         {
@@ -122,7 +157,6 @@ public class LevelManager : MonoBehaviour
     public void LevelLost()
     {
         isGameOver = true;
-
         // gameText.text = "GAME OVER!";
 
         // gameText.gameObject.SetActive(true);
@@ -167,6 +201,43 @@ public class LevelManager : MonoBehaviour
     {
         print("Deleting savePoint.json file");
         File.Delete(savePointJSONPath);
+    }
+
+    public static void AddHealthPotionLocation(Vector3 potionLocation)
+    {
+        if (!healthPotionLocations.Contains(potionLocation))
+        {
+            healthPotionLocations.Add(potionLocation);
+        }
+        // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
+    }
+
+    public static void RemoveHealthPotionLocation(Vector3 potionLocation)
+    {
+        healthPotionLocations.Remove(potionLocation);
+        // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
+    }
+
+    public static List<Vector3> GetHealthPotionLocations()
+    {
+        return healthPotionLocations;
+    }
+    public static void AddManaPotionLocation(Vector3 potionLocation)
+    {
+        if (!manaPotionLocations.Contains(potionLocation))
+        {
+            manaPotionLocations.Add(potionLocation);
+        }
+    }
+
+    public static void RemoveManaPotionLocation(Vector3 potionLocation)
+    {
+        manaPotionLocations.Remove(potionLocation);
+    }
+
+    public static List<Vector3> GetManaPotionLocations()
+    {
+        return manaPotionLocations;
     }
 }
 

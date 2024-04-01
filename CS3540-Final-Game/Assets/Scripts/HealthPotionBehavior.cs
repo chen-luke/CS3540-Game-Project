@@ -5,29 +5,20 @@ using UnityEngine;
 public class HealthPotionBehavior : MonoBehaviour
 {
     public static int healthAmt = 20;
-    private bool isPickedUp = false;
-    private LevelManager levelManager;
-
+    private Vector3 startPosition;
     void Start()
     {
-        if (isPickedUp)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            levelManager = FindObjectOfType<LevelManager>();
-        }
-
+        startPosition = transform.position;
+        LevelManager.AddHealthPotionLocation(startPosition);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isPickedUp)
+        if (other.CompareTag("Player"))
         {
             LevelManager.healthPotionAmt++;
-            levelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
-            isPickedUp = true;
+            LevelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
+            LevelManager.RemoveHealthPotionLocation(startPosition);
         }
     }
 }

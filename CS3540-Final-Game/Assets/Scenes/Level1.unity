@@ -11385,6 +11385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPotion (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 475262, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.6006947
@@ -11841,6 +11845,10 @@ PrefabInstance:
     - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_Name
       value: HealthPotion (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 475262, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14704,6 +14712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e398d2932b48006418117802ea314cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPotionPrefab: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
+  manaPotionPrefab: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
   gameText: {fileID: 0}
   gameOverSFX: {fileID: 0}
   gameWonSFX: {fileID: 0}
@@ -24817,6 +24827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManaPotion
       objectReference: {fileID: 0}
+    - target: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5957370181417028416, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4017715
@@ -26896,6 +26910,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManaPotion (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5957370181417028416, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.421772
@@ -27899,6 +27917,10 @@ PrefabInstance:
     - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_Name
       value: HealthPotion (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 475262, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32641,6 +32663,10 @@ PrefabInstance:
     - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_Name
       value: HpPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 475262, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
       propertyPath: m_LocalPosition.x

@@ -32,7 +32,7 @@ public class PlayerMana : MonoBehaviour
             manaBar.value = currentMana;
             LevelManager.manaPotionAmt--;
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
-            FindObjectOfType<LevelManager>().UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
+            LevelManager.UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
         }
     }
 

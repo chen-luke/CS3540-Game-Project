@@ -264,6 +264,7 @@ public class RayEnemyAI : MonoBehaviour
             deadTransform = transform;
             AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
         }
+        cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
 
     void FaceTarget(Vector3 target)

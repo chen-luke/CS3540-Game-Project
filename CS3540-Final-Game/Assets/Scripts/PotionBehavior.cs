@@ -7,11 +7,11 @@ public class PotionBehavior : MonoBehaviour
     public float bobbingHeight = 0.1f; // The maximum height the object will bob
     public float bobbingSpeed = 1.0f; // The speed of the bobbing movement
     public AudioClip potionPickupSFX;
-    private float startY; // The initial y-position of the object
+    private float startY;
 
     void Start()
     {
-        startY = transform.position.y; // Store the initial y-position of the object
+        startY = transform.position.y; // Store the initial position of the object
     }
 
     void Update()

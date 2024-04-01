@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
 
-            FindObjectOfType<LevelManager>().UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
+            LevelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
         }
 
     }

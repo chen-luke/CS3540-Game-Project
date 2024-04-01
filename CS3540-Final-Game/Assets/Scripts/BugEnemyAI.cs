@@ -242,6 +242,7 @@ public class BugEnemyAI : MonoBehaviour
             deadTransform = transform;
             AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
         }
+        cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
 
     void FaceTarget(Vector3 target)
@@ -285,12 +286,13 @@ public class BugEnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         canAttack = true;
-        Debug.Log("Reset Attack");
+        // Debug.Log("Reset Attack");
     }
 
     private void DropPotion()
     {
         int dropChance = Random.Range(0, 100);
+        print(dropChance);
         if (dropChance < potionDropChance)
         {
             GameObject potion = potionDrops[Random.Range(0, potionDrops.Length)];

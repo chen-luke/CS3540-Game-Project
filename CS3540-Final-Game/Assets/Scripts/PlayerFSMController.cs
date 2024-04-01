@@ -305,7 +305,7 @@ public class PlayerFSMController : MonoBehaviour
     public void SetPosition()
     {
         string posStr = File.ReadAllText(LevelManager.savePointJSONPath);
-        print(posStr);
+        // print(posStr);
         Vector3 pos = JsonUtility.FromJson<Vector3>(posStr);
         transform.position = pos;
         Physics.SyncTransforms();

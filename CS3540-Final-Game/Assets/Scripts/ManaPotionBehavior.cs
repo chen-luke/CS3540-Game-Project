@@ -5,28 +5,21 @@ using UnityEngine;
 public class ManaPotionBehavior : MonoBehaviour
 {
     public static int manaAmt = 20;
-    private bool isPickedUp = false;
-    private LevelManager levelManager;
+    private Vector3 startPosition;
 
     void Start()
     {
-        if (isPickedUp)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            levelManager = FindObjectOfType<LevelManager>();
-        }
+        startPosition = transform.position;
+        LevelManager.AddManaPotionLocation(startPosition);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isPickedUp)
+        if (other.CompareTag("Player"))
         {
             LevelManager.manaPotionAmt++;
-            levelManager.UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
-            isPickedUp = true;
+            LevelManager.UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
+            LevelManager.RemoveManaPotionLocation(startPosition);
         }
     }
 }
