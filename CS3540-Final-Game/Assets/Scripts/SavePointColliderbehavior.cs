@@ -7,13 +7,15 @@ using UnityEngine;
 public class SavePointColliderbehavior : MonoBehaviour
 {
     public Transform respawnPoint;
+    public AudioClip savePointSFX;
     
     void OnTriggerEnter(Collider other)
     {
-        print(Application.dataPath);
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !LevelManager.isGameOver && LevelManager.savePoint != respawnPoint)
         {
             Debug.Log("Setting respawn point");
+            AudioSource.PlayClipAtPoint(savePointSFX, Camera.main.transform.position);
+            LevelManager.SetRespawnPoint(respawnPoint);
             SavePointJSON();
         }
     }

@@ -27,10 +27,10 @@ public class PotionBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !PlayerHealth.isDead)
         {
             AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 0.1f);
         }
     }
 }

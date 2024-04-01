@@ -75,19 +75,28 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateManaPotionCountUI(int amt)
     {
-        UpdatePotionCountUI("ManaPotionIcon", amt);
+        if (!isGameOver)
+        {
+            UpdatePotionCountUI("ManaPotionIcon", amt);
+        }
     }
 
     public void UpdateHealthPotionCountUI(int amt)
     {
-        UpdatePotionCountUI("HealthPotionIcon", amt);
+        if (!isGameOver)
+        {
+            UpdatePotionCountUI("HealthPotionIcon", amt);
+        }
     }
 
     public void UpdateGlovePickUpUI()
     {
-        GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
-        gloveIconUI.GetComponent<Image>().color = Color.green;
-        gloveUIChanged = true;
+        if (!isGameOver)
+        {
+            GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
+            gloveIconUI.GetComponent<Image>().color = Color.green;
+            gloveUIChanged = true;
+        }
     }
 
     public static void SetRespawnPoint(Transform newRespawnPoint)
@@ -98,9 +107,12 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateBootPickUpUI()
     {
-        GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
-        bootIconUI.GetComponent<Image>().color = Color.green;
-        bootUIChanged = true;
+        if (!isGameOver)
+        {
+            GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
+            bootIconUI.GetComponent<Image>().color = Color.green;
+            bootUIChanged = true;
+        }
     }
 
     // The below code might not be implemented due to our current design, 
@@ -120,7 +132,7 @@ public class LevelManager : MonoBehaviour
         // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
 
-        Invoke("LoadCurrentLevel", 2);
+        Invoke("LoadCurrentLevel", 3);
     }
 
     // public void LevelBeat()
@@ -153,6 +165,7 @@ public class LevelManager : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        print("Deleting savePoint.json file");
         File.Delete(savePointJSONPath);
     }
 }

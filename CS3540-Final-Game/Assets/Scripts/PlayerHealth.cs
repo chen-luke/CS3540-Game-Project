@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !isDead)
         {
             AddHealth(HealthPotionBehavior.healthAmt);
         }
@@ -60,11 +60,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDies()
     {
-        Debug.Log("Player is dead");
         //AudioSource.PlayClipAtPoint(deadSFX, transform.position);
         if (!isDead)
         {
-            transform.Rotate(-90, 0, 0, Space.Self);
             isDead = true;
             FindObjectOfType<LevelManager>().LevelLost();
         }

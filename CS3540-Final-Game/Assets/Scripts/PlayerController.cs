@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     Animator m_Animator;
 
     private float minHeight = 26f;
-
     public enum FSMStates
     {
         Idle, RStrafe, LStrafe, Running, Attack, HeavyAttack, Jump, Sprint, Death
@@ -41,7 +40,16 @@ public class PlayerController : MonoBehaviour
         {
             SetPosition();
         }
+        else
+        {
+            print("No save point found");
+        }
         PlayerHealth.isDead = false;
+        print(Vector3.Angle(Vector3.right, Vector3.forward));
+        print(Vector3.Angle(Vector3.right, Vector3.left));
+        print(Vector3.Angle(Vector3.right, Vector3.right));
+        print(Vector3.Angle(Vector3.right, Vector3.back));
+        print(Vector3.Angle(Vector3.zero, Vector3.back));
 
     }
 
@@ -95,7 +103,7 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
-        print("The current state is: " + currentState);
+        // print("The current state is: " + currentState);
         jumpAmount = Input.GetKey(KeyCode.LeftShift) && LevelManager.bootsPickedUp ? superJumpForceScalar : jumpForceScalar;
 
 
@@ -258,6 +266,7 @@ public class PlayerController : MonoBehaviour
     public void SetPosition()
     {
         string posStr = File.ReadAllText(LevelManager.savePointJSONPath);
+        print(posStr);
         Vector3 pos = JsonUtility.FromJson<Vector3>(posStr);
         transform.position = pos;
         Physics.SyncTransforms();

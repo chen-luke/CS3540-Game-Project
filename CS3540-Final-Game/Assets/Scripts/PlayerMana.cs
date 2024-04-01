@@ -20,7 +20,7 @@ public class PlayerMana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E) && !PlayerHealth.isDead) {
             Addstr(ManaPotionBehavior.manaAmt);
         }
     }
@@ -30,9 +30,21 @@ public class PlayerMana : MonoBehaviour
         if (currentMana < maxMana && LevelManager.manaPotionAmt > 0) {
             currentMana += manaAmt;
             manaBar.value = currentMana;
-            LevelManager.manaPotionAmt --;
+            LevelManager.manaPotionAmt--;
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
             FindObjectOfType<LevelManager>().UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
+        }
+    }
+
+    public int GetCurrentMana() {
+        int retMana = currentMana;
+        return retMana;
+    }
+
+    public void UseMana(int manaAmt) {
+        if (currentMana >= manaAmt && manaAmt > 0) {
+            currentMana -= manaAmt;
+            manaBar.value = currentMana;
         }
     }
 }
