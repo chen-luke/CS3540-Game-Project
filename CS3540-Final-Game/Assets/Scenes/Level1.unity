@@ -14190,6 +14190,8 @@ MonoBehaviour:
   airControl: 1.25
   coyoteTime: 0.3
   heavyManaCost: 10
+  lightAttackSFX: {fileID: 8300000, guid: ef94bdc3e7e8be940ac7ff057a36bcd8, type: 3}
+  heavyAttackSFX: {fileID: 8300000, guid: 229c6912f1f64854da1a00d0d1092961, type: 3}
   attackAnimFreezeOffset: 0.48
 --- !u!65 &952416571
 BoxCollider:
@@ -32005,7 +32007,7 @@ PrefabInstance:
       objectReference: {fileID: 1196304239}
     - target: {fileID: -115763938044586620, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: startingMana
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -115763938044586620, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: drinkPotionSFX
@@ -32089,7 +32091,7 @@ PrefabInstance:
       objectReference: {fileID: 1889172955}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: startingHealth
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6453459125673086923, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_Enabled
