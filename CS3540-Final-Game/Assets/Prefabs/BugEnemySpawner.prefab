@@ -103,7 +103,7 @@ MonoBehaviour:
   firstSpawnTime: 1
   maxEnemies: 4
   activeEnemies: 0
-  spawnSFX: {fileID: 8300000, guid: 7ced0727307a3ac4b853e61c2c6b1ed9, type: 3}
+  spawnSFX: {fileID: 8300000, guid: cc2cd04707f31264b8c49312af65ee98, type: 3}
 --- !u!64 &726942814020546489
 MeshCollider:
   m_ObjectHideFlags: 0

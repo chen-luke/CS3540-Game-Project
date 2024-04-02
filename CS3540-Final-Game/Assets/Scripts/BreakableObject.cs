@@ -13,6 +13,7 @@ public class BreakableObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Weapon"))
         {
+            print("collided");
             if (0 >= damageRequired)
             {
                 // will eventually check to see if enough damage was done
@@ -20,16 +21,22 @@ public class BreakableObject : MonoBehaviour
 
                 // create pieces and send them exploding
                 GameObject pieces = Instantiate(objectPieces, currentObj.position, currentObj.rotation);
+                pieces.transform.localScale = new Vector3(pieces.transform.localScale.x * currentObj.localScale.x, pieces.transform.localScale.y * currentObj.localScale.y, pieces.transform.localScale.z * currentObj.localScale.z);
                 Rigidbody[] rbPieces = pieces.GetComponentsInChildren<Rigidbody>();
+                //print(rbPieces.Length);
 
                 foreach (Rigidbody rb in rbPieces)
                 {
                     rb.AddExplosionForce(explosionForce, currentObj.position, explosionRadius);
                 }
+                FadeOutChildren[] fades = pieces.GetComponentsInChildren<FadeOutChildren>();
+                foreach (FadeOutChildren fade in fades) {
+                    fade.Invoke("StartFade", .5f);
+                }
 
                 // get rid of original object and then pieces after a delay
                 Destroy(gameObject);
-                Destroy(pieces, 2f);
+                Destroy(pieces, 1.5f);
             }
 
         }

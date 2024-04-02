@@ -20,6 +20,7 @@ public class ManaPotionBehavior : MonoBehaviour
         {
             isPickedUp = true;
             LevelManager.manaPotionAmt++;
+            LevelManager.PotionPopup();
             LevelManager.UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
             LevelManager.RemoveManaPotionLocation(startPosition);
         }

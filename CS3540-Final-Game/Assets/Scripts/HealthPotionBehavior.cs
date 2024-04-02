@@ -19,6 +19,7 @@ public class HealthPotionBehavior : MonoBehaviour
         {
             isPickedUp = true;
             LevelManager.healthPotionAmt++;
+            LevelManager.PotionPopup();
             LevelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
             LevelManager.RemoveHealthPotionLocation(startPosition);
         }

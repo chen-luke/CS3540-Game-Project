@@ -16,7 +16,11 @@ public class LevelManager : MonoBehaviour
     public Text gameText;
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
+
+    public GameObject toolTip;
     public static bool isGameOver = false;
+
+    public static bool isBossAwake = false;
 
     public static bool glovePickedUp = false;
 
@@ -29,15 +33,32 @@ public class LevelManager : MonoBehaviour
     private bool gloveUIChanged = false;
 
     private bool bootUIChanged = false;
+
+    private static ToolTips toolTipPanel;
+    private static bool gavePotionTip = false;
+    private static bool gaveBootTip = false;
+    private static bool gaveGloveTip = false;
+    private static bool gaveMoveTip = false;
+    private static bool gaveInteractionTip = false;
     private static List<Vector3> healthPotionLocations = FirstHealthPotionLocations();
     private static List<Vector3> manaPotionLocations = FirstManaPotionLocations();
-
     void Start()
     {
+        toolTipPanel = toolTip.GetComponent<ToolTips>();
         isGameOver = false;
         // healthPotionAmt = 0;
         // manaPotionAmt = 0;
         Initialize();
+
+        if (!gaveMoveTip)
+        {
+            toolTipPanel.MovementTip();
+            gaveMoveTip = true;
+            toolTipPanel.Invoke("InteractionTip", 1f);
+            gaveInteractionTip = true;
+        }
+
+
     }
 
     void Update()
@@ -56,18 +77,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void Initialize() {
-        foreach(Vector3 location in healthPotionLocations) {
+    void Initialize()
+    {
+        foreach (Vector3 location in healthPotionLocations)
+        {
             Instantiate(healthPotionPrefab, location, Quaternion.identity);
         }
-        foreach(Vector3 location in manaPotionLocations) {
+        foreach (Vector3 location in manaPotionLocations)
+        {
             Instantiate(manaPotionPrefab, location, Quaternion.identity);
         }
         UpdateHealthPotionCountUI(healthPotionAmt);
         UpdateManaPotionCountUI(manaPotionAmt);
     }
 
-    private static List<Vector3> FirstHealthPotionLocations() {
+    private static List<Vector3> FirstHealthPotionLocations()
+    {
         List<Vector3> healthPotionLocations = new List<Vector3>
         {
             new Vector3(-4.86f, 32.79f, -56.46f),
@@ -78,7 +103,8 @@ public class LevelManager : MonoBehaviour
         return healthPotionLocations;
     }
 
-    private static List<Vector3> FirstManaPotionLocations() {
+    private static List<Vector3> FirstManaPotionLocations()
+    {
         List<Vector3> healthPotionLocations = new List<Vector3>
         {
             new Vector3(-10.88f, 32.52f, -55.55f),
@@ -104,9 +130,19 @@ public class LevelManager : MonoBehaviour
             {
                 potionCount1stChar.text = "0";
             }
+        }
 
+    }
+
+    public static void PotionPopup()
+    {
+        if (!gavePotionTip)
+        {
+            toolTipPanel.PotionTip();
+            gavePotionTip = true;
         }
     }
+
 
     public static void UpdateManaPotionCountUI(int amt)
     {
@@ -131,6 +167,11 @@ public class LevelManager : MonoBehaviour
             GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
             gloveIconUI.GetComponent<Image>().color = Color.green;
             gloveUIChanged = true;
+            if (!gaveGloveTip)
+            {
+                toolTipPanel.SuperAttack();
+                gaveGloveTip = true;
+            }
         }
     }
 
@@ -142,11 +183,17 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateBootPickUpUI()
     {
+
         if (!isGameOver)
         {
             GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
             bootIconUI.GetComponent<Image>().color = Color.green;
             bootUIChanged = true;
+            if (!gaveBootTip)
+            {
+                toolTipPanel.SuperJump();
+                gaveBootTip = true;
+            }
         }
     }
 

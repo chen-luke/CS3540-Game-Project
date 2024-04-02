@@ -20,7 +20,8 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        if(!PauseMenuBehavior.isGamePaused) {
+            float moveX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         // float moveY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         // Camera is always positioned directly behind the player, but this means
@@ -28,6 +29,8 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * moveX);
 
         // Will add vertical rotation around the playerBody.position in the future
+        }
+        
     }
 
     private void PositionCameraAtStart()

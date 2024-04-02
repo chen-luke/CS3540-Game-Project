@@ -21,12 +21,11 @@ public class HpPotionBehavior : PotionBehavior
 
     // void OnTriggerEnter(Collider other)
     // {
-    //     if (other.CompareTag("Player"))
-    //     {
-    //         LevelManager.hpPotionAmt++;
-    //         UpdatePotionCountUI(HP_POTION_AMT_ICON, LevelManager.hpPotionAmt);
-    //         if (!soundPlayed)
-    //         {
+    //     if (other.CompareTag("Player")) {
+    //         LevelManager.healthPotionAmt++;
+    //         LevelManager.PotionPopup();
+    //         LevelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
+    //         if (!soundPlayed) {
     //             AudioSource.PlayClipAtPoint(potionPickupSFX, Camera.main.transform.position);
     //             soundPlayed = true;
     //         }
@@ -34,6 +33,6 @@ public class HpPotionBehavior : PotionBehavior
     //         Debug.Log("Added " + healAmount + " HP points to the player!");
     //     }
 
-    // }
+    //  }
 
 }

@@ -21,7 +21,8 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) {
+        if(!PauseMenuBehavior.isGamePaused) {
+            if (Input.GetButtonDown("Fire1")) {
             AttackAnimation();
             shootProjectile.ShootSlashProjectile();
             if (elapsedTime >= 1.2f) {
@@ -34,6 +35,8 @@ public class PlayerAttack : MonoBehaviour
             HeavyAttackAnimation();
         }
         elapsedTime += Time.deltaTime;
+        }
+        
     }
     private void AttackAnimation()
     {
