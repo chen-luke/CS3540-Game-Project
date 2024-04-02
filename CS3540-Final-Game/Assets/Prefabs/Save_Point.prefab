@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 4179959175581775466}
+  savePointSFX: {fileID: 8300000, guid: 4d400c386c223c042bb3b1701d88de42, type: 3}
 --- !u!54 &4200266191982090329
 Rigidbody:
   m_ObjectHideFlags: 0

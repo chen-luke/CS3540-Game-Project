@@ -257,11 +257,14 @@ public class RayEnemyAI : MonoBehaviour
     void UpdateDeadState()
     {
         // Debug.Log("Dead");
-        anim.SetInteger("rayAnimState", 5);
-        isDead = true;
-        Destroy(gameObject, destroyTime);
-        deadTransform = transform;
-        AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        if(!isDead){
+            anim.SetInteger("rayAnimState", 5);
+            isDead = true;
+            Destroy(gameObject, destroyTime);
+            deadTransform = transform;
+            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        }
+        cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
 
     void FaceTarget(Vector3 target)
@@ -303,7 +306,7 @@ public class RayEnemyAI : MonoBehaviour
             AudioClip attackSFX = projectileIdx == 0 ? heavyAttackSFX : lightAttackSFX;
             GameObject projectile = Instantiate(projectiles[projectileIdx], rayMouth.position, rotation);
             projectile.transform.SetParent(GameObject.FindGameObjectWithTag("ProjectileParent").transform);
-            AudioSource.PlayClipAtPoint(attackSFX, rayMouth.position);
+            AudioSource.PlayClipAtPoint(attackSFX, rayMouth.position, volume: 0.4f);
         }
     }
 
