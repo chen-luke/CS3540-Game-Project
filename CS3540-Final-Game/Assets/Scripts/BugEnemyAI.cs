@@ -98,6 +98,7 @@ public class BugEnemyAI : MonoBehaviour
             // Die on hit, will implement enemy health later
             currentState = FSMStates.Dead;
         }
+
     }
     void Initialize()
     {
@@ -124,6 +125,11 @@ public class BugEnemyAI : MonoBehaviour
     // }
 
     // Hardcoded wanderpoints for now - 3 total
+
+    public void SetIsDead() {
+        isDead = true;
+        currentState = FSMStates.Dead;
+    }
     private void GetPresetWanderPoints()
     {
         wanderPoints = new Vector3[3];
