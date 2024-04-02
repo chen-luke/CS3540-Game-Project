@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6373712179458121886
+--- !u!1 &3507163187311005227
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2533284885717752057}
-  - component: {fileID: 5182906358852682732}
-  - component: {fileID: 7243207996476789362}
-  - component: {fileID: 6632665617602971186}
+  - component: {fileID: 1300879521785655352}
+  - component: {fileID: 3515975262811938427}
+  - component: {fileID: 9060570417996459957}
+  - component: {fileID: 2427461846216512891}
+  - component: {fileID: 7974690554690534644}
+  - component: {fileID: 4809901357245991535}
   m_Layer: 0
-  m_Name: SM_Env_Rock_Large_07 (1)
+  m_Name: SM_Env_Rock_Large_06_WHOLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2533284885717752057
+--- !u!4 &1300879521785655352
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373712179458121886}
+  m_GameObject: {fileID: 3507163187311005227}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.109997, y: 50.016003, z: -102.50001}
-  m_LocalScale: {x: 1, y: 1.84, z: 1}
+  m_LocalRotation: {x: -0, y: 0.9536587, z: -0, w: 0.30089056}
+  m_LocalPosition: {x: -52.039997, y: 50.66, z: -94.65001}
+  m_LocalScale: {x: 0.7407335, y: 1.3629496, z: 0.7407335}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5182906358852682732
+  m_LocalEulerAnglesHint: {x: 0, y: 144.978, z: 0}
+--- !u!33 &3515975262811938427
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373712179458121886}
-  m_Mesh: {fileID: 4300000, guid: aadc4ff829cfe2242b8f435038123dc6, type: 3}
---- !u!23 &7243207996476789362
+  m_GameObject: {fileID: 3507163187311005227}
+  m_Mesh: {fileID: 4300000, guid: 6aa5e74ef216ba04bbd52d2d3af01796, type: 3}
+--- !u!23 &9060570417996459957
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373712179458121886}
+  m_GameObject: {fileID: 3507163187311005227}
   m_Enabled: 1
   m_CastShadows: 2
   m_ReceiveShadows: 1
@@ -84,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &6632665617602971186
+--- !u!54 &2427461846216512891
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373712179458121886}
+  m_GameObject: {fileID: 3507163187311005227}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -107,7 +109,44 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7974690554690534644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507163187311005227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286297c4597efa448b47984af97295cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 300
+  explosionRadius: 25
+  damageRequired: 0
+  objectPieces: {fileID: 662223992085460019, guid: 952788d947e89d14eaca59ce0154a2bd, type: 3}
+--- !u!65 &4809901357245991535
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507163187311005227}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.377535, y: 5.7260613, z: 8.054604}
+  m_Center: {x: -5.684342e-14, y: 2.8630307, z: -0.0000009536744}
