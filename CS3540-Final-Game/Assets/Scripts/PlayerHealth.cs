@@ -35,9 +35,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth += healthAmt;
             healthBar.value = currentHealth;
             LevelManager.healthPotionAmt--;
-
             AudioSource.PlayClipAtPoint(drinkPotionSFX, Camera.main.transform.position);
-
             LevelManager.UpdateHealthPotionCountUI(LevelManager.healthPotionAmt);
         }
 

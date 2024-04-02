@@ -6,6 +6,7 @@ public class ManaPotionBehavior : MonoBehaviour
 {
     public static int manaAmt = 20;
     private Vector3 startPosition;
+    private bool isPickedUp = false;
 
     void Start()
     {
@@ -15,8 +16,9 @@ public class ManaPotionBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isPickedUp)
         {
+            isPickedUp = true;
             LevelManager.manaPotionAmt++;
             LevelManager.UpdateManaPotionCountUI(LevelManager.manaPotionAmt);
             LevelManager.RemoveManaPotionLocation(startPosition);
