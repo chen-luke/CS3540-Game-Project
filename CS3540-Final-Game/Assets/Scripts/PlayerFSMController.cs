@@ -28,6 +28,7 @@ public class PlayerFSMController : MonoBehaviour
     Animator anim;
     PlayerHealth playerHealth;
     PlayerMana playerMana;
+    ShootProjectile shootProjectile;
     private float minHeight = 26f;
     private float moveSpeed;
     private float jumpAmount;
@@ -103,6 +104,12 @@ public class PlayerFSMController : MonoBehaviour
             UpdateDieState();
         }
 
+        if (input.magnitude > 0.01f) {
+            float cameraYawRotation = Camera.main.transform.eulerAngles.y;
+            Quaternion newRotation = Quaternion.Euler(0f, cameraYawRotation, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 10);
+        }
+
     }
 
     void Initialize()
@@ -111,6 +118,7 @@ public class PlayerFSMController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
         playerMana = GetComponent<PlayerMana>();
+        shootProjectile = gameObject.GetComponent<ShootProjectile>();
         if (File.Exists(LevelManager.savePointJSONPath))
         {
             SetPosition();
@@ -245,7 +253,7 @@ public class PlayerFSMController : MonoBehaviour
             anim.SetInteger("animState", 7);
             attackAnimLock = true;
             // AudioSource.PlayClipAtPoint(heavyAttackSFX, Camera.main.transform.position); // Need to delay for animation
-            Invoke("PlayHeavySFX", heavyAttackDuration - attackAnimFreezeOffset - .6f);
+            Invoke("HeavyAttack", heavyAttackDuration - attackAnimFreezeOffset - .6f);
             Invoke("UnlockAttackAnim", heavyAttackDuration - attackAnimFreezeOffset);
             playerMana.UseMana(heavyManaCost);
         }
@@ -311,8 +319,9 @@ public class PlayerFSMController : MonoBehaviour
         Physics.SyncTransforms();
     }
 
-    private void PlayHeavySFX()
+    private void HeavyAttack()
     {
+        shootProjectile.ShootSlashProjectile();
         AudioSource.PlayClipAtPoint(heavyAttackSFX, Camera.main.transform.position, volume: 0.8f);
     }
 }
