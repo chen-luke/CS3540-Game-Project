@@ -25,7 +25,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         m_Animator = gameObject.GetComponent<Animator>();
-//        Debug.Log("Start of New Player");
         if (LevelManager.savePoint)
         {
             SetPosition(LevelManager.savePoint);

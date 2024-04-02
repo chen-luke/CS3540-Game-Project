@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public int startHealth = 100;
     public Slider healthSlider;
 
+    public bool isDead = false;
     private int currentHealth;
     void Start()
     {
@@ -18,24 +19,21 @@ public class EnemyHealth : MonoBehaviour
         healthSlider.value = currentHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void TakeDamage(int damageAmount) {
-        if (currentHealth > 0) {
-            currentHealth -= damageAmount;
-            healthSlider.value = currentHealth;
+    public void TakeDamage(int damageAmount)
+    {
+        if (!isDead)
+        {
+            if (currentHealth > 0)
+            {
+                currentHealth -= damageAmount;
+                healthSlider.value = currentHealth;
+            }
+            if (currentHealth <= 0)
+            {
+                isDead = true;
+            }
+
         }
-        if (currentHealth <= 0) {
-            GetComponent<BugEnemyAI>().SetIsDead();
-        }
-    }
-    void OnTriggerEnter(Collider other) {
-        // if (other.CompareTag("")) {
-            
-        // }
     }
 }
