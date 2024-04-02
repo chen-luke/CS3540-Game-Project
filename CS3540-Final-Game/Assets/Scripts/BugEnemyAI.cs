@@ -98,6 +98,7 @@ public class BugEnemyAI : MonoBehaviour
             // Die on hit, will implement enemy health later
             currentState = FSMStates.Dead;
         }
+
     }
     void Initialize()
     {
@@ -124,6 +125,11 @@ public class BugEnemyAI : MonoBehaviour
     // }
 
     // Hardcoded wanderpoints for now - 3 total
+
+    public void SetIsDead() {
+        isDead = true;
+        currentState = FSMStates.Dead;
+    }
     private void GetPresetWanderPoints()
     {
         wanderPoints = new Vector3[3];
@@ -234,11 +240,15 @@ public class BugEnemyAI : MonoBehaviour
     void UpdateDeadState()
     {
         // Debug.Log("Dead");
-        anim.SetInteger("bugAnimState", 5);
-        isDead = true;
-        Destroy(gameObject, destroyTime);
-        deadTransform = transform;
-        AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        if (!isDead)
+        {
+            anim.SetInteger("bugAnimState", 5);
+            isDead = true;
+            Destroy(gameObject, destroyTime);
+            deadTransform = transform;
+            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+        }
+        cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
 
     void FaceTarget(Vector3 target)
@@ -282,12 +292,13 @@ public class BugEnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         canAttack = true;
-        Debug.Log("Reset Attack");
+        // Debug.Log("Reset Attack");
     }
 
     private void DropPotion()
     {
         int dropChance = Random.Range(0, 100);
+        print(dropChance);
         if (dropChance < potionDropChance)
         {
             GameObject potion = potionDrops[Random.Range(0, potionDrops.Length)];
@@ -301,7 +312,7 @@ public class BugEnemyAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(deadTransform)
+        if (deadTransform)
         {
             Instantiate(deadVFX, deadTransform.position, Quaternion.Euler(-90, 0, 0));
             DropPotion();

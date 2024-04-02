@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 
 {
     public static GameObject player;
+    public GameObject healthPotionPrefab;
+    public GameObject manaPotionPrefab;
     public Text gameText;
-
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
 
@@ -22,9 +25,9 @@ public class LevelManager : MonoBehaviour
     public static bool glovePickedUp = false;
 
     public static bool bootsPickedUp = false;
-
-    public static int hpPotionAmt = 0;
-    public static int strPotionAmt = 0;
+    public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
+    public static int healthPotionAmt = 0;
+    public static int manaPotionAmt = 0;
     public string nextLevel;
     public static Transform savePoint;
     private bool gloveUIChanged = false;
@@ -37,34 +40,16 @@ public class LevelManager : MonoBehaviour
     private static bool gaveGloveTip = false;
     private static bool gaveMoveTip = false;
     private static bool gaveInteractionTip = false;
-    private void Awake()
-
-    {
-        GameObject[] islands = GameObject.FindGameObjectsWithTag("Island");
-        foreach (var isl in islands)
-        {
-            DontDestroyOnLoad(isl);
-        }
-    }
-
+    private static List<Vector3> healthPotionLocations = FirstHealthPotionLocations();
+    private static List<Vector3> manaPotionLocations = FirstManaPotionLocations();
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         toolTipPanel = toolTip.GetComponent<ToolTips>();
         isGameOver = false;
-        if (savePoint == null)
-        {
-            Debug.Log("SP IS NULL");
-            savePoint = GameObject.FindGameObjectWithTag("GameStartSpawnPoint").transform;
-        }
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        Debug.Log("savePoint: " + savePoint.position);
-        // player.transform.position = savePoint.position;
-        player.GetComponent<PlayerController>().SetPosition(savePoint);
-        Debug.Log("Player's position after setting it: " + player.transform.position);
+        // healthPotionAmt = 0;
+        // manaPotionAmt = 0;
+        Initialize();
+
         if (!gaveMoveTip)
         {
             toolTipPanel.MovementTip();
@@ -89,12 +74,46 @@ public class LevelManager : MonoBehaviour
             {
                 UpdateBootPickUpUI();
             }
-
         }
-
     }
 
-    public void UpdatePotionCountUI(string type, int amt)
+    void Initialize()
+    {
+        foreach (Vector3 location in healthPotionLocations)
+        {
+            Instantiate(healthPotionPrefab, location, Quaternion.identity);
+        }
+        foreach (Vector3 location in manaPotionLocations)
+        {
+            Instantiate(manaPotionPrefab, location, Quaternion.identity);
+        }
+        UpdateHealthPotionCountUI(healthPotionAmt);
+        UpdateManaPotionCountUI(manaPotionAmt);
+    }
+
+    private static List<Vector3> FirstHealthPotionLocations()
+    {
+        List<Vector3> healthPotionLocations = new List<Vector3>
+        {
+            new Vector3(-4.86f, 32.79f, -56.46f),
+            new Vector3(-4.86f, 32.79f, -60.02f),
+            new Vector3(-4.86f, 32.79f, -57.97f),
+            new Vector3(-3.79f, 32.79f, -56.46f)
+        };
+        return healthPotionLocations;
+    }
+
+    private static List<Vector3> FirstManaPotionLocations()
+    {
+        List<Vector3> healthPotionLocations = new List<Vector3>
+        {
+            new Vector3(-10.88f, 32.52f, -55.55f),
+            new Vector3(-10.86f, 32.52f, -54.83f),
+        };
+        return healthPotionLocations;
+    }
+
+    private static void UpdatePotionCountUI(string type, int amt)
     {
         GameObject potionCountString = GameObject.FindGameObjectWithTag(type);
         if (potionCountString != null)
@@ -103,6 +122,7 @@ public class LevelManager : MonoBehaviour
             Text potionCount2ndChar = potionCountString.transform.GetChild(1).GetComponent<Text>();
 
             int potionCount = amt;
+            amt = Mathf.Clamp(amt, 0, 99);
             potionCount1stChar.text = potionCount.ToString("D2").Substring(0, 1);
             potionCount2ndChar.text = potionCount.ToString("D2").Substring(1, 1);
 
@@ -124,15 +144,34 @@ public class LevelManager : MonoBehaviour
     }
 
 
+    public static void UpdateManaPotionCountUI(int amt)
+    {
+        if (!isGameOver)
+        {
+            UpdatePotionCountUI("ManaPotionIcon", amt);
+        }
+    }
+
+    public static void UpdateHealthPotionCountUI(int amt)
+    {
+        if (!isGameOver)
+        {
+            UpdatePotionCountUI("HealthPotionIcon", amt);
+        }
+    }
+
     public void UpdateGlovePickUpUI()
     {
-        GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
-        gloveIconUI.GetComponent<Image>().color = Color.green;
-        gloveUIChanged = true;
-        if (!gaveGloveTip)
+        if (!isGameOver)
         {
-            toolTipPanel.SuperAttack();
-            gaveGloveTip = true;
+            GameObject gloveIconUI = GameObject.FindGameObjectWithTag("GlovePickUpIcon");
+            gloveIconUI.GetComponent<Image>().color = Color.green;
+            gloveUIChanged = true;
+            if (!gaveGloveTip)
+            {
+                toolTipPanel.SuperAttack();
+                gaveGloveTip = true;
+            }
         }
     }
 
@@ -144,13 +183,17 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateBootPickUpUI()
     {
-        GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
-        bootIconUI.GetComponent<Image>().color = Color.green;
-        bootUIChanged = true;
-        if (!gaveBootTip)
+
+        if (!isGameOver)
         {
-            toolTipPanel.SuperJump();
-            gaveBootTip = true;
+            GameObject bootIconUI = GameObject.FindGameObjectWithTag("BootsPickUpIcon");
+            bootIconUI.GetComponent<Image>().color = Color.green;
+            bootUIChanged = true;
+            if (!gaveBootTip)
+            {
+                toolTipPanel.SuperJump();
+                gaveBootTip = true;
+            }
         }
     }
 
@@ -161,7 +204,6 @@ public class LevelManager : MonoBehaviour
     public void LevelLost()
     {
         isGameOver = true;
-
         // gameText.text = "GAME OVER!";
 
         // gameText.gameObject.SetActive(true);
@@ -171,7 +213,7 @@ public class LevelManager : MonoBehaviour
         // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
 
-        Invoke("LoadCurrentLevel", 2);
+        Invoke("LoadCurrentLevel", 3);
     }
 
     // public void LevelBeat()
@@ -201,14 +243,48 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public static void InitializePlayer(GameObject newPlayer)
+
+    void OnApplicationQuit()
     {
-        Debug.Log("Initializing player at " + savePoint.position);
-        player = newPlayer;
-        player.GetComponent<PlayerController>().SetPosition(savePoint);
-        Debug.Log("Player's position after setting it: " + player.transform.position);
+        print("Deleting savePoint.json file");
+        File.Delete(savePointJSONPath);
     }
 
+    public static void AddHealthPotionLocation(Vector3 potionLocation)
+    {
+        if (!healthPotionLocations.Contains(potionLocation))
+        {
+            healthPotionLocations.Add(potionLocation);
+        }
+        // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
+    }
 
+    public static void RemoveHealthPotionLocation(Vector3 potionLocation)
+    {
+        healthPotionLocations.Remove(potionLocation);
+        // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
+    }
+
+    public static List<Vector3> GetHealthPotionLocations()
+    {
+        return healthPotionLocations;
+    }
+    public static void AddManaPotionLocation(Vector3 potionLocation)
+    {
+        if (!manaPotionLocations.Contains(potionLocation))
+        {
+            manaPotionLocations.Add(potionLocation);
+        }
+    }
+
+    public static void RemoveManaPotionLocation(Vector3 potionLocation)
+    {
+        manaPotionLocations.Remove(potionLocation);
+    }
+
+    public static List<Vector3> GetManaPotionLocations()
+    {
+        return manaPotionLocations;
+    }
 }
 

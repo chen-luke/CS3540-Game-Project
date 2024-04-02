@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b974b5f2a40f62049bff286d64fa300a, type: 2}
     - target: {fileID: 919132149155446097, guid: 30986e2f9fa62d6439d6a0718817a96a, type: 3}
       propertyPath: m_Name
-      value: STC_mining_boot
+      value: boots
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 30986e2f9fa62d6439d6a0718817a96a, type: 3}
       propertyPath: m_TagString
@@ -70,9 +70,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30986e2f9fa62d6439d6a0718817a96a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7930244845927736093}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30986e2f9fa62d6439d6a0718817a96a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7754723914283159718}
   m_SourcePrefab: {fileID: 100100000, guid: 30986e2f9fa62d6439d6a0718817a96a, type: 3}
 --- !u!1 &6864567913975914499 stripped
 GameObject:
@@ -127,19 +124,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5264033, y: 0.30458003, z: 0.34594214}
   m_Center: {x: 0.000000044703484, y: -0.064455286, z: 0.17310178}
---- !u!114 &7754723914283159718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6864567913975914499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a689249b09e36f04fb07c418fbff4491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: 05dea694f7d94b7408d288d63a9b99ce, type: 3}
-  rotationAmount: 45
-  bobbingHeight: 0.1
-  bobbingSpeed: 1

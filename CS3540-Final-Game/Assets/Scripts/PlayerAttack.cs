@@ -7,12 +7,14 @@ public class PlayerAttack : MonoBehaviour
 
     public AudioClip swordSFX;
     Animator m_Animator;
+    ShootProjectile shootProjectile;
 
     float elapsedTime = 0;
     // Start is called before the first frame update
     void Start()
     {
         m_Animator = gameObject.GetComponent<Animator>();
+        shootProjectile = gameObject.GetComponent<ShootProjectile>();
 
     }
 
@@ -22,12 +24,14 @@ public class PlayerAttack : MonoBehaviour
         if(!PauseMenuBehavior.isGamePaused) {
             if (Input.GetButtonDown("Fire1")) {
             AttackAnimation();
+            shootProjectile.ShootSlashProjectile();
             if (elapsedTime >= 1.2f) {
                 playSwordSwooshAudio();
                 elapsedTime = 0;
             }
         }
         if (Input.GetKey(KeyCode.F) && LevelManager.glovePickedUp) {
+            print("Did this run?");
             HeavyAttackAnimation();
         }
         elapsedTime += Time.deltaTime;
@@ -36,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void AttackAnimation()
     {
-        Debug.Log("Attacking");
+//        Debug.Log("Attacking");
         m_Animator.SetInteger("animState", 3);
     }
 
