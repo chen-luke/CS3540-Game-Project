@@ -8,7 +8,6 @@ public class ShootProjectile : MonoBehaviour
 
     public float projectileSpeed;
     public GameObject projectile;
-    public AudioClip projectileSFX;
     GameObject projectileSource;
 
 
@@ -19,9 +18,7 @@ public class ShootProjectile : MonoBehaviour
 
     public void ShootSlashProjectile()
     {
-        GameObject swordSlash = Instantiate(projectile, projectileSource.transform.position + projectileSource.transform.forward, projectileSource.transform.rotation);
-
-        AudioSource.PlayClipAtPoint(projectileSFX, transform.position);
+        Instantiate(projectile, projectileSource.transform.position + projectileSource.transform.forward, projectileSource.transform.rotation);
     }
 
 }
