@@ -51,7 +51,7 @@ public class PlayerFSMController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!LevelManager.isGameOver)
+        if (!LevelManager.isGameOver && Time.timeScale != 0)
         {
             if (transform.position.y < minHeight)
             {
@@ -139,7 +139,7 @@ public class PlayerFSMController : MonoBehaviour
     void UpdateIdleState()
     {
         anim.SetInteger("animState", 0);
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.timeScale != 0)
         {
             isLightAttack = true;
             currentState = FSMStates.Attacking;

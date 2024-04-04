@@ -695,7 +695,7 @@ MonoBehaviour:
   startingMana: 100
   maxMana: 100
   manaBar: {fileID: 0}
-  drinkPotionSFX: {fileID: 0}
+  drinkPotionSFX: {fileID: 8300000, guid: 6f49cd6ab7ca64944a3afa809043898f, type: 3}
 --- !u!4 &1112220017300247985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 005803037225e7d49bd1282d70f52fd4, type: 3}

@@ -25,7 +25,7 @@ public class ProjectileBehavior : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy")) {
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss")) {
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }

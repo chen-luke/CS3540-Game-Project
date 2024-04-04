@@ -39,7 +39,7 @@ public class BugEnemyAI : MonoBehaviour
     public AudioClip deadSFX;
     public AudioClip attackSFX;
     // public AudioClip hitSFX;
-    public bool isDead = false;
+    //public bool isDead = false;
     Animator anim;
     CharacterController cc;
     bool canAttack = true;
@@ -49,6 +49,7 @@ public class BugEnemyAI : MonoBehaviour
     int idleIndex = 0;
     Vector3 nextDestination;
     Transform deadTransform;
+    EnemyHealth enemyHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +57,16 @@ public class BugEnemyAI : MonoBehaviour
         Initialize();
         // GetWanderPoints(wanderpointAmount);
         canAttack = true;
-        isDead = false;
+        enemyHealth.isDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!cc.isGrounded && isDead)
+        if(enemyHealth.isDead) {
+            currentState = FSMStates.Dead;
+        }
+        if (!cc.isGrounded && enemyHealth.isDead)
         {
             cc.Move(Vector3.down * Time.deltaTime * gravity);
         }
@@ -94,9 +98,11 @@ public class BugEnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
+            enemyHealth.TakeDamage(collision.gameObject.GetComponent<WeaponDamage>().damageAmount);
             // Debug.Log("Weapon Hit!");
             // Die on hit, will implement enemy health later
-            currentState = FSMStates.Dead;
+            //currentState = FSMStates.Dead;
+            
         }
 
     }
@@ -107,6 +113,7 @@ public class BugEnemyAI : MonoBehaviour
         cc = GetComponent<CharacterController>();
         GetPresetWanderPoints();
         currentState = FSMStates.Patrol;
+        enemyHealth = gameObject.GetComponent<EnemyHealth>();
         FindNextPoint();
     }
 
@@ -126,10 +133,10 @@ public class BugEnemyAI : MonoBehaviour
 
     // Hardcoded wanderpoints for now - 3 total
 
-    public void SetIsDead() {
-        isDead = true;
-        currentState = FSMStates.Dead;
-    }
+    // public void SetIsDead() {
+    //     isDead = true;
+    //     currentState = FSMStates.Dead;
+    // }
     private void GetPresetWanderPoints()
     {
         wanderPoints = new Vector3[3];
@@ -240,10 +247,10 @@ public class BugEnemyAI : MonoBehaviour
     void UpdateDeadState()
     {
         // Debug.Log("Dead");
-        if (!isDead)
+        if (enemyHealth.isDead)
         {
             anim.SetInteger("bugAnimState", 5);
-            isDead = true;
+            //isDead = true;
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
             AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);

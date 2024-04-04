@@ -11,6 +11,7 @@ public class DialogueBox : MonoBehaviour
     public GameObject next;
     public GameObject prev;
     public GameObject closeBtn;
+    public AudioClip npcSFX;
     private string[] npc1_dialogue;
     private string[] npc2_dialogue;
     private string[] npc3_dialogue;
@@ -18,6 +19,7 @@ public class DialogueBox : MonoBehaviour
     private string[] currentDialogue = new string[0];
     private string currentNPC = "";
     private int currentIndx;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,41 +65,55 @@ public class DialogueBox : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void SetNPC(int NPC) {
-        switch(NPC) {
-            case 1:
-                currentDialogue = npc1_dialogue;
-                currentIndx = 0;
-                currentNPC = "Fundys";
-                break;
-            case 2:
-                currentDialogue = npc2_dialogue;
-                currentIndx = 0;
-                currentNPC = "Ood";
-                break;
-            case 3:
-                currentDialogue = npc3_dialogue;
-                currentIndx = 0;
-                currentNPC = "Al-Go";
-                break;
+    public void SetNPC(int NPC)
+    {
+        if (!panel.activeSelf)
+        {
+            switch (NPC)
+            {
+                case 1:
+                    currentDialogue = npc1_dialogue;
+                    currentIndx = 0;
+                    currentNPC = "Fundys";
+                    break;
+                case 2:
+                    currentDialogue = npc2_dialogue;
+                    currentIndx = 0;
+                    currentNPC = "Ood";
+                    break;
+                case 3:
+                    currentDialogue = npc3_dialogue;
+                    currentIndx = 0;
+                    currentNPC = "Al-Go";
+                    break;
+            }
         }
+
     }
 
     private void SetPanel()
     {
+        gameObject.GetComponent<AudioSource>().ignoreListenerPause = true;
+        gameObject.GetComponent<AudioSource>().Play();
         nameObj.GetComponent<TextMeshProUGUI>().text = currentNPC;
         dialogueObj.GetComponent<TextMeshProUGUI>().text = currentDialogue[currentIndx];
-        if(currentIndx < currentDialogue.Length-1) {
+        if (currentIndx < currentDialogue.Length - 1)
+        {
             next.SetActive(true);
             closeBtn.SetActive(false);
-        } else {
+        }
+        else
+        {
             next.SetActive(false);
             closeBtn.SetActive(true);
         }
 
-        if(currentIndx > 0) {
+        if (currentIndx > 0)
+        {
             prev.SetActive(true);
-        } else {
+        }
+        else
+        {
             prev.SetActive(false);
         }
     }
@@ -130,7 +146,13 @@ public class DialogueBox : MonoBehaviour
         String panel2 = "The c-c-corruption that infected the sp-spawners seems to have gotten to your sh-sh-ship too. It's not moving now, but y-y-you should have seen it when it got corrupted! Oh, it was a-a-a-awful.";
         String panel3 = "If you want to g-get your ship back, you'll n-n-need to defeat it first. It's not going to be easy, b-but I believe in you!";
         String panel4 = "Oh, and I f-forgot to mention. M-my name is Al-Go. G-g-good luck, explorer!";
-        npc3_dialogue = new string[] { panel1, panel2, panel3, panel4};
+        npc3_dialogue = new string[] { panel1, panel2, panel3, panel4 };
+    }
+
+    private void PlayAudio()
+    {
+        AudioSource.PlayClipAtPoint(npcSFX, Camera.main.transform.position);
+
     }
 
 

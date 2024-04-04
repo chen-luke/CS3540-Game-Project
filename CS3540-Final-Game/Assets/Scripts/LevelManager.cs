@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject toolTip;
     public static bool isGameOver = false;
+    public static bool isGameWon = false;
 
     public static bool isBossAwake = false;
 
@@ -210,28 +211,31 @@ public class LevelManager : MonoBehaviour
 
         // Camera.main.GetComponent<AudioSource>().pitch = 1;
 
-        // AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+
 
 
         Invoke("LoadCurrentLevel", 3);
     }
 
-    // public void LevelBeat()
-    // {
-    //     isGameOver = true;
+    public void LevelBeat()
+    {
+        isGameOver = true;
+        isGameWon = true;
+        // isGameWon = true;
 
-    //     // gameText.text = "YOU WIN!";
+        // gameText.text = "YOU WIN!";
 
-    //     // gameText.gameObject.SetActive(true);
+        // gameText.gameObject.SetActive(true);
 
-    //     // Camera.main.GetComponent<AudioSource>().pitch = 2;
+        // Camera.main.GetComponent<AudioSource>().pitch = 2;
 
-    //     // AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
 
-    //     if (!string.IsNullOrEmpty(nextLevel))
-    //     {
-    //         Invoke("LoadNextLevel", 2);
-    //     }
+        // if (!string.IsNullOrEmpty(nextLevel))
+        // {
+        //     Invoke("LoadNextLevel", 2);
+    }
 
     // }
     // void LoadNextLevel()

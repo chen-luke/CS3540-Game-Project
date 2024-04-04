@@ -7,6 +7,7 @@ public class ToolTips : MonoBehaviour
     public GameObject titleObj;
     public GameObject toolTipObj;
     public GameObject panel;
+    public AudioClip toolTipSFX;
 
     public void MovementTip() {
         titleObj.GetComponent<TextMeshProUGUI>().text = "Movement Controls";
@@ -42,6 +43,8 @@ public class ToolTips : MonoBehaviour
 
     void PauseGame() {
         panel.SetActive(true);
+        //toolTipSFX.
+        AudioSource.PlayClipAtPoint(toolTipSFX, Camera.main.transform.position);
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

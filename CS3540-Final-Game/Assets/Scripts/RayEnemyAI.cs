@@ -40,7 +40,7 @@ public class RayEnemyAI : MonoBehaviour
     public AudioClip lightAttackSFX;
     // public AudioClip hitSFX;
     public Transform rayMouth;
-    public bool isDead = false;
+    //public bool isDead = false;
     Animator anim;
     CharacterController cc;
     bool canShoot = true;
@@ -51,6 +51,7 @@ public class RayEnemyAI : MonoBehaviour
     int idleIndex = 0;
     Vector3 nextDestination;
     Transform deadTransform;
+    EnemyHealth enemyHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class RayEnemyAI : MonoBehaviour
         Initialize();
         // GetWanderPoints(wanderpointAmount);
         canShoot = true;
-        isDead = false;
+        //isDead = false;
     }
 
     // Update is called once per frame
@@ -96,9 +97,10 @@ public class RayEnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
+            enemyHealth.TakeDamage(collision.gameObject.GetComponent<WeaponDamage>().damageAmount);
             // Debug.Log("Weapon Hit!");
             // Die on hit, will implement enemy health later
-            currentState = FSMStates.Dead;
+            //currentState = FSMStates.Dead;
         }
     }
     void Initialize()
@@ -109,6 +111,7 @@ public class RayEnemyAI : MonoBehaviour
         rayMouth = Utility.FindChildTransformWithTag(gameObject, "RayMouth");
         GetPresetWanderPoints();
         currentState = FSMStates.Patrol;
+        enemyHealth = gameObject.GetComponent<EnemyHealth>();
         FindNextPoint();
     }
 
@@ -257,9 +260,9 @@ public class RayEnemyAI : MonoBehaviour
     void UpdateDeadState()
     {
         // Debug.Log("Dead");
-        if(!isDead){
+        if(enemyHealth.isDead){
             anim.SetInteger("rayAnimState", 5);
-            isDead = true;
+            //isDead = true;
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
             AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
@@ -298,7 +301,7 @@ public class RayEnemyAI : MonoBehaviour
 
     private void ShootProjectile()
     {
-        if (!isDead)
+        if (!enemyHealth.isDead)
         {
             Debug.Log("Shoot");
             Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position);

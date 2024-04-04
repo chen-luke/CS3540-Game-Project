@@ -22,13 +22,13 @@ public class BossEnemyAI : MonoBehaviour
     public GameObject player;
 
     public BossFSMStates currentState;
-    public bool isDead = false;
+    //public bool isDead = false;
 
     public Transform exhaustPipe;
 
     public CharacterController cc;
-    public int totalHealth = 100;
-    //public GameObject deadVFX;
+    //public int totalHealth = 100;
+    public GameObject deadVFX;
 
     // Patrol Zone
     [Header("Patrol Zone Settings")]
@@ -64,6 +64,8 @@ public class BossEnemyAI : MonoBehaviour
     public AudioClip spinAttackSFX;
     public AudioClip slashAttackSFX;
     public AudioClip fireAttackSFX;
+    public AudioClip engineWakeupSFX;
+    public AudioClip engineShutOffSFX;
 
 
     // Local fields
@@ -77,7 +79,8 @@ public class BossEnemyAI : MonoBehaviour
     BossFSMStates nextAttack;
     float attackRange;
     Vector3 retreatStartPos;
-    float deathAnimationTimer = 0f;
+    float deathAnimationTimer = 7f;
+    EnemyHealth health;
 
     // Start is called before the first frame update
     void Start()
@@ -90,9 +93,10 @@ public class BossEnemyAI : MonoBehaviour
     void Update()
     {
         distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (totalHealth <= 0)
+        if (health.isDead && deathAnimationTimer > 0f)
         {
             currentState = BossFSMStates.Defeated;
+            // Defeat();
         }
         switch (currentState)
         {
@@ -133,6 +137,7 @@ public class BossEnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         distToPlayer = Vector3.Distance(transform.position, player.transform.position);
         currentState = BossFSMStates.Asleep;
+        health = gameObject.GetComponent<EnemyHealth>();
         SelectAttack();
         FindNextPoint();
     }
@@ -265,14 +270,15 @@ public class BossEnemyAI : MonoBehaviour
     void UpdateDefeatState()
     {
         anim.SetInteger("BossAnimState", 7);
-        if (deathAnimationTimer >= 0f)
+        if (deathAnimationTimer <= 0f)
         {
+            Defeat();
             currentState = BossFSMStates.ActiveIdle;
 
         }
         else
         {
-            deathAnimationTimer += Time.deltaTime;
+            deathAnimationTimer -= Time.deltaTime;
         }
 
     }
@@ -385,7 +391,7 @@ public class BossEnemyAI : MonoBehaviour
         isAttacking = false;
         //print("attacked!");
 
-        if (!isDead)
+        if (!health.isDead)
         {
             AudioSource.PlayClipAtPoint(spinAttackSFX, transform.position);
             Retreat();
@@ -396,7 +402,7 @@ public class BossEnemyAI : MonoBehaviour
     {
         //print("attacked!");
         isAttacking = false;
-        if (!isDead)
+        if (!health.isDead)
         {
             AudioSource.PlayClipAtPoint(slashAttackSFX, transform.position);
             Retreat();
@@ -408,7 +414,7 @@ public class BossEnemyAI : MonoBehaviour
 
         //print("attacked!");
 
-        if (!isDead)
+        if (!health.isDead)
         {
 
             Quaternion rotation = Quaternion.LookRotation(transform.forward);
@@ -440,7 +446,13 @@ public class BossEnemyAI : MonoBehaviour
 
     private void BossWake()
     {
+        //AudioSource.PlayClipAtPoint(engineWakeupSFX, transform.position);
+        Invoke("StartEngine", 2f);
         currentState = BossFSMStates.Patrol;
+    }
+
+    private void StartEngine() {
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     private bool CanAttack()
@@ -490,18 +502,15 @@ public class BossEnemyAI : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        totalHealth -= amount;
-        print(totalHealth);
-        if (totalHealth <= 0)
-        {
-            isDead = true;
-            //Invoke("DeathAnimation", 2f);
-        }
+        health.TakeDamage(amount);
     }
 
-    void DeathAnimation()
+    void Defeat()
     {
-        //Instantiate(deadVFX, transform.position, transform.rotation);
+        gameObject.GetComponent<AudioSource>().Pause();
+        AudioSource.PlayClipAtPoint(engineShutOffSFX, transform.position);
+        Instantiate(deadVFX, transform.position, transform.rotation);
+        FindObjectOfType<LevelManager>().Invoke("GameBeat", 3f);
     }
 
     void OnDrawGizmos()

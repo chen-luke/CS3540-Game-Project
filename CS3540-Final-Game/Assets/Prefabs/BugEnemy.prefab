@@ -865,9 +865,8 @@ MonoBehaviour:
   destroyTime: 1.75
   player: {fileID: 0}
   deadVFX: {fileID: 475311581755410044, guid: da426159214cd5e408010bd1d7e035b2, type: 3}
-  deadSFX: {fileID: 8300000, guid: c9ac4283417b0414088f5bffa1a605b0, type: 3}
-  attackSFX: {fileID: 8300000, guid: 2d4b6e929e98c0649a7ab4b82d28e2e4, type: 3}
-  isDead: 0
+  deadSFX: {fileID: 8300000, guid: 3f1c54220af45a44996902ce8e2753ee, type: 3}
+  attackSFX: {fileID: 8300000, guid: ea34b8294385e4247ac4b41691e609cc, type: 3}
 --- !u!114 &-5567482240056330365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1271829e87de40149af7a6a09663396b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100
+  startHealth: 5
   healthSlider: {fileID: 8792609255746822506}
   isDead: 0
 --- !u!65 &9163597877979737452

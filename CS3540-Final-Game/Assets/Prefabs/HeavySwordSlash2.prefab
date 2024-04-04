@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 30
+  damage: 20
 --- !u!1 &4073088038724929548
 GameObject:
   m_ObjectHideFlags: 0
