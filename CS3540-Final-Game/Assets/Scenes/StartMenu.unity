@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0034396205e752645b8c9c7c23ac4ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFX: {fileID: 8300000, guid: 04d28d2f14906194db933cfc3e9ac194, type: 3}
+  SFX: {fileID: 8300000, guid: 8da70f5c7afa209439776e476b825ef1, type: 3}
 --- !u!1 &833529215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8458880829742517492, guid: 5420969f08c1f864babb42eb7a0a889b, type: 3}

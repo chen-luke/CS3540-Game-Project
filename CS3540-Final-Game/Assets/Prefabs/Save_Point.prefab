@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 4179959175581775466}
-  savePointSFX: {fileID: 8300000, guid: 4d400c386c223c042bb3b1701d88de42, type: 3}
+  savePointSFX: {fileID: 8300000, guid: aa36e04c450ce6644ba6701dfdf3d7aa, type: 3}
 --- !u!54 &4200266191982090329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,15 +327,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436470, guid: eee7d30a1967a4b4283d35b0dbddc6d0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.35
+      value: 0.39097998
       objectReference: {fileID: 0}
     - target: {fileID: 436470, guid: eee7d30a1967a4b4283d35b0dbddc6d0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.44759324
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 436470, guid: eee7d30a1967a4b4283d35b0dbddc6d0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.44759324
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 436470, guid: eee7d30a1967a4b4283d35b0dbddc6d0, type: 3}
       propertyPath: m_LocalPosition.x
