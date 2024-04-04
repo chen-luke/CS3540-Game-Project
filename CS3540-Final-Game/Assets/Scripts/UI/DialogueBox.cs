@@ -11,7 +11,6 @@ public class DialogueBox : MonoBehaviour
     public GameObject next;
     public GameObject prev;
     public GameObject closeBtn;
-    public AudioClip npcSFX;
 
     private string[] npc1_dialogue;
     private string[] npc2_dialogue;
@@ -154,11 +153,5 @@ public class DialogueBox : MonoBehaviour
         String panel3 = "If you want to g-get your ship back, you'll n-n-need to defeat it first. It's not going to be easy, b-but I believe in you!";
         String panel4 = "Oh, and I f-forgot to mention. M-my name is Al-Go. G-g-good luck, explorer!";
         npc3_dialogue = new string[] { panel1, panel2, panel3, panel4 };
-    }
-
-    private void PlayAudio()
-    {
-        AudioSource.PlayClipAtPoint(npcSFX, Camera.main.transform.position);
-
     }
 }
