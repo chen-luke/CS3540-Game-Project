@@ -79,7 +79,7 @@ public class BossEnemyAI : MonoBehaviour
     BossFSMStates nextAttack;
     float attackRange;
     Vector3 retreatStartPos;
-    float deathAnimationTimer = 7f;
+    float deathAnimationTimer = 8f;
     EnemyHealth health;
 
     // Start is called before the first frame update

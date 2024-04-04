@@ -10,7 +10,7 @@ public class BreakableObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SwordSlashProjectile"))
         {
-            print("collided");
+            //print("collided");
 
             // will eventually check to see if enough damage was done
             Transform currentObj = gameObject.transform;

@@ -27,7 +27,7 @@ public class FadeOutChildren : MonoBehaviour
     {
         if (canFade)
         {
-            print(renderers[0].sharedMaterial.color);
+            //print(renderers[0].sharedMaterial.color);
             //print(Time.deltaTime);
             elapsedTime += Time.deltaTime;
             // renderers[0].sharedMaterial.SetColor("_Color", Color.Lerp(startColor, alphaColor, elapsedTime/timeToFade));

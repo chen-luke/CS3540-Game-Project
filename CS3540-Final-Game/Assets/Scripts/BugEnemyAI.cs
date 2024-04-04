@@ -305,7 +305,7 @@ public class BugEnemyAI : MonoBehaviour
     private void DropPotion()
     {
         int dropChance = Random.Range(0, 100);
-        print(dropChance);
+        //print(dropChance);
         if (dropChance < potionDropChance)
         {
             GameObject potion = potionDrops[Random.Range(0, potionDrops.Length)];

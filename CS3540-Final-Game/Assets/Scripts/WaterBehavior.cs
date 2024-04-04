@@ -21,11 +21,9 @@ public class WaterBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         AudioSource.PlayClipAtPoint(splashEnterSFX, Camera.main.transform.position);
-        print(other);
     }
 
      void OnTriggerExit(Collider other) {
         AudioSource.PlayClipAtPoint(splashExitSFX, Camera.main.transform.position);
-        print(other);
     }
 }

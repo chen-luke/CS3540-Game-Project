@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         if (Input.GetKey(KeyCode.F) && LevelManager.glovePickedUp) {
-            print("Did this run?");
+            //print("Did this run?");
             HeavyAttackAnimation();
         }
         elapsedTime += Time.deltaTime;
