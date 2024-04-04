@@ -324,7 +324,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 817607311598216102}
-  - component: {fileID: 123137953603682577}
   - component: {fileID: 7312154608527398348}
   - component: {fileID: 194660473546553285}
   - component: {fileID: 3964803435921450153}
@@ -353,44 +352,6 @@ Transform:
   - {fileID: 2199553521417119937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &123137953603682577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6388499518880555055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844ba845d1dd77e4ebff234516ac91f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  currentState: 2
-  isDead: 0
-  exhaustPipe: {fileID: 2344737605699073341}
-  cc: {fileID: 7312154608527398348}
-  totalHealth: 100
-  wanderRadius: 15
-  wanderCenter: {fileID: 0}
-  patrolSpeed: 6
-  chaseSpeed: 9
-  lookSlerpScalar: 1.5
-  idleTime: 2.5
-  minHeight: 54
-  retreatDistance: 7
-  chaseRange: 25
-  spinAttackRange: 8.5
-  slashAttackRange: 3.5
-  fireAttackRange: 10
-  damageRange: 1
-  slashDamageAmount: 10
-  spinDamageAmount: 5
-  attackCooldown: 2
-  fireProjectile: {fileID: 1049895169098164, guid: 16ba6eccbd669b34c8c00b35fa36c10f, type: 3}
-  spinAttackSFX: {fileID: 8300000, guid: cc2cd04707f31264b8c49312af65ee98, type: 3}
-  slashAttackSFX: {fileID: 8300000, guid: 07b74f1c23f65ca4c80080eca5c9f30d, type: 3}
-  fireAttackSFX: {fileID: 8300000, guid: 05dea694f7d94b7408d288d63a9b99ce, type: 3}
 --- !u!143 &7312154608527398348
 CharacterController:
   m_ObjectHideFlags: 0
@@ -433,7 +394,6 @@ MonoBehaviour:
   currentState: 0
   exhaustPipe: {fileID: 2344737605699073341}
   cc: {fileID: 7312154608527398348}
-  totalHealth: 100
   deadVFX: {fileID: 0}
   wanderRadius: 0
   wanderCenter: {fileID: 0}
