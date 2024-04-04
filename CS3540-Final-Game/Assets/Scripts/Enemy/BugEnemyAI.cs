@@ -224,7 +224,7 @@ public class BugEnemyAI : MonoBehaviour
             anim.SetInteger("bugAnimState", 5);
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
-            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position, .4f);
         }
         cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
@@ -259,7 +259,7 @@ public class BugEnemyAI : MonoBehaviour
 
     private void Stab()
     {
-        AudioSource.PlayClipAtPoint(attackSFX, transform.position);
+        AudioSource.PlayClipAtPoint(attackSFX, transform.position, .5f);
         if (distToPlayer <= attackRange)
         {
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();

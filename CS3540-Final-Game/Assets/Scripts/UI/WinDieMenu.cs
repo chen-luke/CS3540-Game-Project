@@ -18,6 +18,8 @@ public class WinDieMenu : MonoBehaviour
             if (LevelManager.isGameWon)
             {
                 winPanel.SetActive(true);
+                isGamePaused = true;
+                Time.timeScale = 0f;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }

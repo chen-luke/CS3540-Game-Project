@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40611526, g: 0.3075471, b: 1, a: 1}
+  m_Color: {r: 0.7686275, g: 0.22352943, b: 0.3647059, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -948,7 +948,6 @@ MonoBehaviour:
   heavyAttackSFX: {fileID: 8300000, guid: 6dafce66435cef44eb77504fb1aeee3a, type: 3}
   lightAttackSFX: {fileID: 8300000, guid: 8d7eece1134d7d14dbb310d7f4915fb5, type: 3}
   rayMouth: {fileID: 0}
-  isDead: 0
 --- !u!114 &4106335562142354865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,7 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23804174, g: 0.20950516, b: 0.4037736, a: 1}
+  m_Color: {r: 0.4811321, g: 0.2746084, b: 0.32809654, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
