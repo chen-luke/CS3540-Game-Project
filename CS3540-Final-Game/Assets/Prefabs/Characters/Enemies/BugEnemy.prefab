@@ -881,6 +881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 5
   healthSlider: {fileID: 8792609255746822506}
+  deathSFX: {fileID: 8300000, guid: 3f1c54220af45a44996902ce8e2753ee, type: 3}
+  deathVolume: 0.4
   isDead: 0
 --- !u!65 &9163597877979737452
 BoxCollider:

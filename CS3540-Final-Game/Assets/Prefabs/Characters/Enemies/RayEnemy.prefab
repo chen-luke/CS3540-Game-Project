@@ -944,7 +944,6 @@ MonoBehaviour:
   - {fileID: 1254724754748870, guid: 2581bc9957b347140811b7961288cad1, type: 3}
   player: {fileID: 0}
   deadVFX: {fileID: 475311581755410044, guid: bf2cd110644c9ae42b9ffd15eb000951, type: 3}
-  deadSFX: {fileID: 8300000, guid: a8c972dda878a004bb8b3dd0e395c7e8, type: 3}
   heavyAttackSFX: {fileID: 8300000, guid: 6dafce66435cef44eb77504fb1aeee3a, type: 3}
   lightAttackSFX: {fileID: 8300000, guid: 8d7eece1134d7d14dbb310d7f4915fb5, type: 3}
   rayMouth: {fileID: 0}
@@ -975,6 +974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 10
   healthSlider: {fileID: 4822621180964373308}
+  deathSFX: {fileID: 8300000, guid: a8c972dda878a004bb8b3dd0e395c7e8, type: 3}
+  deathVolume: 0.3
   isDead: 0
 --- !u!1 &8085821240935762466
 GameObject:

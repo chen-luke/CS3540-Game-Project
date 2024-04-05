@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
 {
     public int startHealth = 100;
     public Slider healthSlider;
+    public AudioClip deathSFX;
+    public float deathVolume = 1;
     public bool isDead = false;
 
     private int currentHealth;
@@ -27,6 +29,10 @@ public class EnemyHealth : MonoBehaviour
             }
             if (currentHealth <= 0)
             {
+                if (deathSFX)
+                {
+                    AudioSource.PlayClipAtPoint(deathSFX, transform.position, deathVolume);
+                }
                 isDead = true;
             }
 
