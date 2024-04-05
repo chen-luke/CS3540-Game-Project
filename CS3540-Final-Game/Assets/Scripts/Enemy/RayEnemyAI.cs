@@ -272,7 +272,7 @@ public class RayEnemyAI : MonoBehaviour
             //isDead = true;
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
-            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position);
+            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position, .3f);
         }
         cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
