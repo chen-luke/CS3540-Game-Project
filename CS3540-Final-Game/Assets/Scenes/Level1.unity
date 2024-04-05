@@ -19707,6 +19707,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossController (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6574541955554770730, guid: 88e4d735593cf4d4a9376dff95f5af30, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685235395206185137, guid: 88e4d735593cf4d4a9376dff95f5af30, type: 3}
+      propertyPath: deathVolume
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36796,15 +36804,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516162
+      value: 0.13516165
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000031730814
+      value: 0.000000011614281
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000043285087
+      value: -0.0000000015843435
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36820,15 +36828,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516162
+      value: 0.13516165
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000031730814
+      value: 0.000000011614283
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000043285087
+      value: -0.0000000015843438
       objectReference: {fileID: 0}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: healthBar
