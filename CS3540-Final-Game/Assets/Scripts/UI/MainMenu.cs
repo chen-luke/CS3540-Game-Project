@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void StartGame() {
+        LevelManager.Reset();
         Invoke("InvokeStart", 1.2f);
     }
 
@@ -13,6 +14,7 @@ public class MainMenu : MonoBehaviour
     }
 
     void InvokeStart() {
+        print("Build Index: " + SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

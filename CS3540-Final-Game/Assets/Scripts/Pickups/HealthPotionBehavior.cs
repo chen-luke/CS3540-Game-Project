@@ -17,6 +17,7 @@ public class HealthPotionBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isPickedUp)
         {
+            print("Removing health potion location");
             isPickedUp = true;
             LevelManager.healthPotionAmt++;
             LevelManager.PotionPopup();

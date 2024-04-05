@@ -42,6 +42,7 @@ public class PauseMenuBehavior : MonoBehaviour
     }
 
     public void LoadMainMenu() {
+        // PlayerPrefs.DeleteKey("savePoint");
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
         isGamePaused = false;

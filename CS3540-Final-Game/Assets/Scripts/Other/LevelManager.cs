@@ -37,8 +37,8 @@ public class LevelManager : MonoBehaviour
     private static bool gaveGloveTip = false;
     private static bool gaveMoveTip = false;
     private static bool gaveInteractionTip = false;
-    private static List<Vector3> healthPotionLocations = FirstHealthPotionLocations();
-    private static List<Vector3> manaPotionLocations = FirstManaPotionLocations();
+    private static List<Vector3> healthPotionLocations = new List<Vector3>();
+    private static List<Vector3> manaPotionLocations = new List<Vector3>();
     void Start()
     {
         toolTipPanel = toolTip.GetComponent<ToolTips>();
@@ -51,6 +51,11 @@ public class LevelManager : MonoBehaviour
             gaveMoveTip = true;
             toolTipPanel.Invoke("InteractionTip", 1f);
             gaveInteractionTip = true;
+        }
+
+        foreach (Vector3 location in manaPotionLocations)
+        {
+            print(location.ToString());
         }
     }
 
@@ -72,6 +77,11 @@ public class LevelManager : MonoBehaviour
 
     void Initialize()
     {
+        if (!gavePotionTip && healthPotionLocations.Count == 0 && manaPotionLocations.Count == 0)
+        {
+            healthPotionLocations = FirstHealthPotionLocations();
+            manaPotionLocations = FirstManaPotionLocations();
+        }
         foreach (Vector3 location in healthPotionLocations)
         {
             Instantiate(healthPotionPrefab, location, Quaternion.identity);
@@ -82,6 +92,9 @@ public class LevelManager : MonoBehaviour
         }
         UpdateHealthPotionCountUI(healthPotionAmt);
         UpdateManaPotionCountUI(manaPotionAmt);
+
+        print("ManaPotLocCount: " + manaPotionLocations.Count);
+        print("HealthPotLocCount: " + healthPotionLocations.Count);
     }
 
     private static List<Vector3> FirstHealthPotionLocations()
@@ -221,8 +234,11 @@ public class LevelManager : MonoBehaviour
 
     public static void AddHealthPotionLocation(Vector3 potionLocation)
     {
-        if (!healthPotionLocations.Contains(potionLocation))
+        List<float> healthPotXs = healthPotionLocations.ConvertAll(p => p.x);
+        List<float> healthPotZs = healthPotionLocations.ConvertAll(p => p.z);
+        if (!healthPotXs.Contains(potionLocation.x) && !healthPotZs.Contains(potionLocation.z))
         {
+            print("Adding health potion location" + healthPotionLocations.Count);
             healthPotionLocations.Add(potionLocation);
         }
         // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
@@ -230,7 +246,13 @@ public class LevelManager : MonoBehaviour
 
     public static void RemoveHealthPotionLocation(Vector3 potionLocation)
     {
-        healthPotionLocations.Remove(potionLocation);
+        List<float> healthPotXs = healthPotionLocations.ConvertAll(p => p.x);
+        List<float> healthPotZs = healthPotionLocations.ConvertAll(p => p.z);
+        int remIdx = healthPotionLocations.FindIndex(p => p.x == potionLocation.x && p.z == potionLocation.z);
+        if (remIdx != -1)
+        {
+            healthPotionLocations.RemoveAt(remIdx);
+        }
         // File.WriteAllText(potionLocationsPath, JsonUtility.ToJson(potionLocations));
     }
 
@@ -240,7 +262,9 @@ public class LevelManager : MonoBehaviour
     }
     public static void AddManaPotionLocation(Vector3 potionLocation)
     {
-        if (!manaPotionLocations.Contains(potionLocation))
+        List<float> manaPotXs = manaPotionLocations.ConvertAll(p => p.x);
+        List<float> manaPotZs = manaPotionLocations.ConvertAll(p => p.z);
+        if (!manaPotXs.Contains(potionLocation.x) && !manaPotZs.Contains(potionLocation.z))
         {
             manaPotionLocations.Add(potionLocation);
         }
@@ -248,12 +272,38 @@ public class LevelManager : MonoBehaviour
 
     public static void RemoveManaPotionLocation(Vector3 potionLocation)
     {
-        manaPotionLocations.Remove(potionLocation);
+        List<float> manaPotXs = manaPotionLocations.ConvertAll(p => p.x);
+        List<float> manaPotZs = manaPotionLocations.ConvertAll(p => p.z);
+        int remIdx = manaPotionLocations.FindIndex(p => p.x == potionLocation.x && p.z == potionLocation.z);
+        if (remIdx != -1)
+        {
+            manaPotionLocations.RemoveAt(remIdx);
+        }
     }
 
     public static List<Vector3> GetManaPotionLocations()
     {
         return manaPotionLocations;
+    }
+
+    public static void Reset()
+    {
+        PlayerPrefs.DeleteAll();
+        isGameOver = false;
+        isGameWon = false;
+        isBossAwake = false;
+        glovePickedUp = false;
+        bootsPickedUp = false;
+        healthPotionAmt = 0;
+        manaPotionAmt = 0;
+        savePoint = null;
+        gavePotionTip = false;
+        gaveBootTip = false;
+        gaveGloveTip = false;
+        gaveMoveTip = false;
+        gaveInteractionTip = false;
+        healthPotionLocations.Clear();
+        manaPotionLocations.Clear();
     }
 }
 

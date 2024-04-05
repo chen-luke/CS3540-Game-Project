@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7260744261622408287}
   - component: {fileID: -2969516725524261788}
   - component: {fileID: 4944709879839138850}
-  - component: {fileID: 489656115351944653}
+  - component: {fileID: 644025431190376719}
   m_Layer: 0
   m_Name: HealthPotion
   m_TagString: Untagged
@@ -151,7 +151,7 @@ MonoBehaviour:
   bobbingHeight: 0.1
   bobbingSpeed: 1
   potionPickupSFX: {fileID: 8300000, guid: 07b74f1c23f65ca4c80080eca5c9f30d, type: 3}
---- !u!114 &489656115351944653
+--- !u!114 &644025431190376719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
