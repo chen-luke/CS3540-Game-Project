@@ -17751,7 +17751,7 @@ MonoBehaviour:
   titleObj: {fileID: 199561250}
   toolTipObj: {fileID: 314154438}
   panel: {fileID: 1681406900}
-  toolTipSFX: {fileID: 8300000, guid: ce6ddf470bd2ed1459023ffc4702feb5, type: 3}
+  toolTipSFX: {fileID: 8300000, guid: 8d2266a0b82f7ca4ca7a0e1a6428823b, type: 3}
 --- !u!1 &997899137
 GameObject:
   m_ObjectHideFlags: 0
@@ -17784,8 +17784,8 @@ MonoBehaviour:
   healthPotionPrefab: {fileID: 176050, guid: 72f75b6a94cb9e1449431bac7a846899, type: 3}
   manaPotionPrefab: {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
   gameText: {fileID: 0}
-  gameOverSFX: {fileID: 8300000, guid: 65409a100d8449a47a3dd5e73cb2a5fa, type: 3}
-  gameWonSFX: {fileID: 8300000, guid: 115f300e0a5fc1547becd9642c283c4a, type: 3}
+  gameOverSFX: {fileID: 8300000, guid: 5b5b57c42c8a5104aafe48640b96b264, type: 3}
+  gameWonSFX: {fileID: 8300000, guid: 53da60aa6da673d45907aad089c9daec, type: 3}
   toolTip: {fileID: 993699446}
 --- !u!4 &997899139
 Transform:
@@ -35172,7 +35172,6 @@ MonoBehaviour:
   next: {fileID: 119685757}
   prev: {fileID: 1099179409}
   closeBtn: {fileID: 296112542}
-  npcSFX: {fileID: 8300000, guid: 88a42f9ac85411e409a314df6512f529, type: 3}
 --- !u!114 &1884739063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35266,7 +35265,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 88a42f9ac85411e409a314df6512f529, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a3eb199d9a8591147bd043f8ae92e960, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.132
   m_Pitch: 1
@@ -36793,15 +36792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516162
+      value: 0.13516165
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000031730814
+      value: 0.000000011614281
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000043285087
+      value: -0.0000000015843435
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36817,15 +36816,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516162
+      value: 0.13516165
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000031730814
+      value: 0.000000011614283
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000004328509
+      value: -0.0000000015843438
       objectReference: {fileID: 0}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: healthBar
@@ -36855,21 +36854,29 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0000000015843435
       objectReference: {fileID: 0}
+    - target: {fileID: 6833998049571714715, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: heavyAttackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 638893812a3870148a4cc76721fe2275, type: 3}
+    - target: {fileID: 6833998049571714715, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: lightAttackSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: d2d560567d153b043a2d7727181fe652, type: 3}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99082357
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000011614281
+      value: -0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015843435
+      value: 0.0000000043285087
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3605607545164563623, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}

@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0034396205e752645b8c9c7c23ac4ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFX: {fileID: 8300000, guid: 8da70f5c7afa209439776e476b825ef1, type: 3}
+  SFX: {fileID: 8300000, guid: 167f622b2fe6cfd429fc69ebbb1e0282, type: 3}
 --- !u!1 &833529215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8458880829742517492, guid: 5420969f08c1f864babb42eb7a0a889b, type: 3}
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0034396205e752645b8c9c7c23ac4ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFX: {fileID: 8300000, guid: aa679c4cc431ba84ca34272080e6570b, type: 3}
+  SFX: {fileID: 8300000, guid: 25cf97301f5e74f4e96257c889a70830, type: 3}
 --- !u!1 &1913867066
 GameObject:
   m_ObjectHideFlags: 0

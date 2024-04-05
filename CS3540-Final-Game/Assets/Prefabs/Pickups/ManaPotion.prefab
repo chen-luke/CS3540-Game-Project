@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1990854791964016838}
   - component: {fileID: -3775078656207791497}
   - component: {fileID: -4088311163306262600}
+  - component: {fileID: -81601921361122518}
   m_Layer: 0
   m_Name: ManaPotion
   m_TagString: Untagged
@@ -163,3 +164,15 @@ MonoBehaviour:
   bobbingHeight: 0.1
   bobbingSpeed: 1
   potionPickupSFX: {fileID: 8300000, guid: 05dea694f7d94b7408d288d63a9b99ce, type: 3}
+--- !u!114 &-81601921361122518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668568544236975680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d98c2d9b9a09ff428d1b801f5a97fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

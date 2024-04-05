@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 194660473546553285}
   - component: {fileID: 2445601178727332327}
   - component: {fileID: 8685235395206185137}
-  - component: {fileID: 6501762613426711516}
+  - component: {fileID: 9017287620723839398}
   m_Layer: 0
   m_Name: BossController
   m_TagString: Boss
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   currentState: 0
-  exhaustPipe: {fileID: 2344737605699073341}
+  exhaustPipe: {fileID: 6574541955554770730}
   cc: {fileID: 7312154608527398348}
   deadVFX: {fileID: 475311581755410044, guid: bf2cd110644c9ae42b9ffd15eb000951, type: 3}
   wanderRadius: 13.3
@@ -412,11 +412,11 @@ MonoBehaviour:
   spinDamageAmount: 5
   attackCooldown: 2
   fireProjectile: {fileID: 1049895169098164, guid: 16ba6eccbd669b34c8c00b35fa36c10f, type: 3}
-  spinAttackSFX: {fileID: 8300000, guid: 142ceeb2dd5133049ac24db9f22639f9, type: 3}
-  slashAttackSFX: {fileID: 8300000, guid: fcde448db1f28fb46aeee100295227a9, type: 3}
-  fireAttackSFX: {fileID: 8300000, guid: 8fb77e46d3fff124c9da9557079536fb, type: 3}
-  engineWakeupSFX: {fileID: 8300000, guid: c5f36e756e57dcf40a5934080ca23a99, type: 3}
-  engineShutOffSFX: {fileID: 8300000, guid: 8f90185e3b0bc6f42ba66dd26d433d0f, type: 3}
+  spinAttackSFX: {fileID: 8300000, guid: 6e422da32c8e38f4bbb248bed53c64cc, type: 3}
+  slashAttackSFX: {fileID: 8300000, guid: 86ce5e20cbc3f3c418232534bd146e99, type: 3}
+  fireAttackSFX: {fileID: 8300000, guid: a80721c92d666984fbdc53c273aa161d, type: 3}
+  engineWakeupSFX: {fileID: 8300000, guid: 850ce4a613226bd4fa91e80e1e32fb3a, type: 3}
+  engineShutOffSFX: {fileID: 8300000, guid: 2d69cc21e02d98842862a5c3a8f8737c, type: 3}
 --- !u!82 &2445601178727332327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3674454984124f7449114c409f9a6c8c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ce7d2ecc021a52840aabf21aeb4c6fc7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.066
   m_Pitch: 1
@@ -528,7 +528,7 @@ MonoBehaviour:
   startHealth: 100
   healthSlider: {fileID: 6988256093493807794}
   isDead: 0
---- !u!54 &6501762613426711516
+--- !u!54 &9017287620723839398
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -555,6 +555,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &7442411891574022771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6574541955554770730}
+  m_Layer: 0
+  m_Name: ExhaustPipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6574541955554770730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442411891574022771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.476, z: -305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3390538034030980505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8606836059237149303
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +719,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5629441525816181692, guid: 750bf22e939386840928a7232350a1ff, type: 3}
       insertIndex: 0
       addedObject: {fileID: 7470728185046997785}
+    - targetCorrespondingSourceObject: {fileID: 9193031130276923108, guid: 750bf22e939386840928a7232350a1ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6574541955554770730}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6228783021786685910, guid: 750bf22e939386840928a7232350a1ff, type: 3}
       insertIndex: -1
@@ -731,9 +765,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5629441525816181692, guid: 750bf22e939386840928a7232350a1ff, type: 3}
   m_PrefabInstance: {fileID: 5807859544421673853}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2344737605699073341 stripped
+--- !u!4 &3390538034030980505 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8075947085728112192, guid: 750bf22e939386840928a7232350a1ff, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9193031130276923108, guid: 750bf22e939386840928a7232350a1ff, type: 3}
   m_PrefabInstance: {fileID: 5807859544421673853}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3393742897837636349 stripped

@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     public static bool isBossAwake = false;
     public static bool glovePickedUp = false;
     public static bool bootsPickedUp = false;
-    public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
+    // public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
     public static int healthPotionAmt = 0;
     public static int manaPotionAmt = 0;
     public static Transform savePoint;
@@ -215,7 +215,8 @@ public class LevelManager : MonoBehaviour
     void OnApplicationQuit()
     {
         print("Deleting savePoint.json file");
-        File.Delete(savePointJSONPath);
+        // File.Delete(savePointJSONPath);
+        PlayerPrefs.DeleteKey("savePoint");
     }
 
     public static void AddHealthPotionLocation(Vector3 potionLocation)

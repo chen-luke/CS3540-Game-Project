@@ -115,7 +115,11 @@ public class PlayerFSMController : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         playerMana = GetComponent<PlayerMana>();
         shootProjectile = gameObject.GetComponent<ShootProjectile>();
-        if (File.Exists(LevelManager.savePointJSONPath))
+        // if (File.Exists(LevelManager.savePointJSONPath))
+        // {
+        //     SetPosition();
+        // }
+        if(PlayerPrefs.HasKey("savePoint"))
         {
             SetPosition();
         }
@@ -308,7 +312,7 @@ public class PlayerFSMController : MonoBehaviour
 
     public void SetPosition()
     {
-        string posStr = File.ReadAllText(LevelManager.savePointJSONPath);
+        string posStr = PlayerPrefs.GetString("savePoint");
         // print(posStr);
         Vector3 pos = JsonUtility.FromJson<Vector3>(posStr);
         transform.position = pos;
