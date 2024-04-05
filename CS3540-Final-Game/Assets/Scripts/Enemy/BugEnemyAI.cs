@@ -224,7 +224,6 @@ public class BugEnemyAI : MonoBehaviour
             anim.SetInteger("bugAnimState", 5);
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
-            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position, .4f);
         }
         cc.Move(Vector3.down * Time.deltaTime * gravity);
     }

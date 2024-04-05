@@ -35,7 +35,6 @@ public class RayEnemyAI : MonoBehaviour
     public GameObject[] projectiles;
     public GameObject player;
     public GameObject deadVFX;
-    public AudioClip deadSFX;
     public AudioClip heavyAttackSFX;
     public AudioClip lightAttackSFX;
     // public AudioClip hitSFX;
@@ -272,7 +271,6 @@ public class RayEnemyAI : MonoBehaviour
             //isDead = true;
             Destroy(gameObject, destroyTime);
             deadTransform = transform;
-            AudioSource.PlayClipAtPoint(deadSFX, deadTransform.position, .3f);
         }
         cc.Move(Vector3.down * Time.deltaTime * gravity);
     }
