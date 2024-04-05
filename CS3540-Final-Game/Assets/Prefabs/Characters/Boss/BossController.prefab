@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40611526, g: 0.3075471, b: 1, a: 1}
+  m_Color: {r: 0.6792453, g: 0.041651852, b: 0.20798054, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -326,9 +326,9 @@ GameObject:
   - component: {fileID: 817607311598216102}
   - component: {fileID: 7312154608527398348}
   - component: {fileID: 194660473546553285}
-  - component: {fileID: 3964803435921450153}
   - component: {fileID: 2445601178727332327}
   - component: {fileID: 8685235395206185137}
+  - component: {fileID: 6501762613426711516}
   m_Layer: 0
   m_Name: BossController
   m_TagString: Boss
@@ -394,19 +394,19 @@ MonoBehaviour:
   currentState: 0
   exhaustPipe: {fileID: 2344737605699073341}
   cc: {fileID: 7312154608527398348}
-  deadVFX: {fileID: 0}
-  wanderRadius: 0
+  deadVFX: {fileID: 475311581755410044, guid: bf2cd110644c9ae42b9ffd15eb000951, type: 3}
+  wanderRadius: 13.3
   wanderCenter: {fileID: 0}
-  patrolSpeed: 2
-  chaseSpeed: 2
-  lookSlerpScalar: 0.5
+  patrolSpeed: 6
+  chaseSpeed: 9
+  lookSlerpScalar: 1.5
   idleTime: 2.5
   minHeight: 54
-  retreatDistance: 6
-  chaseRange: 9
-  spinAttackRange: 5
-  slashAttackRange: 3
-  fireAttackRange: 8
+  retreatDistance: 7
+  chaseRange: 20.5
+  spinAttackRange: 8.5
+  slashAttackRange: 3.5
+  fireAttackRange: 10
   damageRange: 1
   slashDamageAmount: 10
   spinDamageAmount: 5
@@ -415,35 +415,8 @@ MonoBehaviour:
   spinAttackSFX: {fileID: 8300000, guid: 142ceeb2dd5133049ac24db9f22639f9, type: 3}
   slashAttackSFX: {fileID: 8300000, guid: fcde448db1f28fb46aeee100295227a9, type: 3}
   fireAttackSFX: {fileID: 8300000, guid: 8fb77e46d3fff124c9da9557079536fb, type: 3}
-  engineWakeupSFX: {fileID: 0}
-  engineShutOffSFX: {fileID: 0}
---- !u!54 &3964803435921450153
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6388499518880555055}
-  serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  engineWakeupSFX: {fileID: 8300000, guid: c5f36e756e57dcf40a5934080ca23a99, type: 3}
+  engineShutOffSFX: {fileID: 8300000, guid: 8f90185e3b0bc6f42ba66dd26d433d0f, type: 3}
 --- !u!82 &2445601178727332327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,13 +429,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3674454984124f7449114c409f9a6c8c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.549
+  m_Volume: 0.066
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 71
+  Priority: 170
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -555,6 +528,33 @@ MonoBehaviour:
   startHealth: 100
   healthSlider: {fileID: 6988256093493807794}
   isDead: 0
+--- !u!54 &6501762613426711516
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388499518880555055}
+  serializedVersion: 4
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8606836059237149303
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23804174, g: 0.20950516, b: 0.4037736, a: 1}
+  m_Color: {r: 0.29411766, g: 0.20392159, b: 0.227451, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -721,7 +721,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
