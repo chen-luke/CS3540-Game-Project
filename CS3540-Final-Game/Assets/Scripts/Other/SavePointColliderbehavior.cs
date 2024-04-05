@@ -24,6 +24,7 @@ public class SavePointColliderbehavior : MonoBehaviour
     {
         // Save the respawn point to a JSON file
         string jsonStr = JsonUtility.ToJson(respawnPoint.position);
-        File.WriteAllText(LevelManager.savePointJSONPath, jsonStr);
+        // File.WriteAllText(LevelManager.savePointJSONPath, jsonStr);
+        PlayerPrefs.SetString("savePoint", jsonStr);
     }
 }
