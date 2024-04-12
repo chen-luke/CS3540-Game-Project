@@ -208,6 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 144314178}
   - component: {fileID: 144314179}
+  - component: {fileID: 144314180}
   m_Layer: 5
   m_Name: MouseSensitivitySlider
   m_TagString: Untagged
@@ -281,13 +282,37 @@ MonoBehaviour:
   m_FillRect: {fileID: 2082623156}
   m_HandleRect: {fileID: 1851062819}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 144314180}
+        m_TargetAssemblyTypeName: MouseSensitivity, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &144314180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144314177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834050c94493d484aa88aed63d2172bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149211710
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605513836}
   - component: {fileID: 605513837}
+  - component: {fileID: 605513838}
   m_Layer: 5
   m_Name: VolumeSlider
   m_TagString: Untagged
@@ -765,7 +791,31 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 605513838}
+        m_TargetAssemblyTypeName: VolumeSetting, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &605513838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605513835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc4594dbb42227458c9ecfc0a7a9c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643153832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876405642}
   - component: {fileID: 876405643}
+  - component: {fileID: 876405644}
   m_Layer: 5
   m_Name: InvertCameraToggle
   m_TagString: Untagged
@@ -1337,8 +1388,32 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 876405644}
+        m_TargetAssemblyTypeName: InvertedControls, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+--- !u!114 &876405644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876405641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405bacb4c7c94fd41ba95209b089dbbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &919768410
 GameObject:
   m_ObjectHideFlags: 0

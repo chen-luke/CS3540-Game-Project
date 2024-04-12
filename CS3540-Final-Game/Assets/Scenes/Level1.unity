@@ -37167,21 +37167,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119917412664965795, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
+      propertyPath: m_XAxis.m_InvertInput
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99082357
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000011614281
+      value: -0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 4080935209014184742, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015843435
+      value: 0.0000000043285087
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37197,15 +37201,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000011614281
+      value: -0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015843435
+      value: 0.000000004328509
       objectReference: {fileID: 0}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: healthBar
@@ -37225,15 +37229,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000011614281
+      value: 0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000015843435
+      value: -0.0000000043285087
       objectReference: {fileID: 0}
     - target: {fileID: 6833998049571714715, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: heavyAttackSFX

@@ -199,8 +199,9 @@ public class BossEnemyAI : MonoBehaviour
             }
         } else {
             if(searchDuration < searchTime) {
-                print(searchDuration);
+                // print(searchDuration);
                 searchDuration += Time.deltaTime;
+                cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
             } else {
                 FindNextPoint();
                 currentState = BossFSMStates.Patrol;
@@ -487,11 +488,11 @@ public class BossEnemyAI : MonoBehaviour
         RaycastHit hit;
         Vector3 directionToPlayer = player.transform.position - eyes.position;
         Vector3.Angle(directionToPlayer, transform.forward);
-        if (Vector3.Angle(directionToPlayer, transform.forward) <= 70)
+        if (Vector3.Angle(directionToPlayer, transform.forward) <= 100)
         {
             if (Physics.Raycast(eyes.position, directionToPlayer, out hit, chaseRange))
             {
-                print(hit.collider);
+                // print(hit.collider);
                 if (hit.collider.CompareTag("Player"))
                 {
                     return true;
