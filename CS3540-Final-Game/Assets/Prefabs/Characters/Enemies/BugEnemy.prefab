@@ -867,6 +867,10 @@ MonoBehaviour:
   - {fileID: 4668568544236975680, guid: 73bc76c86de7f8949b50546819437c88, type: 3}
   deadSFX: {fileID: 8300000, guid: 3f1c54220af45a44996902ce8e2753ee, type: 3}
   attackSFX: {fileID: 8300000, guid: ea34b8294385e4247ac4b41691e609cc, type: 3}
+  hitSFX:
+  - {fileID: 8300000, guid: 7662996db0115b349948838a690599a7, type: 3}
+  - {fileID: 8300000, guid: ca7667befb0fb3745a3db101812d80f3, type: 3}
+  - {fileID: 8300000, guid: ea87e7a19557dd44082f26766cc71f70, type: 3}
 --- !u!114 &-5567482240056330365
 MonoBehaviour:
   m_ObjectHideFlags: 0

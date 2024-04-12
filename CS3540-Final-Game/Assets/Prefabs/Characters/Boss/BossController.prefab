@@ -451,6 +451,7 @@ MonoBehaviour:
   fireAttackSFX: {fileID: 8300000, guid: a80721c92d666984fbdc53c273aa161d, type: 3}
   engineWakeupSFX: {fileID: 8300000, guid: 850ce4a613226bd4fa91e80e1e32fb3a, type: 3}
   engineShutOffSFX: {fileID: 8300000, guid: 2d69cc21e02d98842862a5c3a8f8737c, type: 3}
+  takeDamageSFX: {fileID: 8300000, guid: 41e798b7e24e2a94ca4b1ac0db098dbd, type: 3}
 --- !u!82 &2445601178727332327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -561,6 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   healthSlider: {fileID: 6988256093493807794}
+  deathSFX: {fileID: 0}
+  deathVolume: 0
   isDead: 0
 --- !u!54 &9017287620723839398
 Rigidbody:

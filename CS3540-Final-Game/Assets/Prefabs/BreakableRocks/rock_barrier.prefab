@@ -90,6 +90,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Rock_Huge_03_WHOLE
       objectReference: {fileID: 0}
+    - target: {fileID: 4492420654123579200, guid: cc2b9d3d23c7d124388b910cd23e49c1, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -148,6 +152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3835059203351763026, guid: 4f49a361640433144b804e5c4be98645, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     - target: {fileID: 6373712179458121886, guid: 4f49a361640433144b804e5c4be98645, type: 3}
       propertyPath: m_Name
       value: SM_Env_Rock_Large_07_WHOLE
@@ -170,6 +178,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585359536199124443}
     m_Modifications:
+    - target: {fileID: 1401742325560062032, guid: e4798f018f180084ab137ac2a259866a, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     - target: {fileID: 3671579450194158879, guid: e4798f018f180084ab137ac2a259866a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.0600014
@@ -232,6 +244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585359536199124443}
     m_Modifications:
+    - target: {fileID: 105499490956666317, guid: fb633f44fd3fb574c9908c3cc91025dd, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     - target: {fileID: 9132142221495872943, guid: fb633f44fd3fb574c9908c3cc91025dd, type: 3}
       propertyPath: m_Name
       value: SM_Env_Rock_Large_09_WHOLE
@@ -294,6 +310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585359536199124443}
     m_Modifications:
+    - target: {fileID: 6366557937192563297, guid: d72b6b39e3d196748885a343e8635760, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     - target: {fileID: 6831180579099339363, guid: d72b6b39e3d196748885a343e8635760, type: 3}
       propertyPath: m_Name
       value: SM_Env_Rock_Large_03_WHOLE
@@ -400,6 +420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Rock_Large_06_WHOLE
       objectReference: {fileID: 0}
+    - target: {fileID: 7974690554690534644, guid: df04e671a22f4f74f9f76c839016dde3, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -418,6 +442,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1585359536199124443}
     m_Modifications:
+    - target: {fileID: 1401742325560062032, guid: e4798f018f180084ab137ac2a259866a, type: 3}
+      propertyPath: rockBreakSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: b8a8bc3f9d91b704584c5a2cf6b87feb, type: 3}
     - target: {fileID: 3671579450194158879, guid: e4798f018f180084ab137ac2a259866a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.010002

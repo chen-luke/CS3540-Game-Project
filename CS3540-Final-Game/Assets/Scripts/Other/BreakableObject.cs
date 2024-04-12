@@ -5,12 +5,14 @@ public class BreakableObject : MonoBehaviour
     public float explosionForce = 100;
     public float explosionRadius = 10;
     public GameObject objectPieces;
+    public AudioClip rockBreakSFX;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("SwordSlashProjectile"))
         {
             Transform currentObj = gameObject.transform;
+            AudioSource.PlayClipAtPoint(rockBreakSFX, transform.position);
 
             // create pieces and send them exploding
             GameObject pieces = Instantiate(objectPieces, currentObj.position, currentObj.rotation);

@@ -61,6 +61,7 @@ public class BossEnemyAI : MonoBehaviour
     public AudioClip fireAttackSFX;
     public AudioClip engineWakeupSFX;
     public AudioClip engineShutOffSFX;
+    public AudioClip takeDamageSFX;
 
 
     // Local fields
@@ -141,6 +142,7 @@ public class BossEnemyAI : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health.TakeDamage(amount);
+        AudioSource.PlayClipAtPoint(takeDamageSFX, transform.position);
     }
 
     void UpdateIdleState()
