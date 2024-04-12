@@ -201,7 +201,10 @@ public class BossEnemyAI : MonoBehaviour
             if(searchDuration < searchTime) {
                 // print(searchDuration);
                 searchDuration += Time.deltaTime;
-                cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
+                Vector3 rotatedVector = Quaternion.AngleAxis(30, Vector3.up) * transform.forward;
+                //transform.rotation = Vector3.Slerp(transform.forward, rotatedVector, Time.deltaTime * lookSlerpScalar);
+                FaceTarget(rotatedVector + transform.position);
+                //cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
             } else {
                 FindNextPoint();
                 currentState = BossFSMStates.Patrol;

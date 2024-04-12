@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class InvertedControls : MonoBehaviour
 {
@@ -34,5 +35,14 @@ public class InvertedControls : MonoBehaviour
             PlayerPrefs.SetInt("invertedControls", 0);
         }
          PlayerPrefs.Save();
+          try
+        {
+            CinemachineFreeLook freeLook = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CinemachineFreeLook>();
+            freeLook.m_YAxis.m_InvertInput = isOn;
+        }
+        catch
+        {
+
+        }
     }
 }
