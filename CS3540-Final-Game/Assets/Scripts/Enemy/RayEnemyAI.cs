@@ -37,7 +37,7 @@ public class RayEnemyAI : MonoBehaviour
     public GameObject deadVFX;
     public AudioClip heavyAttackSFX;
     public AudioClip lightAttackSFX;
-    // public AudioClip hitSFX;
+    public AudioClip[] hitSFX;
     public Transform rayMouth;
     //public bool isDead = false;
     Animator anim;
@@ -102,6 +102,8 @@ public class RayEnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
+            int sfxIndex = Random.Range(0, hitSFX.Length);
+            AudioSource.PlayClipAtPoint(hitSFX[sfxIndex], transform.position, .5f);
             enemyHealth.TakeDamage(collision.gameObject.GetComponent<WeaponDamage>().damageAmount);
             // Debug.Log("Weapon Hit!");
             // Die on hit, will implement enemy health later

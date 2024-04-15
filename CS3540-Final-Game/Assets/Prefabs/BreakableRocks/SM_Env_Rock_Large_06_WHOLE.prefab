@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2427461846216512891}
   - component: {fileID: 7974690554690534644}
   - component: {fileID: 4809901357245991535}
+  - component: {fileID: 1464368072467545282}
   m_Layer: 0
   m_Name: SM_Env_Rock_Large_06_WHOLE
   m_TagString: Untagged
@@ -29,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3507163187311005227}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9536587, z: -0, w: 0.30089056}
+  m_LocalRotation: {x: 0, y: 0.95365924, z: 0, w: 0.300889}
   m_LocalPosition: {x: -52.039997, y: 50.66, z: -94.65001}
-  m_LocalScale: {x: 0.7407335, y: 1.3629496, z: 0.7407335}
+  m_LocalScale: {x: 0.7407335, y: 0.7407335, z: 0.7407335}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,7 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForce: 300
   explosionRadius: 25
-  damageRequired: 0
   objectPieces: {fileID: 662223992085460019, guid: 952788d947e89d14eaca59ce0154a2bd, type: 3}
 --- !u!65 &4809901357245991535
 BoxCollider:
@@ -150,3 +150,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.377535, y: 5.7260613, z: 8.054604}
   m_Center: {x: -5.684342e-14, y: 2.8630307, z: -0.0000009536744}
+--- !u!64 &1464368072467545282
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507163187311005227}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6aa5e74ef216ba04bbd52d2d3af01796, type: 3}

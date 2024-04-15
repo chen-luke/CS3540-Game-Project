@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Collections.Generic;
+using Cinemachine;
 
 // behavior to manage the level and game
 public class LevelManager : MonoBehaviour
@@ -95,6 +96,25 @@ public class LevelManager : MonoBehaviour
 
         print("ManaPotLocCount: " + manaPotionLocations.Count);
         print("HealthPotLocCount: " + healthPotionLocations.Count);
+        LoadPlayerPrefs();
+    }
+
+    private void LoadPlayerPrefs() {
+        int inverted = PlayerPrefs.GetInt("invertedControls", 1);
+        bool isInverted = false;
+        if(inverted == 1) {
+            isInverted = true;
+        } else if(inverted == 0) {
+            isInverted = false;
+        }
+        CinemachineFreeLook freeLook = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CinemachineFreeLook>();
+        freeLook.m_YAxis.m_InvertInput = isInverted;
+        print(PlayerPrefs.GetFloat("volume", 100));
+        freeLook.m_XAxis.m_MaxSpeed = 50 * PlayerPrefs.GetFloat("mouseSensitivity", 5);
+        freeLook.m_YAxis.m_MaxSpeed = PlayerPrefs.GetFloat("mouseSensitivity", 5) * .4f;
+        AudioListener.volume = PlayerPrefs.GetFloat("volume", 5)/10;
+
+
     }
 
     private static List<Vector3> FirstHealthPotionLocations()
@@ -288,7 +308,15 @@ public class LevelManager : MonoBehaviour
 
     public static void Reset()
     {
+        float mouseSense = PlayerPrefs.GetFloat("mouseSensitivity", 5);
+        float vol = PlayerPrefs.GetFloat("volume", 5);
+        int inverted = PlayerPrefs.GetInt("invertedControls", 1);
+
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetFloat("mouseSensitivity", mouseSense);
+        PlayerPrefs.SetFloat("volume", vol);
+        PlayerPrefs.SetInt("invertedControls", inverted);
+
         isGameOver = false;
         isGameWon = false;
         isBossAwake = false;

@@ -48,6 +48,7 @@ public class BugEnemyAI : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip deadSFX;
     public AudioClip attackSFX;
+    public AudioClip[] hitSFX;
 
     // local fields
     Animator anim;
@@ -105,6 +106,8 @@ public class BugEnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Weapon"))
         {
+            int sfxIndex = Random.Range(0, hitSFX.Length);
+            AudioSource.PlayClipAtPoint(hitSFX[sfxIndex], transform.position, .5f);
             enemyHealth.TakeDamage(collision.gameObject.GetComponent<WeaponDamage>().damageAmount);
         }
 

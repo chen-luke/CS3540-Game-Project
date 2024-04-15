@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5946806298546714207}
   - component: {fileID: 3712289777696667657}
   m_Layer: 0
-  m_Name: SM_Env_Rock_Large_09 (1)
+  m_Name: SM_Env_Rock_Large_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

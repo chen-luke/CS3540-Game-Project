@@ -5,11 +5,12 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public AudioClip drinkPotionSFX;
+    public AudioClip[] hitSFX;
     public Slider healthBar;
     int currentHealth;
     int maxHealth = 100;
     public static bool isDead = false;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        int sfxIndex = Random.Range(0, hitSFX.Length);
+        AudioSource.PlayClipAtPoint(hitSFX[sfxIndex], transform.position, .5f);
         if (currentHealth > 0)
         {
             currentHealth -= damageAmount;

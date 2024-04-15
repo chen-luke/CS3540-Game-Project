@@ -946,6 +946,10 @@ MonoBehaviour:
   deadVFX: {fileID: 475311581755410044, guid: bf2cd110644c9ae42b9ffd15eb000951, type: 3}
   heavyAttackSFX: {fileID: 8300000, guid: 6dafce66435cef44eb77504fb1aeee3a, type: 3}
   lightAttackSFX: {fileID: 8300000, guid: 8d7eece1134d7d14dbb310d7f4915fb5, type: 3}
+  hitSFX:
+  - {fileID: 8300000, guid: ef0b1ba10e6e72c4abec3f9b569f067f, type: 3}
+  - {fileID: 8300000, guid: 4c1be0671d3cd1c4a9971956c19ae121, type: 3}
+  - {fileID: 8300000, guid: ba31ccaaefec6514ca6f218127ab09af, type: 3}
   rayMouth: {fileID: 0}
 --- !u!114 &4106335562142354865
 MonoBehaviour:

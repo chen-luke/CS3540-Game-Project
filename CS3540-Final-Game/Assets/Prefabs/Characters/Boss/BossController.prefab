@@ -315,6 +315,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &5788750145645961978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638524534560573840}
+  m_Layer: 0
+  m_Name: BossEyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &638524534560573840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788750145645961978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 817607311598216102}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6388499518880555055
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +381,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2199553521417119937}
+  - {fileID: 638524534560573840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7312154608527398348
@@ -393,6 +425,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currentState: 0
   exhaustPipe: {fileID: 6574541955554770730}
+  eyes: {fileID: 638524534560573840}
   cc: {fileID: 7312154608527398348}
   deadVFX: {fileID: 475311581755410044, guid: bf2cd110644c9ae42b9ffd15eb000951, type: 3}
   wanderRadius: 13.3
@@ -408,6 +441,7 @@ MonoBehaviour:
   slashAttackRange: 3.5
   fireAttackRange: 10
   damageRange: 1
+  searchTime: 6
   slashDamageAmount: 10
   spinDamageAmount: 5
   attackCooldown: 2
@@ -417,6 +451,7 @@ MonoBehaviour:
   fireAttackSFX: {fileID: 8300000, guid: a80721c92d666984fbdc53c273aa161d, type: 3}
   engineWakeupSFX: {fileID: 8300000, guid: 850ce4a613226bd4fa91e80e1e32fb3a, type: 3}
   engineShutOffSFX: {fileID: 8300000, guid: 2d69cc21e02d98842862a5c3a8f8737c, type: 3}
+  takeDamageSFX: {fileID: 8300000, guid: 41e798b7e24e2a94ca4b1ac0db098dbd, type: 3}
 --- !u!82 &2445601178727332327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -527,6 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   healthSlider: {fileID: 6988256093493807794}
+  deathSFX: {fileID: 0}
+  deathVolume: 0
   isDead: 0
 --- !u!54 &9017287620723839398
 Rigidbody:

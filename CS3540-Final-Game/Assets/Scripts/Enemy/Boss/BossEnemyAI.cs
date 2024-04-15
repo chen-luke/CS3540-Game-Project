@@ -20,6 +20,7 @@ public class BossEnemyAI : MonoBehaviour
     public GameObject player;
     public BossFSMStates currentState;
     public Transform exhaustPipe;
+    public Transform eyes;
     public CharacterController cc;
     public GameObject deadVFX;
 
@@ -44,6 +45,7 @@ public class BossEnemyAI : MonoBehaviour
     public float slashAttackRange = 3f;
     public float fireAttackRange = 8f;
     public float damageRange = 1f;
+    public float searchTime = 6f;
 
     // Attack Settings
     [Header("Attack Settings")]
@@ -59,6 +61,7 @@ public class BossEnemyAI : MonoBehaviour
     public AudioClip fireAttackSFX;
     public AudioClip engineWakeupSFX;
     public AudioClip engineShutOffSFX;
+    public AudioClip takeDamageSFX;
 
 
     // Local fields
@@ -73,6 +76,8 @@ public class BossEnemyAI : MonoBehaviour
     float deathAnimationTimer = 4f;
     EnemyHealth health;
     AudioSource attackSound;
+
+    float searchDuration = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -137,6 +142,7 @@ public class BossEnemyAI : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health.TakeDamage(amount);
+        AudioSource.PlayClipAtPoint(takeDamageSFX, transform.position);
     }
 
     void UpdateIdleState()
@@ -157,7 +163,7 @@ public class BossEnemyAI : MonoBehaviour
     void UpdatePatrolState()
     {
         anim.SetInteger("BossAnimState", 6);
-        if (distToPlayer <= chaseRange)
+        if (distToPlayer <= chaseRange && IsPlayerInFOV())
         {
             currentState = BossFSMStates.Chase;
         }
@@ -168,27 +174,46 @@ public class BossEnemyAI : MonoBehaviour
 
     void UpdateChaseState()
     {
-        anim.SetInteger("BossAnimState", 6);
-        // get player position, but don't let boss go below min height
-        nextDestination = new Vector3(player.transform.position.x, Mathf.Max(player.transform.position.y, minHeight), player.transform.position.z);
-        if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5 && CanAttack()) // within attack range?
+        if (IsPlayerInFOV())
         {
-            currentState = nextAttack;
-        }
-        else if (distToPlayer > chaseRange) // outside of chase range?
-        {
-            FindNextPoint();
-            currentState = BossFSMStates.Patrol;
-        }
-        else if (distToPlayer - attackRange < 0) // too close to player? back up
-        {
-            FaceTarget(nextDestination);
-            cc.Move(-transform.forward * chaseSpeed * Time.deltaTime);
-        }
-        else
-        {
-            FaceTarget(nextDestination);
-            cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
+            searchDuration = 0f;
+            anim.SetInteger("BossAnimState", 6);
+            // get player position, but don't let boss go below min height
+            nextDestination = new Vector3(player.transform.position.x, Mathf.Max(player.transform.position.y, minHeight), player.transform.position.z);
+            if (distToPlayer - attackRange < .5 && distToPlayer - attackRange > -0.5 && CanAttack()) // within attack range?
+            {
+                currentState = nextAttack;
+            }
+            else if (distToPlayer > chaseRange) // outside of chase range?
+            {
+                FindNextPoint();
+                currentState = BossFSMStates.Patrol;
+            }
+            else if (distToPlayer - attackRange < 0) // too close to player? back up
+            {
+                FaceTarget(nextDestination);
+                cc.Move(-transform.forward * chaseSpeed * Time.deltaTime);
+            }
+            else
+            {
+                FaceTarget(nextDestination);
+                cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
+            }
+        } else {
+            if(searchDuration < searchTime) {
+                // print(searchDuration);
+                searchDuration += Time.deltaTime;
+                Vector3 rotatedVector = Quaternion.AngleAxis(30, Vector3.up) * transform.forward;
+                //transform.rotation = Vector3.Slerp(transform.forward, rotatedVector, Time.deltaTime * lookSlerpScalar);
+                FaceTarget(rotatedVector + transform.position);
+                //cc.Move(transform.forward * chaseSpeed * Time.deltaTime);
+            } else {
+                FindNextPoint();
+                currentState = BossFSMStates.Patrol;
+                searchDuration = 0;
+                print(currentState);
+            }
+            
         }
     }
 
@@ -463,34 +488,35 @@ public class BossEnemyAI : MonoBehaviour
         return true;
     }
 
-    // private bool IsPlayerInFOV()
-    // {
-    //     RaycastHit hit;
-    //     Vector3 directionToPlayer = player.transform.position - transform.position;
-    //     if (Vector3.Angle(directionToPlayer, transform.forward) <= 45)
-    //     {
-    //         if (Physics.Raycast(transform.position, directionToPlayer, out hit, chaseRange))
-    //         {
-    //             if (hit.collider.CompareTag("Player"))
-    //             {
-    //                 //print("player in sight");
-    //                 return true;
-    //             }
-    //             else
-    //             {
-    //                 return false;
-    //             }
-    //         }
-    //         else
-    //         {
-    //             return false;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         return false;
-    //     }
-    // }
+    private bool IsPlayerInFOV()
+    {
+        RaycastHit hit;
+        Vector3 directionToPlayer = player.transform.position - eyes.position;
+        Vector3.Angle(directionToPlayer, transform.forward);
+        if (Vector3.Angle(directionToPlayer, transform.forward) <= 100)
+        {
+            if (Physics.Raycast(eyes.position, directionToPlayer, out hit, chaseRange))
+            {
+                // print(hit.collider);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     // visually show that boss is defeated and invoke game beat state
     void Defeat()
@@ -516,6 +542,7 @@ public class BossEnemyAI : MonoBehaviour
         Gizmos.DrawRay(transform.position + 3 * transform.forward, transform.forward * (attackRange - 3));
         //Draw a cube that extends to where the hit exists
         Gizmos.DrawWireCube(transform.position + 3 * transform.forward + transform.forward * (attackRange - 3), transform.localScale);
+        Gizmos.DrawRay(transform.position, player.transform.position - transform.position);
     }
 
     // not sure if we may need later
