@@ -58,6 +58,8 @@ public class RayEnemyAI : MonoBehaviour
     EnemySight enemySight;
     NavMeshAgent agent;
 
+    PlayerFSMController playerFSM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,7 +109,7 @@ public class RayEnemyAI : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Weapon"))
+        if (collision.gameObject.CompareTag("Weapon") && playerFSM.IsAttacking())
         {
             int sfxIndex = Random.Range(0, hitSFX.Length);
             AudioSource.PlayClipAtPoint(hitSFX[sfxIndex], transform.position, .5f);
@@ -116,10 +118,13 @@ public class RayEnemyAI : MonoBehaviour
             // Die on hit, will implement enemy health later
             //currentState = FSMStates.Dead;
         }
+
     }
     void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerFSM = player.GetComponent<PlayerFSMController>();
+
         anim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         rayMouth = Utility.FindChildTransformWithTag(gameObject, "RayMouth");
