@@ -61,6 +61,8 @@ public class BugEnemyAI : MonoBehaviour
     Vector3 nextDestination;
     Transform deadTransform;
     EnemyHealth enemyHealth;
+    EnemySight enemySight;
+    PlayerFSMController playerFSM;
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +106,7 @@ public class BugEnemyAI : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Weapon"))
+        if (collision.gameObject.CompareTag("Weapon") && playerFSM.IsAttacking())
         {
             int sfxIndex = Random.Range(0, hitSFX.Length);
             AudioSource.PlayClipAtPoint(hitSFX[sfxIndex], transform.position, .5f);
@@ -115,11 +117,13 @@ public class BugEnemyAI : MonoBehaviour
     void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerFSM = player.GetComponent<PlayerFSMController>();
         anim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
         GetPresetWanderPoints();
         currentState = FSMStates.Patrol;
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
+        enemySight = gameObject.GetComponent<EnemySight>();
         FindNextPoint();
     }
 
@@ -164,7 +168,7 @@ public class BugEnemyAI : MonoBehaviour
     void UpdatePatrolState()
     {
         anim.SetInteger("bugAnimState", 1);
-        if (distToPlayer <= chaseRange) // is player within chase range?
+        if (enemySight.SeePlayer()) // Do we see the player?
         {
             currentState = FSMStates.Chase;
         }

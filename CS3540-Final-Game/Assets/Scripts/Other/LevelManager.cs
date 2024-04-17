@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Collections.Generic;
 using Cinemachine;
+using System;
 
 // behavior to manage the level and game
 public class LevelManager : MonoBehaviour
@@ -25,13 +26,16 @@ public class LevelManager : MonoBehaviour
     public static bool isBossAwake = false;
     public static bool glovePickedUp = false;
     public static bool bootsPickedUp = false;
+    public static bool shieldPickedup = false;
     // public static string savePointJSONPath = Application.dataPath + "/JSON/savePoint.json";
     public static int healthPotionAmt = 0;
     public static int manaPotionAmt = 0;
+    public static int shieldAmt = 0;
     public static Transform savePoint;
 
     private bool gloveUIChanged = false;
     private bool bootUIChanged = false;
+    private bool shieldUIChanged = false;
     private static ToolTips toolTipPanel;
     private static bool gavePotionTip = false;
     private static bool gaveBootTip = false;
@@ -56,7 +60,6 @@ public class LevelManager : MonoBehaviour
 
         foreach (Vector3 location in manaPotionLocations)
         {
-            print(location.ToString());
         }
     }
 
@@ -73,6 +76,19 @@ public class LevelManager : MonoBehaviour
             {
                 UpdateBootPickUpUI();
             }
+
+            if (shieldPickedup == true && !shieldUIChanged)
+            {
+                UpdateShieldPickUpUI();
+            }
+        }
+    }
+
+    public static void UpdateShieldPickUpUI()
+    {
+        if (!isGameOver)
+        {
+            UpdatePotionCountUI("ShieldPickUpIcon", shieldAmt);
         }
     }
 
@@ -99,12 +115,16 @@ public class LevelManager : MonoBehaviour
         LoadPlayerPrefs();
     }
 
-    private void LoadPlayerPrefs() {
+    private void LoadPlayerPrefs()
+    {
         int inverted = PlayerPrefs.GetInt("invertedControls", 1);
         bool isInverted = false;
-        if(inverted == 1) {
+        if (inverted == 1)
+        {
             isInverted = true;
-        } else if(inverted == 0) {
+        }
+        else if (inverted == 0)
+        {
             isInverted = false;
         }
         CinemachineFreeLook freeLook = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CinemachineFreeLook>();
@@ -112,7 +132,7 @@ public class LevelManager : MonoBehaviour
         print(PlayerPrefs.GetFloat("volume", 100));
         freeLook.m_XAxis.m_MaxSpeed = 50 * PlayerPrefs.GetFloat("mouseSensitivity", 5);
         freeLook.m_YAxis.m_MaxSpeed = PlayerPrefs.GetFloat("mouseSensitivity", 5) * .4f;
-        AudioListener.volume = PlayerPrefs.GetFloat("volume", 5)/10;
+        AudioListener.volume = PlayerPrefs.GetFloat("volume", 5) / 10;
 
 
     }
@@ -121,10 +141,10 @@ public class LevelManager : MonoBehaviour
     {
         List<Vector3> healthPotionLocations = new List<Vector3>
         {
-            new Vector3(-4.86f, 32.79f, -56.46f),
-            new Vector3(-4.86f, 32.79f, -60.02f),
-            new Vector3(-4.86f, 32.79f, -57.97f),
-            new Vector3(-3.79f, 32.79f, -56.46f)
+            new Vector3(-10.80f, 32.79f, -52.83f),
+            new Vector3(-10.80f, 32.79f, -53.83f),
+            new Vector3(-50f, 51f, -71f),
+            new Vector3(-34.4f, 54.47f, -101f)
         };
         return healthPotionLocations;
     }
@@ -135,6 +155,9 @@ public class LevelManager : MonoBehaviour
         {
             new Vector3(-10.88f, 32.52f, -55.55f),
             new Vector3(-10.86f, 32.52f, -54.83f),
+            new Vector3(-50f, 51f, -72f),
+            new Vector3(-34.8f, 54.5f, -102f),
+
         };
         return healthPotionLocations;
     }
@@ -308,6 +331,7 @@ public class LevelManager : MonoBehaviour
 
     public static void Reset()
     {
+        print("Start Reset");
         float mouseSense = PlayerPrefs.GetFloat("mouseSensitivity", 5);
         float vol = PlayerPrefs.GetFloat("volume", 5);
         int inverted = PlayerPrefs.GetInt("invertedControls", 1);
@@ -324,6 +348,7 @@ public class LevelManager : MonoBehaviour
         bootsPickedUp = false;
         healthPotionAmt = 0;
         manaPotionAmt = 0;
+        shieldAmt = 0;
         savePoint = null;
         gavePotionTip = false;
         gaveBootTip = false;
@@ -332,6 +357,8 @@ public class LevelManager : MonoBehaviour
         gaveInteractionTip = false;
         healthPotionLocations.Clear();
         manaPotionLocations.Clear();
+        print(Time.timeScale);
+        print("End Reset");
     }
 }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RayEnemyAI : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class RayEnemyAI : MonoBehaviour
     public Vector3[] wanderPoints;
     public FSMStates currentState;
     public float speed = 4f;
+
+    public float chaseSpeed = 5;
     public float chaseRange = 9f;
     public float attackRange = 4f;
     public float nextWanderpointDist = 0.75f;
@@ -48,9 +51,12 @@ public class RayEnemyAI : MonoBehaviour
     float attackDelay;
     int currentDestIdx = 0;
     int idleIndex = 0;
+
     Vector3 nextDestination;
     Transform deadTransform;
     EnemyHealth enemyHealth;
+    EnemySight enemySight;
+    NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +66,7 @@ public class RayEnemyAI : MonoBehaviour
         canShoot = true;
         enemyHealth.isDead = false;
 
+        agent = GetComponent<NavMeshAgent>();
         //isDead = false;
     }
 
@@ -119,6 +126,7 @@ public class RayEnemyAI : MonoBehaviour
         GetPresetWanderPoints();
         currentState = FSMStates.Patrol;
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
+        enemySight = gameObject.GetComponent<EnemySight>();
         FindNextPoint();
     }
 
@@ -179,8 +187,7 @@ public class RayEnemyAI : MonoBehaviour
 
     void UpdateIdleState()
     {
-        // Debug.Log("Idle");
-        // Debug.Log(currentDestIdx);
+
         anim.SetInteger("rayAnimState", 0);
         if (!wentIdle)
         {
@@ -195,9 +202,10 @@ public class RayEnemyAI : MonoBehaviour
 
     void UpdatePatrolState()
     {
-        // Debug.Log("Patrol - " + currentDestIdx);
         anim.SetInteger("rayAnimState", 1);
-        if (distToPlayer <= chaseRange)
+        agent.stoppingDistance = 0;
+        agent.speed = speed;
+        if (enemySight.SeePlayer())
         {
             currentState = FSMStates.Chase;
         }
@@ -209,19 +217,20 @@ public class RayEnemyAI : MonoBehaviour
             }
             else
             {
-                // Debug.Log("Find Next Point");
                 FindNextPoint();
             }
         }
         FaceTarget(nextDestination);
-        cc.Move(transform.forward * speed * Time.deltaTime);
+        agent.SetDestination(nextDestination);
     }
 
     void UpdateChaseState()
     {
-        // Debug.Log("Chase");
         anim.SetInteger("rayAnimState", 2);
         nextDestination = player.transform.position;
+        agent.stoppingDistance = attackRange;
+        agent.speed = chaseSpeed;
+
         if (distToPlayer <= attackRange)
         {
             currentState = FSMStates.Attack;
@@ -232,7 +241,8 @@ public class RayEnemyAI : MonoBehaviour
             currentState = FSMStates.Patrol;
         }
         FaceTarget(nextDestination);
-        cc.Move(transform.forward * speed * Time.deltaTime);
+        agent.SetDestination(nextDestination);
+
     }
 
     void UpdateHitState()
@@ -248,6 +258,7 @@ public class RayEnemyAI : MonoBehaviour
         // Ensure we don't have a negative attack delay
         attackDelay = Mathf.Max(0, attackCooldown - animDuration);
         nextDestination = player.transform.position;
+
         if (distToPlayer <= attackRange)
         {
             currentState = FSMStates.Attack;
