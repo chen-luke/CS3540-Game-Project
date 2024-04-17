@@ -485,6 +485,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6895968193123495136, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: spawnRate
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5710,7 +5714,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: spawnRate
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: maxEnemies
@@ -9274,7 +9278,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: spawnRate
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: maxEnemies
@@ -12643,7 +12647,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 296edbd793fed8f4e892bb9fa6ff7a1d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8274a61c46cf06442b4e6d41bbbabcd6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &670505901
 Transform:
@@ -25580,7 +25584,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: spawnRate
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 780569324293876468, guid: af3ee8e9589e59144b1bcda623c0eff6, type: 3}
       propertyPath: maxEnemies
@@ -37671,11 +37675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000011614281
+      value: 0.000000011614283
       objectReference: {fileID: 0}
     - target: {fileID: 5094320558627737137, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015843435
+      value: -0.0000000015843438
       objectReference: {fileID: 0}
     - target: {fileID: 5222941678055797330, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: healthBar
@@ -37719,15 +37723,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000011614281
+      value: 0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 6747185976837723299, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000015843435
+      value: -0.0000000043285087
       objectReference: {fileID: 0}
     - target: {fileID: 6833998049571714715, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: heavyAttackSFX
@@ -37743,15 +37747,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13516165
+      value: 0.13516162
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000011614281
+      value: -0.000000031730814
       objectReference: {fileID: 0}
     - target: {fileID: 8269681086963978239, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015843435
+      value: 0.0000000043285087
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3605607545164563623, guid: 5f62d2438b39f06418ff27cfd91b16f9, type: 3}
@@ -40047,6 +40051,10 @@ PrefabInstance:
     - target: {fileID: 5236784468000409475, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895968193123495136, guid: 3e7d90dd67bfe22478893668a82589b9, type: 3}
+      propertyPath: spawnRate
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
