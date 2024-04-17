@@ -914,7 +914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Invert Camera
+  m_text: Invert Camera Y
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1ed5874d8c4697f48911abb9b9149caa, type: 2}
   m_sharedMaterial: {fileID: 2163194887552771858, guid: 1ed5874d8c4697f48911abb9b9149caa, type: 2}
