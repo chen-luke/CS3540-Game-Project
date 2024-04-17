@@ -136,6 +136,9 @@ public class PlayerFSMController : MonoBehaviour
         }
     }
 
+    public bool IsAttacking() {
+        return currentState == FSMStates.Attacking;
+    }
     void UpdateIdleState()
     {
         anim.SetInteger("animState", 0);

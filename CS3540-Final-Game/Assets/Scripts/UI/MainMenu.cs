@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void StartGame() {
+        Time.timeScale = 1;
         LevelManager.Reset();
         Invoke("InvokeStart", 1.2f);
     }

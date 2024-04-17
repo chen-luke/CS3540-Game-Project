@@ -198,6 +198,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -404,6 +411,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -479,6 +493,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -623,6 +644,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1425,6 +1453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   drinkPotionSFX: {fileID: 8300000, guid: a8f2e61ec9ecc164da21cd4c081fb132, type: 3}
+  hitSFX: []
   healthBar: {fileID: 0}
 --- !u!114 &-115763938044586620
 MonoBehaviour:
@@ -1505,8 +1534,8 @@ MonoBehaviour:
   airControl: 1.25
   coyoteTime: 0.3
   heavyManaCost: 10
-  lightAttackSFX: {fileID: 8300000, guid: a048e57705d54e448967fd41f11de6f3, type: 3}
-  heavyAttackSFX: {fileID: 8300000, guid: f4d881e7bc690744eb025115ebf4661e, type: 3}
+  lightAttackSFX: {fileID: 8300000, guid: e11bb3009b128b44b9374f2950a156a0, type: 3}
+  heavyAttackSFX: {fileID: 8300000, guid: 638893812a3870148a4cc76721fe2275, type: 3}
   attackAnimFreezeOffset: 0.48
 --- !u!114 &7686377858153152309
 MonoBehaviour:
